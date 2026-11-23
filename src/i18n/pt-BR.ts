@@ -1,0 +1,76 @@
+// Todos os textos do app ficam aqui, prontos para tradução no futuro.
+export const ptBR = {
+  appName: 'Movi',
+  tabs: {
+    home: 'Início',
+    workouts: 'Treinos',
+    progress: 'Evolução',
+    profile: 'Perfil',
+  },
+  menu: {
+    a11yLabel: 'Mais opções',
+    library: 'Biblioteca de exercícios',
+    settings: 'Configurações',
+    help: 'Ajuda',
+    terms: 'Termos e privacidade',
+    close: 'Fechar',
+  },
+  dates: {
+    weekdays: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+    // Iniciais começando na segunda-feira, como na tela inicial
+    weekInitialsMonFirst: ['S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+    months: [
+      'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
+      'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro',
+    ],
+    today: 'Hoje',
+  },
+  home: {
+    greeting: 'Olá, {name}',
+    greetingNoName: 'Olá!',
+    thisWeek: 'Esta semana',
+    weeksInARow: '{count} semanas seguidas',
+    oneWeekInARow: '1 semana seguida',
+    todayWorkout: 'Treino de hoje',
+    weeklyPlan: 'PLANO SEMANAL',
+    weeklyPlanEmpty: 'Seu plano semanal vai aparecer aqui.',
+    startWorkout: 'Começar treino',
+    customWorkout: 'Montar treino personalizado',
+    customWorkoutHint: 'Escolha os grupos musculares',
+    weight: 'Peso',
+    lastRecord: 'Último recorde',
+    noData: '—',
+    noWeightYet: 'Registre na Evolução',
+    noRecordYet: 'Faça seu primeiro treino',
+  },
+  workouts: {
+    title: 'Treinos',
+    empty: 'Aqui você vai montar treinos avulsos e ver o histórico.',
+  },
+  progress: {
+    title: 'Evolução',
+    empty: 'Aqui vão ficar o peso, as medidas, os gráficos e os recordes.',
+  },
+  profile: {
+    title: 'Perfil',
+    empty: 'Aqui você vai editar seus dados, equipamentos e assinatura.',
+  },
+  placeholder: {
+    comingSoon: 'Em construção.',
+  },
+  dev: {
+    title: 'Diagnóstico (só em desenvolvimento)',
+    user: 'Usuário',
+    noUser: 'sem login (offline ou Supabase não configurado)',
+    supabaseMissing: 'Supabase não configurado (.env.local)',
+    sync: 'Sincronização',
+    syncIdle: 'parada',
+    syncRunning: 'sincronizando…',
+    syncError: 'erro: {message}',
+    lastSync: 'Última: {time}',
+    pending: '{count} alterações para enviar',
+    syncNow: 'Sincronizar agora',
+    addTestWeight: 'Registrar peso de teste',
+    localWeights: 'Pesos no celular: {count}',
+  },
+} as const;
