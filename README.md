@@ -10,6 +10,7 @@ npm run web        # teste rápido no navegador
 npm start          # Expo (Android/iOS: development build ou Expo Go do SDK 58)
 npm run typecheck
 npm run lint
+npm run check:content   # confere o banco de exercícios (campos, variações, boneco no chão)
 ```
 
 ## Configurar o Supabase (login anônimo + sincronização)
@@ -29,7 +30,9 @@ Sem configurar, o app funciona só com os dados no celular (offline).
 ```
 src/
   app/            rotas (Expo Router): (tabs)/ Início, Treinos, Evolução, Perfil + telas do menu ⋮
-  components/     componentes visuais (ui, ícones, menu ⋮)
+  components/     componentes visuais (ui, ícones, menu ⋮, boneco)
+  content/        conteúdo do app: banco de exercícios (exercicios.json)
+  figure/         motor do boneco: esqueleto 3D, poses, projeção nas vistas
   db/             SQLite local: migrações, tabelas sincronizadas, gravações (repository)
   sync/           login anônimo (AuthProvider) e sincronização (engine + SyncProvider)
   hooks/          useLiveQuery: consulta que se atualiza quando os dados mudam
@@ -49,3 +52,15 @@ supabase/migrations/  SQL do servidor (tabelas + RLS)
 **Nova tabela de dados do usuário:** migração local em `src/db/migrations.ts` (nova entrada
 no fim da lista) + migração SQL em `supabase/migrations/` (copiar o padrão de `body_logs`:
 gatilho `movi_before_write`, RLS e políticas) + registro em `src/db/tables.ts`.
+
+## Banco de exercícios e boneco
+
+- Os exercícios ficam em `src/content/exercises/exercicios.json` (campos da spec, seção 5.2).
+  Cada um traz a animação do boneco: 2 a 4 poses-chave com os ângulos das articulações e o
+  ponto preso no chão (convenções em `src/figure/types.ts`).
+- `npm run check:content` confere ids, variações, equipamentos, vistas e se o boneco não
+  atravessa o chão.
+- `scripts/pose-lab.ts` ajuda a calcular ângulos quando mãos e pés precisam ficar presos
+  (cinemática inversa), por exemplo na flexão e no afundo.
+- Em desenvolvimento: **Perfil → Ver todos os exercícios** mostra o banco com o boneco.
+  No navegador, `/boneco-teste?t=0.45&ids=flexao_padrao,afundo` congela a pose e filtra.

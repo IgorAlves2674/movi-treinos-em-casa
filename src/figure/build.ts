@@ -23,7 +23,7 @@ import {
   type Vec3,
 } from './math';
 import { poseAt } from './motion';
-import type { DrawItem, FigureAnimation, FigureMuscle, FigureView, Pose, ViewBox } from './types';
+import type { DrawItem, FigureAnimation, FigureMuscle, FigureView, LimbKey, Pose, ViewBox } from './types';
 
 export const FIGURE_COLORS = {
   body: '#6b6866',
@@ -89,20 +89,23 @@ function skeleton(p: Pose, P: Vec3): Skeleton {
   const right: Vec3 = [0, 0, 1];
   const sides = {} as Record<Side, Limbs>;
   for (const side of [1, -1] as Side[]) {
+    // Ângulo do membro deste lado: o valor próprio do lado (right/left) ou o comum.
+    const own = side === 1 ? p.right : p.left;
+    const g = (k: LimbKey) => own?.[k] ?? p[k] ?? 0;
     const hip = add(P, scale(right, BODY.hipHalfWidth * side));
-    const thighW = p.thigh;
-    const shinW = thighW + p.shin;
-    const footW = shinW + p.foot;
-    const la = p.legAbd ?? 0;
+    const thighW = g('thigh');
+    const shinW = thighW + g('shin');
+    const footW = shinW + g('foot');
+    const la = g('legAbd');
     const knee = add(hip, scale(segmentDir(thighW, la, side), BODY.thigh));
     const ankle = add(knee, scale(segmentDir(shinW, la, side), BODY.shin));
     const footDir: Vec3 = [Math.cos(footW * D), -Math.sin(footW * D), 0];
     const footNormal: Vec3 = [-Math.sin(footW * D), -Math.cos(footW * D), 0];
     const shoulder = sum(P, scale(up, BODY.shoulderHeight), scale(right, BODY.shoulderHalfWidth * side));
-    const armW = t + p.arm;
-    const foreW = armW + p.fore;
-    const elbow = add(shoulder, scale(segmentDir(armW, p.armAbd ?? 0, side), BODY.upperArm));
-    const foreDir = segmentDir(foreW, p.foreAbd ?? 0, side);
+    const armW = t + g('arm');
+    const foreW = armW + g('fore');
+    const elbow = add(shoulder, scale(segmentDir(armW, g('armAbd'), side), BODY.upperArm));
+    const foreDir = segmentDir(foreW, g('foreAbd'), side);
     const wrist = add(elbow, scale(foreDir, BODY.forearmToWrist));
     const hand = add(elbow, scale(foreDir, BODY.forearmToHand));
     sides[side] = { hip, knee, ankle, footDir, footNormal, thighW, shinW, shoulder, elbow, wrist, hand, armW, foreDir };
@@ -230,6 +233,19 @@ export function buildFrame(anim: FigureAnimation, t: number, view: FigureView): 
     detailLine([[0, 104], [0, 20]], BACK);
     for (const half of mirror(lat)) detailLine(half, BACK);
     for (const half of mirror([[6, 112], [24, 104]])) detailLine(half, BACK);
+  } else {
+    // De perfil: músculos do tronco como faixas na frente (peito, abdômen) ou nas costas.
+    const band = (b1: number, b2: number, c1: number, c2: number, r1: number, r2: number) => {
+      const p1 = pr(surf(0, b1, c1));
+      const p2 = pr(surf(0, b2, c2));
+      const pts = convexHull(circlePoints(p1, r1).concat(circlePoints(p2, r2)));
+      push({ depth: torsoTop + 0.2, path: closedPath(pts), fill: C.muscle });
+    };
+    if (hl('peitoral')) band(84, 96, 17, 16, 6, 6);
+    if (hl('abdomen')) band(40, 70, 12, 16, 5, 5);
+    if (hl('dorsais')) band(58, 94, -8, -8, 5, 5);
+    if (hl('trapezio')) band(104, 116, -6, -5, 5, 5);
+    if (hl('lombar')) band(24, 48, -8, -8, 5, 5);
   }
 
   // --- Pescoço e cabeça
@@ -248,6 +264,13 @@ export function buildFrame(anim: FigureAnimation, t: number, view: FigureView): 
     const q1 = sum(L.hip, scale(thighVec, 0.18), scale(qf, 6));
     const q2 = sum(L.hip, scale(thighVec, 0.85), scale(qf, 4));
     capsule(q1, q2, 8, 6, 10.5, hl('quadriceps'), (depthOf(add(q1, scale(qf, 15))) + depthOf(add(q2, scale(qf, 15)))) / 2);
+
+    // Posteriores da coxa: atrás da coxa, só aparecem quando destacados
+    if (hl('posteriores_coxa')) {
+      const h1 = sum(L.hip, scale(thighVec, 0.2), scale(qf, -6));
+      const h2 = sum(L.hip, scale(thighVec, 0.85), scale(qf, -4));
+      capsule(h1, h2, 8, 6, 10.5, true, (depthOf(add(h1, scale(qf, -15))) + depthOf(add(h2, scale(qf, -15)))) / 2);
+    }
 
     capsule(L.knee, L.ankle, 10, 6, 10, false);
     const cb = scale(perpForward(L.shinW), -1);
@@ -303,7 +326,11 @@ export function buildFrame(anim: FigureAnimation, t: number, view: FigureView): 
     disk(add(c, scale(axis, 12)), axis, 11, bias + 0.1);
   };
   const props = anim.props ?? {};
-  if (props.dumbbell === 'two') for (const side of [1, -1] as Side[]) dumbbell(S.sides[side].hand, [0, 0, 1], 10.4);
+  if (props.dumbbell === 'two') {
+    // Pegada: 'z' = barra do halter de um lado ao outro (rosca); 'x' = da frente para trás (pegada neutra)
+    const axis: Vec3 = props.dumbbellAxis === 'x' ? [1, 0, 0] : [0, 0, 1];
+    for (const side of [1, -1] as Side[]) dumbbell(S.sides[side].hand, axis, 10.4);
+  }
   if (props.dumbbell === 'one') {
     const R = S.sides[1];
     const Lf = S.sides[-1];

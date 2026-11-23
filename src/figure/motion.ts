@@ -1,14 +1,31 @@
 import { ease, lerp } from './math';
-import type { ContinuousMotionId, FigureMotion, Pose } from './types';
+import type { ContinuousMotionId, FigureMotion, LimbAngles, LimbKey, Pose } from './types';
 
-const ANGLE_KEYS = ['torso', 'thigh', 'shin', 'foot', 'arm', 'fore', 'armAbd', 'foreAbd', 'legAbd'] as const;
+const LIMB_KEYS: LimbKey[] = ['thigh', 'shin', 'foot', 'arm', 'fore', 'armAbd', 'foreAbd', 'legAbd'];
 
 /** Parte de cada trecho entre poses gasta em movimento; o resto é pausa na pose. */
 const MOVE_FRACTION = 0.8;
 
+function mixSide(a: Pose, b: Pose, side: 'right' | 'left', u: number): Partial<LimbAngles> | undefined {
+  const sa = a[side];
+  const sb = b[side];
+  if (!sa && !sb) return undefined;
+  const o: Partial<LimbAngles> = {};
+  for (const k of LIMB_KEYS) {
+    if (sa?.[k] === undefined && sb?.[k] === undefined) continue;
+    o[k] = lerp(sa?.[k] ?? a[k] ?? 0, sb?.[k] ?? b[k] ?? 0, u);
+  }
+  return o;
+}
+
 function mix(a: Pose, b: Pose, u: number): Pose {
-  const o = { an: { pt: a.an.pt, x: lerp(a.an.x, b.an.x, u), y: lerp(a.an.y, b.an.y, u) } } as Pose;
-  for (const k of ANGLE_KEYS) o[k] = lerp(a[k] ?? 0, b[k] ?? 0, u);
+  const o = {
+    torso: lerp(a.torso, b.torso, u),
+    an: { pt: a.an.pt, x: lerp(a.an.x, b.an.x, u), y: lerp(a.an.y, b.an.y, u) },
+    right: mixSide(a, b, 'right', u),
+    left: mixSide(a, b, 'left', u),
+  } as Pose;
+  for (const k of LIMB_KEYS) o[k] = lerp(a[k] ?? 0, b[k] ?? 0, u);
   return o;
 }
 

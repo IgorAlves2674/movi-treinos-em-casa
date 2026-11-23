@@ -10,6 +10,8 @@ type Props = {
   view: View3D;
   /** Pausa a animação (ex.: tela fora de foco). Padrão: tocando. */
   paused?: boolean;
+  /** Mostra uma pose fixa no instante dado (0 a 1), sem animar. Útil para miniaturas. */
+  frozenAt?: number;
   style?: StyleProp<ViewStyle>;
 };
 
@@ -17,14 +19,14 @@ type Props = {
  * Boneco animado (spec seção 6). Monta cada quadro com `buildFrame` e desenha
  * com react-native-svg. A área tem fundo escuro e proporção 13:10.
  */
-export function FigureView({ anim, view, paused = false, style }: Props) {
+export function FigureView({ anim, view, paused = false, frozenAt, style }: Props) {
   // Vistas não disponíveis (ex.: exercício deitado) caem na lateral.
   const safeView = anim.views.includes(view) ? view : 'lateral';
   const box = useMemo(() => frameBox(anim, safeView), [anim, safeView]);
   const [t, setT] = useState(0);
 
   useEffect(() => {
-    if (paused) return;
+    if (paused || frozenAt !== undefined) return;
     let raf = 0;
     const start = Date.now();
     const loop = () => {
@@ -33,9 +35,10 @@ export function FigureView({ anim, view, paused = false, style }: Props) {
     };
     raf = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(raf);
-  }, [anim, paused]);
+  }, [anim, paused, frozenAt]);
 
-  const { items } = useMemo(() => buildFrame(anim, t, safeView), [anim, t, safeView]);
+  const shownT = frozenAt ?? t;
+  const { items } = useMemo(() => buildFrame(anim, shownT, safeView), [anim, shownT, safeView]);
 
   return (
     <View style={[styles.stage, style]}>

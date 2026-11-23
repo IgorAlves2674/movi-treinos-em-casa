@@ -2,8 +2,9 @@
  * Tipos da animação do boneco (spec seção 6).
  *
  * Ângulos em graus. Convenções (vista lateral, boneco olhando para a direita):
- *  - `torso`: inclinação do tronco (0 = em pé, -90 = deitado de barriga para cima).
- *  - `thigh`: coxa em relação à vertical (0 = para baixo, negativo = para a frente).
+ *  - `torso`: inclinação do tronco (0 = em pé, positivo = inclina para a frente,
+ *    90 = deitado de bruços, -90 = deitado de barriga para cima).
+ *  - `thigh`: coxa em relação à vertical do mundo (0 = para baixo, negativo = para a frente).
  *  - `shin`, `foot`: relativos ao segmento anterior.
  *  - `arm`: braço relativo ao tronco; `fore`: antebraço relativo ao braço.
  *  - `armAbd`, `foreAbd`, `legAbd`: abertura para o lado (abdução).
@@ -24,12 +25,13 @@ export type FigureMuscle =
   | 'lombar'
   | 'gluteos'
   | 'quadriceps'
+  | 'posteriores_coxa'
   | 'panturrilhas';
 
 export type AnchorPoint = 'hip' | 'knee' | 'ankle' | 'elbow' | 'hand';
 
-export type Pose = {
-  torso: number;
+/** Ângulos de um lado do corpo (pernas e braços). */
+export type LimbAngles = {
   thigh: number;
   shin: number;
   foot: number;
@@ -38,6 +40,17 @@ export type Pose = {
   armAbd?: number;
   foreAbd?: number;
   legAbd?: number;
+};
+export type LimbKey = keyof LimbAngles;
+
+export type Pose = LimbAngles & {
+  torso: number;
+  /**
+   * Valores só do lado direito / esquerdo (movimentos assimétricos, ex.: afundo).
+   * O lado direito fica perto da câmera na vista lateral e é o lado da âncora.
+   */
+  right?: Partial<LimbAngles>;
+  left?: Partial<LimbAngles>;
   an: { pt: AnchorPoint; x: number; y: number };
   /** Ângulo da corda (radianos), só para exercícios com corda. */
   ropeAngle?: number;
@@ -56,6 +69,8 @@ export type FigureProps = {
   chair?: boolean;
   /** 'one' = um halter segurado com as duas mãos; 'two' = um em cada mão */
   dumbbell?: 'one' | 'two';
+  /** Com 'two': 'z' (padrão) = halter atravessado, como na rosca; 'x' = pegada neutra */
+  dumbbellAxis?: 'x' | 'z';
   rope?: boolean;
 };
 
