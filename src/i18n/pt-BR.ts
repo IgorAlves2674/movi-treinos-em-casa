@@ -58,7 +58,13 @@ export const ptBR = {
   placeholder: {
     comingSoon: 'Em construção.',
   },
+  figure: {
+    views: { lateral: 'Lateral', frente: 'Frente', costas: 'Costas' },
+    onlyLateral: 'Só vista lateral',
+  },
   dev: {
+    figureDemo: 'Ver boneco (teste das 4 animações)',
+    figureDemoTitle: 'Boneco · teste',
     title: 'Diagnóstico (só em desenvolvimento)',
     user: 'Usuário',
     noUser: 'sem login (offline ou Supabase não configurado)',
