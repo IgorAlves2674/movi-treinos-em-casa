@@ -2,6 +2,7 @@ import { buildFrame } from '@/figure/build';
 import type { FigureAnimation, FigureMuscle } from '@/figure/types';
 
 import data from './exercicios.json';
+import halteres from './halteres.json';
 import pesoCorporal from './peso_corporal.json';
 import {
   EQUIPAMENTOS,
@@ -16,7 +17,7 @@ import {
 export * from './types';
 
 // O banco é dividido em arquivos por tipo; todos têm a mesma versão.
-const arquivos = [data, pesoCorporal] as unknown as ArquivoExercicios[];
+const arquivos = [data, pesoCorporal, halteres] as unknown as ArquivoExercicios[];
 
 export const VERSAO_EXERCICIOS = arquivos[0].versao;
 export const EXERCICIOS: readonly Exercicio[] = arquivos.flatMap((a) => a.exercicios);

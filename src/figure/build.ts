@@ -115,7 +115,7 @@ function skeleton(p: Pose, P: Vec3): Skeleton {
     const ankle = add(knee, scale(dirL(segmentDir(shinW, la, side)), BODY.shin));
     const footDir = dirL([Math.cos(footW * D), -Math.sin(footW * D), 0]);
     const footNormal = dirL([-Math.sin(footW * D), -Math.cos(footW * D), 0]);
-    const shoulder = sum(P, scale(up, BODY.shoulderHeight), scale(right, BODY.shoulderHalfWidth * side));
+    const shoulder = sum(P, scale(up, BODY.shoulderHeight + (p.shrug ?? 0)), scale(right, BODY.shoulderHalfWidth * side));
     const armW = t + g('arm');
     const foreW = armW + g('fore');
     const elbow = add(shoulder, scale(dirU(segmentDir(armW, g('armAbd'), side)), BODY.upperArm));
@@ -352,16 +352,18 @@ export function buildFrame(anim: FigureAnimation, t: number, view: FigureView): 
     disk(add(c, scale(axis, 12)), axis, 11, bias + 0.1);
   };
   const props = anim.props ?? {};
-  if (props.dumbbell === 'two') {
+  if (props.dumbbell === 'two' || props.dumbbell === 'right') {
     // Pegada: 'z' = barra do halter de um lado ao outro (rosca); 'x' = da frente para trás (pegada neutra)
     const axis: Vec3 = props.dumbbellAxis === 'x' ? [1, 0, 0] : [0, 0, 1];
-    for (const side of [1, -1] as Side[]) dumbbell(S.sides[side].hand, axis, 10.4);
+    const sides: Side[] = props.dumbbell === 'two' ? [1, -1] : [1];
+    for (const side of sides) dumbbell(S.sides[side].hand, axis, 10.4);
   }
   if (props.dumbbell === 'one') {
     const R = S.sides[1];
     const Lf = S.sides[-1];
     const mid = scale(add(R.hand, Lf.hand), 0.5);
-    dumbbell(add(mid, scale(R.foreDir, 12)), R.foreDir, 10.4);
+    if (props.dumbbellAxis === 'z') dumbbell(mid, [0, 0, 1], 10.4);
+    else dumbbell(add(mid, scale(R.foreDir, 12)), R.foreDir, 10.4);
   }
 
   if (props.rope && p.ropeAngle !== undefined) {

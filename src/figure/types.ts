@@ -13,6 +13,7 @@
  *    de frente para a câmera na vista lateral.
  *  - `twist`: gira só a parte de cima (ombros, braços, cabeça) em volta do eixo do
  *    tronco (positivo = ombro direito vai para a frente).
+ *  - `shrug`: sobe os ombros (encolhimento), em unidades do mundo.
  *  - `an`: ponto preso (âncora) e a posição dele no mundo (y para cima, chão em y = 0).
  *    `side: 'left'` prende o ponto do lado esquerdo (padrão: direito).
  */
@@ -59,6 +60,8 @@ export type Pose = LimbAngles & {
   left?: Partial<LimbAngles>;
   roll?: number;
   twist?: number;
+  /** Sobe os dois ombros (encolhimento), em unidades do mundo. */
+  shrug?: number;
   an: { pt: AnchorPoint; x: number; y: number; side?: 'left' };
   /** Ângulo da corda (radianos), só para exercícios com corda. */
   ropeAngle?: number;
@@ -81,9 +84,16 @@ export type FigureProps = {
   chair?: boolean | { x?: number; flip?: boolean };
   /** Parede vertical na posição x (superfície virada para o boneco). Só aparece de lado. */
   wall?: number;
-  /** 'one' = um halter segurado com as duas mãos; 'two' = um em cada mão */
-  dumbbell?: 'one' | 'two';
-  /** Com 'two': 'z' (padrão) = halter atravessado, como na rosca; 'x' = pegada neutra */
+  /**
+   * 'one' = um halter segurado com as duas mãos; 'two' = um em cada mão;
+   * 'right' = um halter só na mão direita (exercícios de um braço).
+   */
+  dumbbell?: 'one' | 'two' | 'right';
+  /**
+   * Direção da barra do halter. Com 'two'/'right': 'z' (padrão) = atravessado, como na
+   * rosca; 'x' = pegada neutra. Com 'one': padrão = na direção do antebraço; 'z' = deitado
+   * de um lado ao outro (ex.: apoiado no quadril).
+   */
   dumbbellAxis?: 'x' | 'z';
   rope?: boolean;
 };

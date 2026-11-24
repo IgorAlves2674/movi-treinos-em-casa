@@ -23,6 +23,7 @@ function mix(a: Pose, b: Pose, u: number): Pose {
     torso: lerp(a.torso, b.torso, u),
     roll: lerp(a.roll ?? 0, b.roll ?? 0, u),
     twist: lerp(a.twist ?? 0, b.twist ?? 0, u),
+    shrug: lerp(a.shrug ?? 0, b.shrug ?? 0, u),
     an: { pt: a.an.pt, side: a.an.side, x: lerp(a.an.x, b.an.x, u), y: lerp(a.an.y, b.an.y, u) },
     right: mixSide(a, b, 'right', u),
     left: mixSide(a, b, 'left', u),
