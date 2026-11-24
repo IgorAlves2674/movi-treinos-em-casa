@@ -40,6 +40,9 @@ export const FIGURE_COLORS = {
   weight: '#2e2e2e',
   weightOutline: '#cfcfcf',
   rope: '#f0b440',
+  band: '#e8734a',
+  bar: '#9a9a9a',
+  plate: 'rgba(46,46,46,0.35)',
 } as const;
 
 const C = FIGURE_COLORS;
@@ -332,7 +335,7 @@ export function buildFrame(anim: FigureAnimation, t: number, view: FigureView): 
   }
 
   // --- Equipamentos
-  const disk = (c: Vec3, axisIn: Vec3, rad: number, bias: number) => {
+  const disk = (c: Vec3, axisIn: Vec3, rad: number, bias: number, fill: string = C.weight) => {
     const axis = normalize(axisIn);
     const ref: Vec3 = Math.abs(axis[1]) < 0.9 ? [0, 1, 0] : [1, 0, 0];
     const b1 = normalize(cross(axis, ref));
@@ -343,7 +346,7 @@ export function buildFrame(anim: FigureAnimation, t: number, view: FigureView): 
         const ang = (i / 14) * 2 * Math.PI;
         pts.push(sum(c, scale(axis, off), scale(b1, rad * Math.cos(ang)), scale(b2, rad * Math.sin(ang))));
       }
-    blob(pts, bias, C.weight, C.weightOutline);
+    blob(pts, bias, fill, C.weightOutline);
   };
   const dumbbell = (c: Vec3, axisIn: Vec3, bias: number) => {
     const axis = normalize(axisIn);
@@ -387,6 +390,75 @@ export function buildFrame(anim: FigureAnimation, t: number, view: FigureView): 
       pts.push([q2[0], q2[1]]);
     }
     push({ depth: depthOf(ropePoint), path: openPath(pts), fill: 'none', stroke: C.rope, strokeWidth: 3.5 }, pts);
+  }
+
+  const bandLine = (a: Vec3, b: Vec3, width = 3) => {
+    const pts: Vec2[] = [a, b].map((v) => [pr(v)[0], pr(v)[1]] as Vec2);
+    push({ depth: (depthOf(a) + depthOf(b)) / 2 + 10.45, path: openPath(pts), fill: 'none', stroke: C.band, strokeWidth: width });
+  };
+  if (props.band) {
+    const R = S.sides[1];
+    const Lf = S.sides[-1];
+    if (props.band === 'hands') bandLine(R.hand, Lf.hand);
+    else if (props.band === 'feet') {
+      // Passa embaixo da sola de cada pé (meio do pé).
+      for (const L of [R, Lf]) bandLine(L.hand, sum(L.ankle, scale(L.footDir, 12), scale(L.footNormal, 8)));
+    } else {
+      const fixed: Vec3 = [props.band.x, props.band.y, 0];
+      for (const L of [R, Lf]) bandLine(L.hand, fixed);
+      ball(fixed, 4, 0, false);
+    }
+  }
+  if (props.miniband) {
+    const k = props.miniband === 'knees' ? 'knee' : 'ankle';
+    const a = S.sides[1][k];
+    const b = S.sides[-1][k];
+    // Um pouco acima do joelho / do tornozelo, contornando as duas pernas.
+    const lift = (L: Limbs, v: Vec3) => (k === 'knee' ? add(v, scale(sub(L.hip, L.knee), 0.15)) : v);
+    bandLine(lift(S.sides[1], a), lift(S.sides[-1], b), 6);
+  }
+
+  if (props.barbell) {
+    const R = S.sides[1];
+    const Lf = S.sides[-1];
+    const c =
+      props.barbell === 'back'
+        ? sum(P, scale(up, 106), scale(fwd, -16))
+        : scale(add(R.hand, Lf.hand), 0.5);
+    const z: Vec3 = [0, 0, 1];
+    capsule(add(c, scale(z, -88)), add(c, scale(z, 88)), 2.4, 2.4, 10.5, false);
+    for (const s of [-1, 1]) {
+      // Anilhas grandes ficam translúcidas para não esconder o corpo na vista lateral.
+      disk(add(c, scale(z, 64 * s)), z, 38, 10.6, C.plate);
+      disk(add(c, scale(z, 72 * s)), z, 38, 10.6, C.plate);
+    }
+  }
+
+  if (props.kettlebell) {
+    const R = S.sides[1];
+    const grip = props.kettlebell === 'both' ? scale(add(R.hand, S.sides[-1].hand), 0.5) : R.hand;
+    const dirK: Vec3 =
+      props.kettlebellHang === 'down' ? [0, -1, 0] : props.kettlebellHang === 'up' ? [0, 1, 0] : R.foreDir;
+    const bell = add(grip, scale(dirK, 19));
+    // Alça: um arco curto entre a mão e o corpo do kettlebell.
+    capsule(grip, add(grip, scale(dirK, 8)), 4.5, 4.5, 10.45, false);
+    const c2 = pr(bell);
+    const pts = circlePoints(c2, 13, 18);
+    push({ depth: c2[2] + 10.5, path: closedPath(pts), fill: C.weight, stroke: C.weightOutline }, pts);
+  }
+
+  if (props.bar) {
+    const { x, y } = props.bar;
+    const z: Vec3 = [0, 0, 1];
+    const c: Vec3 = [x, y, 0];
+    const a = add(c, scale(z, -70));
+    const b = add(c, scale(z, 70));
+    const pa = pr(a);
+    const pb = pr(b);
+    const pts = convexHull(circlePoints(pa, 3.5).concat(circlePoints(pb, 3.5)));
+    push({ depth: (pa[2] + pb[2]) / 2 + 10.35, path: closedPath(pts), fill: C.bar, stroke: C.weightOutline }, pts);
+    if (props.bar.posts)
+      for (const s of [-1, 1]) box(x - 3, x + 3, 0, y, 70 * s - 3, 70 * s + 3, C.chair);
   }
 
   if (props.chair) {

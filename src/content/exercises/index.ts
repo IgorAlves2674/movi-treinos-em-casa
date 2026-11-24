@@ -2,6 +2,7 @@ import { buildFrame } from '@/figure/build';
 import type { FigureAnimation, FigureMuscle } from '@/figure/types';
 
 import data from './exercicios.json';
+import barraKettlebellElastico from './barra_kettlebell_elastico.json';
 import halteres from './halteres.json';
 import pesoCorporal from './peso_corporal.json';
 import {
@@ -17,7 +18,7 @@ import {
 export * from './types';
 
 // O banco é dividido em arquivos por tipo; todos têm a mesma versão.
-const arquivos = [data, pesoCorporal, halteres] as unknown as ArquivoExercicios[];
+const arquivos = [data, pesoCorporal, halteres, barraKettlebellElastico] as unknown as ArquivoExercicios[];
 
 export const VERSAO_EXERCICIOS = arquivos[0].versao;
 export const EXERCICIOS: readonly Exercicio[] = arquivos.flatMap((a) => a.exercicios);
@@ -105,7 +106,9 @@ export function validarExercicios(lista: readonly Exercicio[] = EXERCICIOS): str
       if (y > -8) tocouChao = true;
     }
     if (maisBaixo > 6) err(`o boneco atravessa o chão (${maisBaixo.toFixed(1)} abaixo)`);
-    if (!tocouChao) err('o boneco nunca encosta no chão');
+    // Pendurado na barra fixa (barra alta) é o único caso em que o boneco pode não tocar o chão.
+    const pendurado = e.animacao.props?.bar && !e.animacao.props.bar.posts;
+    if (!tocouChao && !pendurado) err('o boneco nunca encosta no chão');
   }
 
   for (const e of lista) {

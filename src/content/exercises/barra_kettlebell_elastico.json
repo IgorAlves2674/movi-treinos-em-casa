@@ -1,0 +1,1034 @@
+{
+  "versao": 1,
+  "exercicios": [
+    {
+      "id": "agachamento_barra",
+      "nome": "Agachamento com barra",
+      "apelidos": ["agachamento livre com barra", "back squat"],
+      "musculo_principal": "quadriceps",
+      "musculos_secundarios": ["gluteos", "posteriores_coxa", "lombar"],
+      "padrao_movimento": "agachar",
+      "equipamentos": [["barra_anilhas"]],
+      "nivel": 3,
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "agachamento_goblet",
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "em_pe",
+      "vistas": ["lateral", "frente", "costas"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 3000,
+        "props": { "barbell": "back" },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": 0, "thigh": 0, "shin": 0, "foot": 0, "arm": 35, "fore": -150, "armAbd": 55, "foreAbd": -40, "legAbd": 4, "an": { "pt": "ankle", "x": 0, "y": 10 } },
+            { "torso": 40, "thigh": -80, "shin": 125, "foot": -45, "arm": 35, "fore": -150, "armAbd": 55, "foreAbd": -40, "legAbd": 8, "an": { "pt": "ankle", "x": 0, "y": 10 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Apoie a barra nas costas, logo abaixo da nuca, segurando com as mãos um pouco mais abertas que os ombros.",
+        "Afaste os pés na largura dos ombros, pontas levemente para fora.",
+        "Leve o quadril para trás e para baixo até as coxas ficarem perto da horizontal.",
+        "Empurre o chão e suba, mantendo o peito aberto."
+      ],
+      "erros_comuns": [
+        "Arredondar as costas na descida.",
+        "Tirar os calcanhares do chão.",
+        "Deixar os joelhos caírem para dentro."
+      ]
+    },
+    {
+      "id": "levantamento_terra",
+      "nome": "Levantamento terra",
+      "apelidos": ["terra", "deadlift"],
+      "musculo_principal": "posteriores_coxa",
+      "musculos_secundarios": ["gluteos", "lombar", "quadriceps", "trapezio"],
+      "padrao_movimento": "dobradica_quadril",
+      "equipamentos": [["barra_anilhas"]],
+      "nivel": 3,
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "terra_romeno_barra",
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "em_pe",
+      "vistas": ["lateral", "frente"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 3200,
+        "props": { "barbell": "hands" },
+        "destaque": ["posteriores_coxa", "gluteos", "lombar"],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": 65, "thigh": -80.9, "shin": 102.5, "foot": -21.6, "arm": -65, "fore": 0, "armAbd": 6, "foreAbd": 6, "legAbd": 3, "an": { "pt": "ankle", "x": 0, "y": 10 } },
+            { "torso": 0, "thigh": 0, "shin": 0, "foot": 0, "arm": 0, "fore": 0, "armAbd": 6, "foreAbd": 6, "legAbd": 3, "an": { "pt": "ankle", "x": 0, "y": 10 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Fique com o meio dos pés embaixo da barra e segure-a com as mãos na largura dos ombros.",
+        "Dobre os joelhos até as canelas encostarem na barra, com as costas retas e o peito aberto.",
+        "Empurre o chão com os pés e suba a barra rente às pernas até ficar em pé.",
+        "Desça levando o quadril para trás, com a barra perto do corpo, até encostá-la no chão."
+      ],
+      "erros_comuns": ["Arredondar as costas.", "Afastar a barra do corpo.", "Subir o quadril antes do peito."]
+    },
+    {
+      "id": "terra_romeno_barra",
+      "nome": "Terra romeno com barra",
+      "apelidos": ["stiff com barra", "romanian deadlift"],
+      "musculo_principal": "posteriores_coxa",
+      "musculos_secundarios": ["gluteos", "lombar"],
+      "padrao_movimento": "dobradica_quadril",
+      "equipamentos": [["barra_anilhas"]],
+      "nivel": 3,
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "stiff_halteres",
+      "variacao_mais_dificil": "levantamento_terra",
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "em_pe",
+      "vistas": ["lateral"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 3000,
+        "props": { "barbell": "hands" },
+        "destaque": ["posteriores_coxa", "gluteos"],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": 0, "thigh": 0, "shin": 0, "foot": 0, "arm": 0, "fore": 0, "armAbd": 6, "foreAbd": 6, "legAbd": 3, "an": { "pt": "ankle", "x": 0, "y": 10 } },
+            { "torso": 75, "thigh": -15, "shin": 23, "foot": -8, "arm": -75, "fore": 0, "armAbd": 6, "foreAbd": 6, "legAbd": 3, "an": { "pt": "ankle", "x": 0, "y": 10 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Em pé, segure a barra na frente das coxas, mãos na largura dos ombros.",
+        "Com os joelhos levemente dobrados, leve o quadril para trás e desça a barra rente às pernas.",
+        "Desça até sentir a parte de trás das coxas alongar, com as costas retas.",
+        "Suba empurrando o quadril para a frente."
+      ],
+      "erros_comuns": ["Arredondar as costas.", "Dobrar demais os joelhos, virando um agachamento."]
+    },
+    {
+      "id": "remada_curvada_barra",
+      "nome": "Remada curvada com barra",
+      "apelidos": ["remada com barra"],
+      "musculo_principal": "dorsais",
+      "musculos_secundarios": ["biceps", "trapezio", "deltoide_posterior", "lombar"],
+      "padrao_movimento": "puxar",
+      "equipamentos": [["barra_anilhas"]],
+      "nivel": 3,
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "remada_curvada_halteres",
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "em_pe",
+      "vistas": ["lateral", "costas"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2600,
+        "props": { "barbell": "hands" },
+        "destaque": ["dorsais", "biceps"],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": 45, "thigh": -20, "shin": 30, "foot": -10, "arm": -45, "fore": 0, "armAbd": 4, "foreAbd": 4, "legAbd": 4, "an": { "pt": "ankle", "x": 0, "y": 10 } },
+            { "torso": 45, "thigh": -20, "shin": 30, "foot": -10, "arm": 30, "fore": -75, "armAbd": 4, "foreAbd": 4, "legAbd": 4, "an": { "pt": "ankle", "x": 0, "y": 10 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Segure a barra com as mãos um pouco mais abertas que os ombros.",
+        "Dobre levemente os joelhos e incline o tronco à frente, costas retas.",
+        "Puxe a barra em direção ao umbigo, levando os cotovelos para trás.",
+        "Desça devagar até esticar os braços."
+      ],
+      "erros_comuns": ["Levantar o tronco para ajudar a puxar.", "Arredondar as costas."]
+    },
+    {
+      "id": "desenvolvimento_barra",
+      "nome": "Desenvolvimento com barra em pé",
+      "apelidos": ["desenvolvimento militar", "overhead press"],
+      "musculo_principal": "deltoide_anterior",
+      "musculos_secundarios": ["deltoide_lateral", "triceps", "trapezio"],
+      "padrao_movimento": "empurrar",
+      "equipamentos": [["barra_anilhas"]],
+      "nivel": 3,
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "desenvolvimento_halteres",
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "em_pe",
+      "vistas": ["lateral", "frente"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2600,
+        "props": { "barbell": "hands" },
+        "destaque": ["deltoides", "triceps"],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": 0, "thigh": 0, "shin": 0, "foot": 0, "arm": -25, "fore": -145, "armAbd": 30, "foreAbd": 5, "legAbd": 3, "an": { "pt": "ankle", "x": 0, "y": 10 } },
+            { "torso": 0, "thigh": 0, "shin": 0, "foot": 0, "arm": -180, "fore": 0, "armAbd": 10, "foreAbd": 8, "legAbd": 3, "an": { "pt": "ankle", "x": 0, "y": 10 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Em pé, apoie a barra na frente dos ombros, mãos um pouco mais abertas que eles.",
+        "Contraia o abdômen e os glúteos.",
+        "Empurre a barra para cima, passando perto do rosto, até esticar os braços.",
+        "Desça devagar até a frente dos ombros."
+      ],
+      "erros_comuns": ["Arquear a lombar.", "Empurrar a barra para a frente em vez de para cima."]
+    },
+    {
+      "id": "supino_chao_barra",
+      "nome": "Supino no chão com barra",
+      "apelidos": ["floor press com barra"],
+      "musculo_principal": "peitoral",
+      "musculos_secundarios": ["triceps", "deltoide_anterior"],
+      "padrao_movimento": "empurrar",
+      "equipamentos": [["barra_anilhas"]],
+      "nivel": 3,
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "supino_chao_halteres",
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "deitado",
+      "vistas": ["lateral"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2600,
+        "props": { "mat": true, "barbell": "hands" },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": -90, "thigh": -135, "shin": 160.6, "foot": -25.6, "legAbd": 4, "an": { "pt": "ankle", "x": 0, "y": 10 }, "arm": -90, "fore": 0, "armAbd": 8, "foreAbd": 8 },
+            { "torso": -90, "thigh": -135, "shin": 160.6, "foot": -25.6, "legAbd": 4, "an": { "pt": "ankle", "x": 0, "y": 10 }, "arm": 0, "fore": -90, "armAbd": 75, "foreAbd": 0 }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Deite de barriga para cima com os joelhos dobrados, segurando a barra acima do peito, braços esticados.",
+        "Desça a barra até os cotovelos encostarem de leve no chão.",
+        "Empurre a barra de volta até esticar os braços."
+      ],
+      "erros_comuns": ["Bater os cotovelos com força no chão.", "Deixar a barra descer perto do pescoço."]
+    },
+    {
+      "id": "rosca_direta_barra",
+      "nome": "Rosca direta com barra",
+      "apelidos": ["rosca com barra"],
+      "musculo_principal": "biceps",
+      "musculos_secundarios": ["antebraco"],
+      "padrao_movimento": "puxar",
+      "equipamentos": [["barra_anilhas"]],
+      "nivel": 2,
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "rosca_biceps",
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "em_pe",
+      "vistas": ["lateral", "frente"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2400,
+        "props": { "barbell": "hands" },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": 0, "thigh": 0, "shin": 0, "foot": 0, "arm": -4, "fore": 0, "armAbd": 8, "foreAbd": 6, "legAbd": 3, "an": { "pt": "ankle", "x": 0, "y": 10 } },
+            { "torso": 0, "thigh": 0, "shin": 0, "foot": 0, "arm": -4, "fore": -140, "armAbd": 8, "foreAbd": 6, "legAbd": 3, "an": { "pt": "ankle", "x": 0, "y": 10 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Em pé, segure a barra com as palmas para a frente, mãos na largura dos ombros.",
+        "Com os cotovelos colados ao corpo, suba a barra em direção ao peito.",
+        "Desça devagar até esticar os braços."
+      ],
+      "erros_comuns": ["Balançar o tronco para subir a barra.", "Afastar os cotovelos do corpo."]
+    },
+    {
+      "id": "elevacao_pelvica_barra",
+      "nome": "Elevação pélvica com barra",
+      "apelidos": ["hip thrust no chão", "ponte com barra"],
+      "musculo_principal": "gluteos",
+      "musculos_secundarios": ["posteriores_coxa", "lombar"],
+      "padrao_movimento": "dobradica_quadril",
+      "equipamentos": [["barra_anilhas"]],
+      "nivel": 3,
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "ponte_halter",
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "deitado",
+      "vistas": ["lateral"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2800,
+        "props": { "mat": true, "barbell": "hands" },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": -90, "thigh": -135, "shin": 160.6, "foot": -25.6, "arm": -12, "fore": 0, "armAbd": 20, "legAbd": 4, "an": { "pt": "ankle", "x": 0, "y": 10 }, "foreAbd": 10 },
+            { "torso": -105, "thigh": -105, "shin": 149.2, "foot": -44.2, "arm": -12, "fore": 0, "armAbd": 20, "legAbd": 4, "an": { "pt": "ankle", "x": 0, "y": 10 }, "foreAbd": 10 }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Deite de barriga para cima com os joelhos dobrados e role a barra até em cima do quadril (use uma toalha para proteger).",
+        "Segure a barra com as duas mãos.",
+        "Empurre o chão com os calcanhares e suba o quadril até alinhar joelhos, quadril e ombros.",
+        "Desça devagar."
+      ],
+      "erros_comuns": ["Arquear a lombar no alto.", "Empurrar com a ponta dos pés."]
+    },
+    {
+      "id": "swing_kettlebell",
+      "nome": "Swing com kettlebell",
+      "apelidos": ["kettlebell swing", "balanço"],
+      "musculo_principal": "gluteos",
+      "musculos_secundarios": ["posteriores_coxa", "lombar", "deltoide_anterior"],
+      "padrao_movimento": "dobradica_quadril",
+      "equipamentos": [["kettlebell"]],
+      "nivel": 3,
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "terra_sumo_kettlebell",
+      "variacao_mais_dificil": "swing_uma_mao",
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "em_pe",
+      "vistas": ["lateral"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 1600,
+        "props": { "kettlebell": "both" },
+        "destaque": ["gluteos", "posteriores_coxa"],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": 70, "thigh": -20, "shin": 25, "foot": -5, "legAbd": 8, "an": { "pt": "ankle", "x": 0, "y": 10 }, "arm": -50, "fore": 0, "armAbd": 0, "foreAbd": -8 },
+            { "torso": 0, "thigh": 0, "shin": 0, "foot": 0, "arm": -90, "fore": 0, "armAbd": 0, "foreAbd": -8, "legAbd": 8, "an": { "pt": "ankle", "x": 0, "y": 10 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Com os pés um pouco mais afastados que os ombros, segure o kettlebell com as duas mãos.",
+        "Leve o quadril para trás, deixando o kettlebell passar entre as pernas.",
+        "Empurre o quadril para a frente com força, fazendo o kettlebell subir até a altura do peito.",
+        "Deixe ele descer e já emende o próximo balanço."
+      ],
+      "erros_comuns": [
+        "Agachar em vez de levar o quadril para trás.",
+        "Levantar o peso com os braços.",
+        "Arredondar as costas."
+      ]
+    },
+    {
+      "id": "swing_uma_mao",
+      "nome": "Swing com uma mão",
+      "apelidos": ["swing unilateral"],
+      "musculo_principal": "gluteos",
+      "musculos_secundarios": ["posteriores_coxa", "lombar", "obliquos"],
+      "padrao_movimento": "dobradica_quadril",
+      "equipamentos": [["kettlebell"]],
+      "nivel": 4,
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "swing_kettlebell",
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": true,
+      "posicao": "em_pe",
+      "vistas": ["lateral", "frente"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 1600,
+        "props": { "kettlebell": "right" },
+        "destaque": ["gluteos", "posteriores_coxa"],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": 70, "thigh": -20, "shin": 25, "foot": -5, "legAbd": 8, "an": { "pt": "ankle", "x": 0, "y": 10 }, "arm": -50, "fore": 0, "armAbd": 0, "foreAbd": -4, "left": { "arm": -30, "armAbd": 30, "fore": -10, "foreAbd": 30 } },
+            { "torso": 0, "thigh": 0, "shin": 0, "foot": 0, "arm": -90, "fore": 0, "armAbd": 0, "foreAbd": -4, "legAbd": 8, "left": { "arm": 0, "armAbd": 30, "fore": -10, "foreAbd": 30 }, "an": { "pt": "ankle", "x": 0, "y": 10 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Segure o kettlebell com uma mão, pés um pouco mais afastados que os ombros.",
+        "Leve o quadril para trás, deixando o kettlebell passar entre as pernas.",
+        "Empurre o quadril para a frente e deixe o kettlebell subir até a altura do peito.",
+        "Mantenha os ombros retos, sem girar o tronco. Faça as repetições e troque de mão."
+      ],
+      "erros_comuns": ["Girar o tronco para o lado do peso.", "Puxar o kettlebell com o braço."]
+    },
+    {
+      "id": "terra_sumo_kettlebell",
+      "nome": "Terra sumô com kettlebell",
+      "apelidos": ["levantamento sumô"],
+      "musculo_principal": "gluteos",
+      "musculos_secundarios": ["quadriceps", "adutores", "posteriores_coxa"],
+      "padrao_movimento": "dobradica_quadril",
+      "equipamentos": [["kettlebell"], ["halteres"]],
+      "nivel": 2,
+      "unidade": "repeticoes",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": "swing_kettlebell",
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "em_pe",
+      "vistas": ["frente", "lateral"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2800,
+        "props": { "kettlebell": "both", "kettlebellHang": "down" },
+        "destaque": ["gluteos", "quadriceps"],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": 45, "thigh": -58, "shin": 78, "foot": -20, "arm": -45, "fore": 0, "armAbd": 0, "foreAbd": -8, "legAbd": 22, "an": { "pt": "ankle", "x": 0, "y": 10 } },
+            { "torso": 0, "thigh": 0, "shin": 0, "foot": 0, "arm": 0, "fore": 0, "armAbd": 0, "foreAbd": -8, "legAbd": 18, "an": { "pt": "ankle", "x": 0, "y": 10 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Afaste bem os pés, com as pontas para fora, e deixe o kettlebell no chão entre eles.",
+        "Agache com as costas retas e segure a alça com as duas mãos.",
+        "Suba empurrando o chão até ficar em pé, com os braços esticados.",
+        "Desça devagar até encostar o kettlebell no chão."
+      ],
+      "erros_comuns": ["Arredondar as costas para pegar o peso.", "Deixar os joelhos caírem para dentro."]
+    },
+    {
+      "id": "clean_press_kettlebell",
+      "nome": "Clean com desenvolvimento",
+      "apelidos": ["clean and press", "arranque e desenvolvimento"],
+      "musculo_principal": "corpo_inteiro",
+      "musculos_secundarios": ["gluteos", "deltoide_anterior", "triceps", "posteriores_coxa"],
+      "padrao_movimento": "empurrar",
+      "equipamentos": [["kettlebell"]],
+      "nivel": 4,
+      "unidade": "repeticoes",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": true,
+      "posicao": "em_pe",
+      "vistas": ["lateral", "frente"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 4000,
+        "props": { "kettlebell": "right" },
+        "destaque": ["gluteos", "deltoides"],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": 55, "thigh": -40, "shin": 55, "foot": -15, "arm": 0, "fore": -10, "armAbd": 6, "foreAbd": 6, "legAbd": 8, "right": { "arm": -55, "fore": 0, "armAbd": 0, "foreAbd": -4 }, "left": { "arm": 0, "fore": -10, "armAbd": 25, "foreAbd": 25 }, "an": { "pt": "ankle", "x": 0, "y": 10 } },
+            { "torso": 0, "thigh": 0, "shin": 0, "foot": 0, "arm": 0, "fore": -10, "armAbd": 6, "foreAbd": 6, "legAbd": 8, "right": { "arm": -15, "fore": -150, "armAbd": 10, "foreAbd": 0 }, "left": { "arm": 0, "fore": -10, "armAbd": 25, "foreAbd": 25 }, "an": { "pt": "ankle", "x": 0, "y": 10 } },
+            { "torso": 0, "thigh": 0, "shin": 0, "foot": 0, "arm": 0, "fore": -10, "armAbd": 6, "foreAbd": 6, "legAbd": 8, "right": { "arm": -180, "fore": 0, "armAbd": 8, "foreAbd": 6 }, "left": { "arm": 0, "fore": -10, "armAbd": 25, "foreAbd": 25 }, "an": { "pt": "ankle", "x": 0, "y": 10 } },
+            { "torso": 0, "thigh": 0, "shin": 0, "foot": 0, "arm": 0, "fore": -10, "armAbd": 6, "foreAbd": 6, "legAbd": 8, "right": { "arm": -15, "fore": -150, "armAbd": 10, "foreAbd": 0 }, "left": { "arm": 0, "fore": -10, "armAbd": 25, "foreAbd": 25 }, "an": { "pt": "ankle", "x": 0, "y": 10 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Com o kettlebell no chão entre os pés, leve o quadril para trás e segure a alça com uma mão.",
+        "Suba com força e traga o kettlebell até a frente do ombro, girando a mão por baixo da alça.",
+        "Empurre o kettlebell acima da cabeça até esticar o braço.",
+        "Volte à frente do ombro e desça até o chão. Faça as repetições e troque de mão."
+      ],
+      "erros_comuns": ["Deixar o kettlebell bater no antebraço.", "Arquear a lombar no desenvolvimento."]
+    },
+    {
+      "id": "halo_kettlebell",
+      "nome": "Halo com kettlebell",
+      "apelidos": ["halo", "volta na cabeça"],
+      "musculo_principal": "deltoide_anterior",
+      "musculos_secundarios": ["trapezio", "triceps", "abdomen"],
+      "padrao_movimento": "mobilidade",
+      "equipamentos": [["kettlebell"], ["halteres"]],
+      "nivel": 2,
+      "unidade": "repeticoes",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "em_pe",
+      "vistas": ["frente", "lateral"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 3200,
+        "props": { "kettlebell": "both", "kettlebellHang": "up" },
+        "destaque": ["deltoides"],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": 0, "thigh": 0, "shin": 0, "foot": 0, "arm": -40, "fore": -115, "armAbd": 0, "foreAbd": -20, "legAbd": 6, "an": { "pt": "ankle", "x": 0, "y": 10 } },
+            { "torso": 0, "thigh": 0, "shin": 0, "foot": 0, "arm": 0, "fore": -10, "armAbd": 6, "foreAbd": 6, "legAbd": 6, "an": { "pt": "ankle", "x": 0, "y": 10 }, "left": { "arm": -150, "fore": -60, "armAbd": 60, "foreAbd": 0 }, "right": { "arm": -140, "fore": -110, "armAbd": 5, "foreAbd": 60 } },
+            { "torso": 0, "thigh": 0, "shin": 0, "foot": 0, "arm": -170, "fore": -120, "armAbd": 30, "foreAbd": -40, "legAbd": 6, "an": { "pt": "ankle", "x": 0, "y": 10 } },
+            { "torso": 0, "thigh": 0, "shin": 0, "foot": 0, "arm": 0, "fore": -10, "armAbd": 6, "foreAbd": 6, "legAbd": 6, "an": { "pt": "ankle", "x": 0, "y": 10 }, "right": { "arm": -150, "fore": -60, "armAbd": 60, "foreAbd": 0 }, "left": { "arm": -140, "fore": -110, "armAbd": 5, "foreAbd": 60 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Em pé, segure o kettlebell de cabeça para baixo pelas laterais da alça, na frente do peito.",
+        "Passe o kettlebell em volta da cabeça, bem perto dela, até voltar à frente.",
+        "Mantenha o abdômen firme e o tronco parado.",
+        "Alterne o sentido a cada volta."
+      ],
+      "erros_comuns": [
+        "Inclinar o tronco ou a cabeça para abrir espaço.",
+        "Fazer círculos largos, longe da cabeça."
+      ]
+    },
+    {
+      "id": "agachamento_rack_kettlebell",
+      "nome": "Agachamento com kettlebell no ombro",
+      "apelidos": ["agachamento rack", "agachamento frontal com kettlebell"],
+      "musculo_principal": "quadriceps",
+      "musculos_secundarios": ["gluteos", "obliquos", "abdomen"],
+      "padrao_movimento": "agachar",
+      "equipamentos": [["kettlebell"]],
+      "nivel": 3,
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "agachamento_goblet",
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": true,
+      "posicao": "em_pe",
+      "vistas": ["lateral", "frente", "costas"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 3000,
+        "props": { "kettlebell": "right" },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": 0, "thigh": 0, "shin": 0, "foot": 0, "arm": -85, "fore": 0, "armAbd": 6, "foreAbd": 6, "legAbd": 4, "an": { "pt": "ankle", "x": 0, "y": 10 }, "right": { "arm": -15, "fore": -150, "armAbd": 10, "foreAbd": 0 }, "left": { "arm": -40, "fore": 0, "armAbd": 10, "foreAbd": 10 } },
+            { "torso": 40, "thigh": -80, "shin": 125, "foot": -45, "arm": -120, "fore": 0, "armAbd": 6, "foreAbd": 6, "legAbd": 8, "an": { "pt": "ankle", "x": 0, "y": 10 }, "right": { "arm": -15, "fore": -150, "armAbd": 10, "foreAbd": 0 }, "left": { "arm": -80, "fore": 0, "armAbd": 10, "foreAbd": 10 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Segure o kettlebell na frente de um ombro, com o cotovelo junto ao corpo.",
+        "Estique o outro braço à frente ou para o lado para equilibrar.",
+        "Agache até as coxas ficarem perto da horizontal, sem deixar o tronco tombar para o lado do peso.",
+        "Suba. Faça as repetições e troque de lado."
+      ],
+      "erros_comuns": [
+        "Inclinar o tronco para o lado do kettlebell.",
+        "Deixar o cotovelo abrir e o peso cair para a frente."
+      ]
+    },
+    {
+      "id": "remada_elastico",
+      "nome": "Remada sentado com elástico",
+      "apelidos": ["remada com elástico", "remada baixa"],
+      "musculo_principal": "dorsais",
+      "musculos_secundarios": ["biceps", "trapezio", "deltoide_posterior"],
+      "padrao_movimento": "puxar",
+      "equipamentos": [["elastico_alca"]],
+      "nivel": 1,
+      "unidade": "repeticoes",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "sentado",
+      "vistas": ["lateral"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2600,
+        "props": { "mat": true, "band": "feet" },
+        "destaque": ["dorsais", "biceps"],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": 0, "thigh": -90, "shin": 0, "foot": 0, "legAbd": 4, "armAbd": 6, "foreAbd": 6, "an": { "pt": "hip", "x": 0, "y": 27 }, "arm": -90, "fore": 0 },
+            { "torso": 0, "thigh": -90, "shin": 0, "foot": 0, "legAbd": 4, "armAbd": 6, "foreAbd": 6, "an": { "pt": "hip", "x": 0, "y": 27 }, "arm": 40, "fore": -130 }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Sente no chão com as pernas esticadas e passe o elástico pela sola dos pés.",
+        "Segure as alças com os braços esticados e o tronco reto.",
+        "Puxe as alças em direção à barriga, levando os cotovelos para trás e juntando as escápulas.",
+        "Volte devagar até esticar os braços."
+      ],
+      "erros_comuns": ["Jogar o tronco para trás para puxar.", "Subir os ombros em direção às orelhas."]
+    },
+    {
+      "id": "abertura_elastico",
+      "nome": "Abertura de braços com elástico",
+      "apelidos": ["pull-apart", "crucifixo inverso com elástico"],
+      "musculo_principal": "deltoide_posterior",
+      "musculos_secundarios": ["trapezio", "dorsais"],
+      "padrao_movimento": "puxar",
+      "equipamentos": [["elastico_alca"]],
+      "nivel": 1,
+      "unidade": "repeticoes",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "em_pe",
+      "vistas": ["frente", "lateral", "costas"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2200,
+        "props": { "band": "hands" },
+        "destaque": ["deltoides", "trapezio"],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": 0, "thigh": 0, "shin": 0, "foot": 0, "arm": -90, "fore": 0, "armAbd": 8, "foreAbd": 8, "legAbd": 3, "an": { "pt": "ankle", "x": 0, "y": 10 } },
+            { "torso": 0, "thigh": 0, "shin": 0, "foot": 0, "arm": -90, "fore": 0, "armAbd": 84, "foreAbd": 84, "legAbd": 3, "an": { "pt": "ankle", "x": 0, "y": 10 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Em pé, segure o elástico com as duas mãos à frente do peito, braços esticados.",
+        "Abra os braços para os lados, esticando o elástico até ele encostar no peito.",
+        "Aperte as escápulas no fim do movimento.",
+        "Volte devagar."
+      ],
+      "erros_comuns": ["Dobrar os cotovelos.", "Arquear a lombar para abrir mais."]
+    },
+    {
+      "id": "rosca_elastico",
+      "nome": "Rosca com elástico",
+      "apelidos": ["rosca bíceps com elástico"],
+      "musculo_principal": "biceps",
+      "musculos_secundarios": ["antebraco"],
+      "padrao_movimento": "puxar",
+      "equipamentos": [["elastico_alca"]],
+      "nivel": 1,
+      "unidade": "repeticoes",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": "rosca_biceps",
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "em_pe",
+      "vistas": ["lateral", "frente"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2400,
+        "props": { "band": "feet" },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": 0, "thigh": 0, "shin": 0, "foot": 0, "arm": -4, "fore": 0, "armAbd": 5, "foreAbd": 5, "legAbd": 3, "an": { "pt": "ankle", "x": 0, "y": 10 } },
+            { "torso": 0, "thigh": 0, "shin": 0, "foot": 0, "arm": -4, "fore": -140, "armAbd": 5, "foreAbd": 5, "legAbd": 3, "an": { "pt": "ankle", "x": 0, "y": 10 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Pise no meio do elástico com os pés na largura do quadril e segure as alças.",
+        "Com os cotovelos colados ao corpo, dobre os braços e suba as mãos até os ombros.",
+        "Desça devagar, controlando o elástico."
+      ],
+      "erros_comuns": ["Afastar os cotovelos do corpo.", "Deixar o elástico puxar os braços de volta de uma vez."]
+    },
+    {
+      "id": "triceps_elastico",
+      "nome": "Tríceps com elástico na porta",
+      "apelidos": ["tríceps pulley com elástico", "tríceps corda com elástico"],
+      "musculo_principal": "triceps",
+      "musculos_secundarios": [],
+      "padrao_movimento": "empurrar",
+      "equipamentos": [["elastico_alca"]],
+      "nivel": 1,
+      "unidade": "repeticoes",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "em_pe",
+      "vistas": ["lateral"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2200,
+        "props": { "band": { "x": 80, "y": 345 } },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": 10, "thigh": 0, "shin": 0, "foot": 0, "arm": -12, "fore": -110, "armAbd": 4, "foreAbd": 4, "legAbd": 3, "an": { "pt": "ankle", "x": 0, "y": 10 } },
+            { "torso": 10, "thigh": 0, "shin": 0, "foot": 0, "arm": -12, "fore": 0, "armAbd": 4, "foreAbd": 4, "legAbd": 3, "an": { "pt": "ankle", "x": 0, "y": 10 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Prenda o elástico no alto da porta (use a âncora de porta do elástico) e fique de frente para ela.",
+        "Segure as alças com os cotovelos colados ao lado do corpo.",
+        "Estique os cotovelos empurrando as mãos para baixo.",
+        "Volte devagar até os antebraços ficarem na horizontal."
+      ],
+      "erros_comuns": ["Mexer os ombros e os cotovelos junto.", "Inclinar demais o tronco sobre as mãos."]
+    },
+    {
+      "id": "desenvolvimento_elastico",
+      "nome": "Desenvolvimento com elástico",
+      "apelidos": ["elevação acima da cabeça com elástico"],
+      "musculo_principal": "deltoide_anterior",
+      "musculos_secundarios": ["deltoide_lateral", "triceps"],
+      "padrao_movimento": "empurrar",
+      "equipamentos": [["elastico_alca"]],
+      "nivel": 1,
+      "unidade": "repeticoes",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": "desenvolvimento_halteres",
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "em_pe",
+      "vistas": ["frente", "lateral"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2600,
+        "props": { "band": "feet" },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": 0, "thigh": 0, "shin": 0, "foot": 0, "arm": -180, "fore": 0, "armAbd": 85, "foreAbd": 0, "legAbd": 4, "an": { "pt": "ankle", "x": 0, "y": 10 } },
+            { "torso": 0, "thigh": 0, "shin": 0, "foot": 0, "arm": -180, "fore": 0, "armAbd": 12, "foreAbd": -2, "legAbd": 4, "an": { "pt": "ankle", "x": 0, "y": 10 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Pise no meio do elástico e segure as alças na altura dos ombros.",
+        "Empurre as mãos para cima até esticar os braços.",
+        "Desça devagar até a altura dos ombros."
+      ],
+      "erros_comuns": ["Arquear a lombar.", "Deixar os cotovelos irem muito para a frente."]
+    },
+    {
+      "id": "caminhada_lateral_miniband",
+      "nome": "Caminhada lateral com miniband",
+      "apelidos": ["passo lateral com elástico", "monster walk lateral"],
+      "musculo_principal": "gluteos",
+      "musculos_secundarios": ["quadriceps"],
+      "padrao_movimento": "agachar",
+      "equipamentos": [["miniband"]],
+      "nivel": 1,
+      "unidade": "repeticoes",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "em_pe",
+      "vistas": ["frente", "costas", "lateral"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 1800,
+        "props": { "miniband": "knees" },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": 22, "thigh": -38, "shin": 55, "foot": -17, "arm": -20, "fore": -140, "armAbd": 0, "foreAbd": -21, "legAbd": 7, "an": { "pt": "ankle", "side": "left", "x": 0, "y": 10 } },
+            { "torso": 22, "thigh": -38, "shin": 55, "foot": -17, "arm": -20, "fore": -140, "armAbd": 0, "foreAbd": -21, "legAbd": 7, "an": { "pt": "ankle", "side": "left", "x": 0, "y": 10 }, "right": { "legAbd": 20 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Coloque a miniband logo acima dos joelhos e fique em meio agachamento.",
+        "Dê um passo para o lado, mantendo a tensão no elástico.",
+        "Traga o outro pé até a largura do quadril, sem juntar os pés.",
+        "Ande alguns passos para um lado e volte para o outro."
+      ],
+      "erros_comuns": ["Subir o corpo entre os passos.", "Deixar os joelhos caírem para dentro."]
+    },
+    {
+      "id": "concha_miniband",
+      "nome": "Concha com miniband",
+      "apelidos": ["clamshell", "abertura de joelhos deitado"],
+      "musculo_principal": "gluteos",
+      "musculos_secundarios": [],
+      "padrao_movimento": "core",
+      "equipamentos": [["miniband"]],
+      "nivel": 1,
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "abducao_deitado",
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": true,
+      "posicao": "deitado",
+      "vistas": ["lateral"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2200,
+        "props": { "mat": true, "miniband": "knees" },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": 90, "roll": -90, "thigh": 45, "shin": 90, "foot": -45, "arm": 0, "fore": 0, "armAbd": 6, "legAbd": 3, "left": { "arm": -180, "armAbd": 0 }, "an": { "pt": "hip", "x": 0, "y": 36 } },
+            { "torso": 90, "roll": -90, "thigh": 45, "shin": 90, "foot": -45, "arm": 0, "fore": 0, "armAbd": 6, "legAbd": 3, "left": { "arm": -180, "armAbd": 0 }, "an": { "pt": "hip", "x": 0, "y": 36 }, "right": { "legAbd": 34 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Coloque a miniband acima dos joelhos e deite de lado, com os joelhos dobrados e os pés juntos.",
+        "Apoie a cabeça no braço de baixo.",
+        "Mantendo os pés encostados, abra o joelho de cima o máximo que conseguir sem girar o quadril.",
+        "Feche devagar. Faça as repetições e troque de lado."
+      ],
+      "erros_comuns": ["Girar o quadril para trás ao abrir.", "Separar os pés."]
+    },
+    {
+      "id": "ponte_abducao_miniband",
+      "nome": "Ponte com abertura e miniband",
+      "apelidos": ["ponte com elástico"],
+      "musculo_principal": "gluteos",
+      "musculos_secundarios": ["posteriores_coxa"],
+      "padrao_movimento": "dobradica_quadril",
+      "equipamentos": [["miniband"]],
+      "nivel": 2,
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "ponte_gluteo",
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "deitado",
+      "vistas": ["lateral"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 3600,
+        "props": { "mat": true, "miniband": "knees" },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": -90, "thigh": -135, "shin": 160.6, "foot": -25.6, "arm": 0, "fore": 0, "armAbd": 8, "legAbd": 4, "an": { "pt": "ankle", "x": 0, "y": 10 } },
+            { "torso": -105, "thigh": -105, "shin": 149.2, "foot": -44.2, "arm": 15, "fore": 0, "armAbd": 8, "legAbd": 4, "an": { "pt": "ankle", "x": 0, "y": 10 } },
+            { "torso": -105, "thigh": -105, "shin": 149.2, "foot": -44.2, "arm": 15, "fore": 0, "armAbd": 8, "legAbd": 16, "an": { "pt": "ankle", "x": 0, "y": 10 } },
+            { "torso": -105, "thigh": -105, "shin": 149.2, "foot": -44.2, "arm": 15, "fore": 0, "armAbd": 8, "legAbd": 4, "an": { "pt": "ankle", "x": 0, "y": 10 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Coloque a miniband acima dos joelhos e deite de barriga para cima, joelhos dobrados.",
+        "Suba o quadril até alinhar joelhos, quadril e ombros.",
+        "Lá em cima, abra os joelhos contra o elástico e feche de novo.",
+        "Desça devagar e repita."
+      ],
+      "erros_comuns": ["Deixar o quadril cair ao abrir os joelhos.", "Arquear a lombar."]
+    },
+    {
+      "id": "barra_fixa",
+      "nome": "Barra fixa",
+      "apelidos": ["pull-up", "barra pronada"],
+      "musculo_principal": "dorsais",
+      "musculos_secundarios": ["biceps", "trapezio", "deltoide_posterior"],
+      "padrao_movimento": "puxar",
+      "equipamentos": [["barra_fixa"]],
+      "nivel": 4,
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "barra_negativa",
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "em_pe",
+      "vistas": ["lateral", "costas", "frente"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2800,
+        "props": { "bar": { "x": 0, "y": 420 } },
+        "destaque": ["dorsais", "biceps"],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": 0, "thigh": 8, "shin": 45, "foot": 25, "legAbd": 4, "arm": -170, "fore": 344.7, "armAbd": 22, "foreAbd": 22, "an": { "pt": "hand", "x": 0, "y": 420 } },
+            { "torso": -8, "thigh": 8, "shin": 45, "foot": 25, "legAbd": 4, "arm": -88, "fore": 211.9, "armAbd": 22, "foreAbd": 22, "an": { "pt": "hand", "x": 0, "y": 420 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Segure a barra com as palmas viradas para a frente, mãos um pouco mais abertas que os ombros.",
+        "Pendure-se com os braços esticados e os ombros firmes.",
+        "Puxe o corpo para cima até o queixo passar da barra, levando os cotovelos para baixo.",
+        "Desça devagar até esticar os braços."
+      ],
+      "erros_comuns": ["Balançar o corpo para pegar impulso.", "Subir só até a metade."]
+    },
+    {
+      "id": "barra_supinada",
+      "nome": "Barra fixa supinada",
+      "apelidos": ["chin-up", "barra com palmas para você"],
+      "musculo_principal": "dorsais",
+      "musculos_secundarios": ["biceps", "trapezio"],
+      "padrao_movimento": "puxar",
+      "equipamentos": [["barra_fixa"]],
+      "nivel": 4,
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "barra_negativa",
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "em_pe",
+      "vistas": ["lateral", "costas", "frente"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2800,
+        "props": { "bar": { "x": 0, "y": 420 } },
+        "destaque": ["dorsais", "biceps"],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": 0, "thigh": 8, "shin": 45, "foot": 25, "legAbd": 4, "arm": -170.4, "fore": 345.1, "armAbd": 8, "foreAbd": 8, "an": { "pt": "hand", "x": 0, "y": 420 } },
+            { "torso": -8, "thigh": 8, "shin": 45, "foot": 25, "legAbd": 4, "arm": -86.8, "fore": 209.8, "armAbd": 8, "foreAbd": 8, "an": { "pt": "hand", "x": 0, "y": 420 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Segure a barra com as palmas viradas para você, mãos na largura dos ombros.",
+        "Pendure-se com os braços esticados.",
+        "Puxe o corpo para cima até o queixo passar da barra.",
+        "Desça devagar até esticar os braços."
+      ],
+      "erros_comuns": ["Balançar as pernas para subir.", "Soltar o corpo de uma vez na descida."]
+    },
+    {
+      "id": "barra_negativa",
+      "nome": "Barra fixa negativa",
+      "apelidos": ["descida lenta na barra", "negativa"],
+      "musculo_principal": "dorsais",
+      "musculos_secundarios": ["biceps", "trapezio"],
+      "padrao_movimento": "puxar",
+      "equipamentos": [["barra_fixa"]],
+      "nivel": 3,
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "barra_australiana",
+      "variacao_mais_dificil": "barra_fixa",
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "em_pe",
+      "vistas": ["lateral", "costas"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 4500,
+        "props": { "bar": { "x": 0, "y": 420 } },
+        "destaque": ["dorsais", "biceps"],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": -8, "thigh": 8, "shin": 45, "foot": 25, "legAbd": 4, "arm": -88, "fore": 211.9, "armAbd": 22, "foreAbd": 22, "an": { "pt": "hand", "x": 0, "y": 420 } },
+            { "torso": 0, "thigh": 8, "shin": 45, "foot": 25, "legAbd": 4, "arm": -170, "fore": 344.7, "armAbd": 22, "foreAbd": 22, "an": { "pt": "hand", "x": 0, "y": 420 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Suba numa cadeira firme e segure a barra já com o queixo acima dela.",
+        "Tire os pés da cadeira e segure a posição no alto.",
+        "Desça o mais devagar que conseguir, contando de 3 a 5 segundos, até esticar os braços.",
+        "Apoie os pés de novo na cadeira para voltar ao alto e repita."
+      ],
+      "erros_comuns": ["Cair rápido no fim da descida.", "Pular da cadeira em vez de começar parado no alto."]
+    },
+    {
+      "id": "elevacao_joelhos_barra",
+      "nome": "Elevação de joelhos pendurado",
+      "apelidos": ["abdominal na barra", "knee raise"],
+      "musculo_principal": "abdomen",
+      "musculos_secundarios": ["obliquos", "antebraco"],
+      "padrao_movimento": "core",
+      "equipamentos": [["barra_fixa"]],
+      "nivel": 3,
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "elevacao_pernas",
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "em_pe",
+      "vistas": ["lateral"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2600,
+        "props": { "bar": { "x": 0, "y": 420 } },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": 0, "thigh": 0, "shin": 0, "foot": 20, "legAbd": 4, "arm": -170.2, "fore": 344.9, "armAbd": 16, "foreAbd": 16, "an": { "pt": "hand", "x": 0, "y": 420 } },
+            { "torso": -10, "thigh": -100, "shin": 95, "foot": 5, "legAbd": 4, "arm": -160.2, "fore": 344.9, "armAbd": 16, "foreAbd": 16, "an": { "pt": "hand", "x": 0, "y": 420 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Pendure-se na barra com os braços esticados e as pernas juntas.",
+        "Suba os joelhos em direção ao peito, sem balançar o corpo.",
+        "Desça as pernas devagar até esticar."
+      ],
+      "erros_comuns": ["Balançar o corpo para pegar impulso.", "Soltar as pernas de uma vez."]
+    },
+    {
+      "id": "barra_australiana",
+      "nome": "Barra australiana",
+      "apelidos": ["remada invertida", "australian pull-up"],
+      "musculo_principal": "dorsais",
+      "musculos_secundarios": ["biceps", "trapezio", "deltoide_posterior", "abdomen"],
+      "padrao_movimento": "puxar",
+      "equipamentos": [["barra_fixa"]],
+      "nivel": 2,
+      "unidade": "repeticoes",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": "barra_negativa",
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "deitado",
+      "vistas": ["lateral"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2600,
+        "props": { "bar": { "x": 0, "y": 180, "posts": true } },
+        "destaque": ["dorsais", "biceps"],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": -77.8, "thigh": -77.8, "shin": 0, "foot": -12.2, "arm": -84.4, "fore": -1.5, "armAbd": 10, "foreAbd": 6, "legAbd": 4, "an": { "pt": "hand", "x": 0, "y": 180 } },
+            { "torso": -61.7, "thigh": -61.7, "shin": 0, "foot": -28.3, "arm": -35.7, "fore": 217.3, "armAbd": 10, "foreAbd": 6, "legAbd": 4, "an": { "pt": "hand", "x": 0, "y": 180 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Coloque a barra baixa, na altura da cintura, num suporte firme, e deite embaixo dela.",
+        "Segure a barra com as mãos um pouco mais abertas que os ombros, calcanhares no chão e corpo reto.",
+        "Puxe o peito até perto da barra, juntando as escápulas.",
+        "Desça devagar até esticar os braços."
+      ],
+      "erros_comuns": ["Deixar o quadril cair.", "Puxar com o pescoço esticado em direção à barra."]
+    }
+  ]
+}

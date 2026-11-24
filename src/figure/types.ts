@@ -96,6 +96,28 @@ export type FigureProps = {
    */
   dumbbellAxis?: 'x' | 'z';
   rope?: boolean;
+  /** Barra com anilhas: nas mãos ('hands') ou apoiada nas costas ('back', agachamento). */
+  barbell?: 'hands' | 'back';
+  /** Kettlebell nas duas mãos juntas ('both') ou só na direita ('right'). */
+  kettlebell?: 'both' | 'right';
+  /**
+   * Para onde fica o corpo do kettlebell em relação à mão: 'arm' (padrão) = na direção do
+   * antebraço (balanço, acima da cabeça); 'down' = pendurado para baixo; 'up' = de cabeça
+   * para baixo, acima das mãos (halo).
+   */
+  kettlebellHang?: 'arm' | 'down' | 'up';
+  /**
+   * Elástico com alças: das mãos até embaixo dos pés ('feet'), entre as duas mãos ('hands')
+   * ou até um ponto fixo {x, y}, por exemplo preso no alto da porta.
+   */
+  band?: 'feet' | 'hands' | { x: number; y: number };
+  /** Miniband em volta dos joelhos ou dos tornozelos. */
+  miniband?: 'knees' | 'ankles';
+  /**
+   * Barra fixa na posição {x, y} do mundo (eixo de um lado ao outro). `posts` desenha
+   * dois apoios até o chão (barra baixa, para a barra australiana).
+   */
+  bar?: { x: number; y: number; posts?: boolean };
 };
 
 export type FigureAnimation = {
