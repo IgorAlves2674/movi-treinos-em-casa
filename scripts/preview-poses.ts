@@ -2,7 +2,7 @@
 /**
  * Gera uma página HTML com as poses-chave de cada exercício (todas as vistas),
  * para conferir sem abrir o app.
- * Uso: npx tsx scripts/preview-poses.ts <saida.html> [id1,id2,...]
+ * Uso: npx tsx scripts/preview-poses.ts <saida.html> [id1,id2,...] [largura]
  */
 import { writeFileSync } from 'node:fs';
 
@@ -10,7 +10,8 @@ import { animacaoDoBoneco, EXERCICIOS } from '../src/content/exercises';
 import { buildFrame, FIGURE_COLORS, frameBox } from '../src/figure/build';
 import type { FigureAnimation, FigureView } from '../src/figure/types';
 
-const [out = 'poses.html', idsArg] = process.argv.slice(2);
+const [out = 'poses.html', idsArg, larguraArg] = process.argv.slice(2);
+const largura = Number(larguraArg) || 182;
 const ids = idsArg ? idsArg.split(',') : null;
 const lista = ids ? EXERCICIOS.filter((e) => ids.includes(e.id)) : EXERCICIOS;
 
@@ -23,7 +24,7 @@ function svg(anim: FigureAnimation, t: number, view: FigureView) {
         `<path d="${it.path}" fill="${it.fill}" stroke="${it.stroke ?? FIGURE_COLORS.outline}" stroke-width="${it.strokeWidth ?? 2.2}"/>`,
     )
     .join('');
-  return `<svg viewBox="${box.x} ${box.y} ${box.w} ${box.h}" width="182" height="140" style="background:${FIGURE_COLORS.stage};border-radius:8px" stroke-linejoin="round" stroke-linecap="round"><line x1="${box.x}" x2="${box.x + box.w}" y1="1" y2="1" stroke="${FIGURE_COLORS.floor}" stroke-width="2"/>${paths}</svg>`;
+  return `<svg viewBox="${box.x} ${box.y} ${box.w} ${box.h}" width="${largura}" height="${Math.round(largura / 1.3)}" style="background:${FIGURE_COLORS.stage};border-radius:8px" stroke-linejoin="round" stroke-linecap="round"><line x1="${box.x}" x2="${box.x + box.w}" y1="1" y2="1" stroke="${FIGURE_COLORS.floor}" stroke-width="2"/>${paths}</svg>`;
 }
 
 const blocos = lista.map((e) => {

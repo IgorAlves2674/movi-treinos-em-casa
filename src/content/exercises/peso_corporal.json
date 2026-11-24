@@ -965,7 +965,7 @@
         "tipo": "boneco",
         "duracao_ms": 2400,
         "props": {
-          "wall": 216.5
+          "wall": 209.8
         },
         "movimento": {
           "type": "keyframes",
@@ -975,10 +975,10 @@
               "thigh": 20,
               "shin": 0,
               "foot": -20,
-              "arm": -109.2,
-              "fore": -1.5,
+              "arm": -83,
+              "fore": -23.8,
               "armAbd": 6,
-              "foreAbd": 6,
+              "foreAbd": 0,
               "legAbd": 3,
               "an": {
                 "pt": "ankle",
@@ -987,14 +987,14 @@
               }
             },
             {
-              "torso": 36,
-              "thigh": 36,
+              "torso": 32,
+              "thigh": 32,
               "shin": 0,
-              "foot": -36,
-              "arm": -107.3,
-              "fore": 239.8,
-              "armAbd": 6,
-              "foreAbd": 6,
+              "foot": -32,
+              "arm": -69.6,
+              "fore": -99.3,
+              "armAbd": 45,
+              "foreAbd": -39,
               "legAbd": 3,
               "an": {
                 "pt": "ankle",
@@ -1160,12 +1160,12 @@
               }
             },
             {
-              "torso": 105,
-              "thigh": 105,
+              "torso": 104.2,
+              "thigh": 104.2,
               "shin": 0,
-              "foot": -25,
-              "arm": -196.1,
-              "fore": 144.9,
+              "foot": -24.2,
+              "arm": -45.8,
+              "fore": -141,
               "armAbd": 6,
               "foreAbd": 0,
               "legAbd": 3,
