@@ -45,6 +45,43 @@ export const segmentDir = (theta: number, abd: number, side: number): Vec3 => {
   return [-Math.sin(theta * DEG) * c, -Math.cos(theta * DEG) * c, side * Math.sin(abd * DEG)];
 };
 
+/** Gira `v` em volta do eixo unitário `k` (fórmula de Rodrigues), ângulo em graus. */
+export const rotate = (v: Vec3, k: Vec3, deg: number): Vec3 => {
+  if (!deg) return v;
+  const c = Math.cos(deg * DEG);
+  const s = Math.sin(deg * DEG);
+  const kv = cross(k, v);
+  const kd = dot(k, v) * (1 - c);
+  return [v[0] * c + kv[0] * s + k[0] * kd, v[1] * c + kv[1] * s + k[1] * kd, v[2] * c + kv[2] * s + k[2] * kd];
+};
+
+/** Ângulo no padrão do boneco (0 = para baixo, negativo = para a frente) da direção (dx, dy). */
+export const angleOf = (dx: number, dy: number): number => Math.atan2(-dx, -dy) / DEG;
+
+/**
+ * Cinemática inversa de 2 segmentos no plano lateral: ângulos (no mundo) do primeiro
+ * e do segundo segmento para ir de `root` até `target`. `bend` = 1 dobra a junta para
+ * a frente (+x), -1 para trás.
+ */
+export function ik2(root: Vec2, target: Vec2, l1: number, l2: number, bend: 1 | -1): [number, number] {
+  const dx = target[0] - root[0];
+  const dy = target[1] - root[1];
+  const d = Math.min(Math.hypot(dx, dy), l1 + l2 - 0.01);
+  const a = (l1 * l1 - l2 * l2 + d * d) / (2 * d);
+  const h = Math.sqrt(Math.max(l1 * l1 - a * a, 0));
+  const ux = dx / d;
+  const uy = dy / d;
+  let px = -uy;
+  let py = ux;
+  if (Math.sign(px || 1) !== bend) {
+    px = -px;
+    py = -py;
+  }
+  const jx = root[0] + ux * a + px * h;
+  const jy = root[1] + uy * a + py * h;
+  return [angleOf(jx - root[0], jy - root[1]), angleOf(target[0] - jx, target[1] - jy)];
+}
+
 /** Vetor perpendicular (para a frente) de um segmento com ângulo sagital `theta`. */
 export const perpForward = (theta: number): Vec3 => [Math.cos(theta * DEG), -Math.sin(theta * DEG), 0];
 

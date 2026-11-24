@@ -8,7 +8,13 @@
  *  - `shin`, `foot`: relativos ao segmento anterior.
  *  - `arm`: braço relativo ao tronco; `fore`: antebraço relativo ao braço.
  *  - `armAbd`, `foreAbd`, `legAbd`: abertura para o lado (abdução).
+ *  - `roll`: gira o corpo inteiro em volta do eixo do tronco (deitar de lado).
+ *    Com o tronco deitado de bruços (90), roll = -90 deixa o lado esquerdo no chão,
+ *    de frente para a câmera na vista lateral.
+ *  - `twist`: gira só a parte de cima (ombros, braços, cabeça) em volta do eixo do
+ *    tronco (positivo = ombro direito vai para a frente).
  *  - `an`: ponto preso (âncora) e a posição dele no mundo (y para cima, chão em y = 0).
+ *    `side: 'left'` prende o ponto do lado esquerdo (padrão: direito).
  */
 
 export type FigureView = 'lateral' | 'frente' | 'costas';
@@ -51,13 +57,15 @@ export type Pose = LimbAngles & {
    */
   right?: Partial<LimbAngles>;
   left?: Partial<LimbAngles>;
-  an: { pt: AnchorPoint; x: number; y: number };
+  roll?: number;
+  twist?: number;
+  an: { pt: AnchorPoint; x: number; y: number; side?: 'left' };
   /** Ângulo da corda (radianos), só para exercícios com corda. */
   ropeAngle?: number;
 };
 
 /** Funções de movimento contínuo (ex.: pular corda), que não cabem em poses-chave. */
-export type ContinuousMotionId = 'pular_corda';
+export type ContinuousMotionId = 'pular_corda' | 'circulos_braco' | 'escalador';
 
 export type FigureMotion =
   /** 2 a 4 poses-chave, interpoladas em loop: cada pose → próxima → … → primeira. */
@@ -66,7 +74,13 @@ export type FigureMotion =
 
 export type FigureProps = {
   mat?: boolean;
-  chair?: boolean;
+  /**
+   * Cadeira. `true` = atrás do boneco, como para sentar. Com objeto: `x` desloca a
+   * cadeira e `flip` vira o encosto para o outro lado (ex.: cadeira à frente para subir).
+   */
+  chair?: boolean | { x?: number; flip?: boolean };
+  /** Parede vertical na posição x (superfície virada para o boneco). Só aparece de lado. */
+  wall?: number;
   /** 'one' = um halter segurado com as duas mãos; 'two' = um em cada mão */
   dumbbell?: 'one' | 'two';
   /** Com 'two': 'z' (padrão) = halter atravessado, como na rosca; 'x' = pegada neutra */

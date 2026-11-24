@@ -55,11 +55,18 @@ gatilho `movi_before_write`, RLS e políticas) + registro em `src/db/tables.ts`.
 
 ## Banco de exercícios e boneco
 
-- Os exercícios ficam em `src/content/exercises/exercicios.json` (campos da spec, seção 5.2).
-  Cada um traz a animação do boneco: 2 a 4 poses-chave com os ângulos das articulações e o
-  ponto preso no chão (convenções em `src/figure/types.ts`).
+- Os exercícios ficam em `src/content/exercises/` (campos da spec, seção 5.2), divididos em
+  arquivos JSON (`exercicios.json` com os 20 primeiros, `peso_corporal.json`, …) que o
+  `index.ts` junta. Cada um traz a animação do boneco: 2 a 4 poses-chave com os ângulos das
+  articulações e o ponto preso no chão (convenções em `src/figure/types.ts`: inclui `roll`
+  para deitar de lado e `twist` para girar o tronco). Movimentos que não cabem em poses-chave
+  (pular corda, escalador, círculos com os braços) são funções em `src/figure/motion.ts`.
+- Equipamentos desenhados: colchonete, cadeira (pode mudar de lugar e virar), parede, halteres
+  e corda.
 - `npm run check:content` confere ids, variações, equipamentos, vistas e se o boneco não
   atravessa o chão.
+- `npx tsx scripts/preview-poses.ts poses.html id1,id2` gera uma página com as poses-chave de
+  cada exercício em todas as vistas, para conferir sem abrir o app.
 - `scripts/pose-lab.ts` ajuda a calcular ângulos quando mãos e pés precisam ficar presos
   (cinemática inversa), por exemplo na flexão e no afundo.
 - Em desenvolvimento: **Perfil → Ver todos os exercícios** mostra o banco com o boneco.

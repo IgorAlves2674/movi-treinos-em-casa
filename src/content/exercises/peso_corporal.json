@@ -1,0 +1,3315 @@
+{
+  "versao": 1,
+  "exercicios": [
+    {
+      "apelidos": [
+        "sumô",
+        "agachamento aberto"
+      ],
+      "musculos_secundarios": [
+        "adutores",
+        "gluteos"
+      ],
+      "equipamentos": [
+        []
+      ],
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "agachamento_livre",
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "id": "agachamento_sumo",
+      "nome": "Agachamento sumô",
+      "musculo_principal": "quadriceps",
+      "padrao_movimento": "agachar",
+      "nivel": 2,
+      "posicao": "em_pe",
+      "vistas": [
+        "frente",
+        "lateral",
+        "costas"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2800,
+        "destaque": [
+          "quadriceps",
+          "gluteos"
+        ],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": 5,
+              "thigh": 0,
+              "shin": 0,
+              "foot": 0,
+              "arm": -20,
+              "fore": -140,
+              "armAbd": 0,
+              "foreAbd": -21,
+              "legAbd": 18,
+              "an": {
+                "pt": "ankle",
+                "x": 0,
+                "y": 10
+              }
+            },
+            {
+              "torso": 22,
+              "thigh": -70,
+              "shin": 100,
+              "foot": -30,
+              "arm": -20,
+              "fore": -140,
+              "armAbd": 0,
+              "foreAbd": -21,
+              "legAbd": 26,
+              "an": {
+                "pt": "ankle",
+                "x": 0,
+                "y": 10
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Afaste bem os pés, mais que a largura dos ombros, com as pontas viradas para fora.",
+        "Junte as mãos à frente do peito e mantenha o tronco alto.",
+        "Desça levando os joelhos para fora, na direção das pontas dos pés.",
+        "Empurre o chão e suba até ficar em pé."
+      ],
+      "erros_comuns": [
+        "Deixar os joelhos caírem para dentro.",
+        "Inclinar demais o tronco para a frente."
+      ]
+    },
+    {
+      "apelidos": [
+        "búlgaro",
+        "afundo com pé na cadeira"
+      ],
+      "musculos_secundarios": [
+        "gluteos",
+        "posteriores_coxa"
+      ],
+      "equipamentos": [
+        [
+          "cadeira"
+        ]
+      ],
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "afundo",
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": true,
+      "id": "agachamento_bulgaro",
+      "nome": "Agachamento búlgaro",
+      "musculo_principal": "quadriceps",
+      "padrao_movimento": "avanco",
+      "nivel": 3,
+      "posicao": "em_pe",
+      "vistas": [
+        "lateral",
+        "frente"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 3000,
+        "destaque": [
+          "quadriceps",
+          "gluteos"
+        ],
+        "props": {
+          "chair": {
+            "x": -178
+          }
+        },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": 8,
+              "thigh": 0,
+              "shin": 0,
+              "foot": 0,
+              "arm": -4,
+              "fore": -10,
+              "armAbd": 8,
+              "foreAbd": 8,
+              "legAbd": 3,
+              "right": {
+                "thigh": -29.9,
+                "shin": 25.1,
+                "foot": 4.8
+              },
+              "left": {
+                "thigh": 3.3,
+                "shin": 92.4,
+                "foot": 84.4
+              },
+              "an": {
+                "pt": "ankle",
+                "x": 0,
+                "y": 10
+              }
+            },
+            {
+              "torso": 14,
+              "thigh": 0,
+              "shin": 0,
+              "foot": 0,
+              "arm": -4,
+              "fore": -10,
+              "armAbd": 8,
+              "foreAbd": 8,
+              "legAbd": 3,
+              "right": {
+                "thigh": -81.9,
+                "shin": 92.1,
+                "foot": -10.3
+              },
+              "left": {
+                "thigh": 14.5,
+                "shin": 133.1,
+                "foot": 32.4
+              },
+              "an": {
+                "pt": "ankle",
+                "x": 0,
+                "y": 10
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Fique de costas para a cadeira, a um passo grande dela, e apoie o peito de um pé no assento.",
+        "Mantenha o tronco firme e as mãos na cintura ou ao lado do corpo.",
+        "Desça dobrando a perna da frente até a coxa ficar quase na horizontal.",
+        "Empurre o chão com o pé da frente para subir. Faça todas as repetições e troque de perna."
+      ],
+      "erros_comuns": [
+        "Ficar perto demais da cadeira, com o joelho da frente passando muito da ponta do pé.",
+        "Empurrar com a perna de trás em vez da perna da frente."
+      ]
+    },
+    {
+      "apelidos": [
+        "passada para trás",
+        "lunge reverso"
+      ],
+      "musculos_secundarios": [
+        "gluteos",
+        "posteriores_coxa"
+      ],
+      "equipamentos": [
+        []
+      ],
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "agachamento_livre",
+      "variacao_mais_dificil": "afundo",
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": true,
+      "id": "afundo_reverso",
+      "nome": "Afundo reverso",
+      "musculo_principal": "quadriceps",
+      "padrao_movimento": "avanco",
+      "nivel": 2,
+      "posicao": "em_pe",
+      "vistas": [
+        "lateral",
+        "frente",
+        "costas"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 3000,
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": 0,
+              "thigh": 0,
+              "shin": 0,
+              "foot": 0,
+              "arm": 0,
+              "fore": -10,
+              "armAbd": 8,
+              "foreAbd": 8,
+              "legAbd": 3,
+              "an": {
+                "pt": "ankle",
+                "x": 0,
+                "y": 10
+              }
+            },
+            {
+              "torso": 4,
+              "thigh": 0,
+              "shin": 0,
+              "foot": 0,
+              "arm": -4,
+              "fore": -10,
+              "armAbd": 8,
+              "foreAbd": 8,
+              "legAbd": 3,
+              "right": {
+                "thigh": -82.5,
+                "shin": 88.3,
+                "foot": -5.9
+              },
+              "left": {
+                "thigh": 0.6,
+                "shin": 97.7,
+                "foot": -38.3
+              },
+              "an": {
+                "pt": "ankle",
+                "x": 0,
+                "y": 10
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Fique em pé com os pés na largura do quadril.",
+        "Dê um passo grande para trás e desça até o joelho de trás quase encostar no chão.",
+        "Mantenha o tronco reto e o peso no pé da frente.",
+        "Empurre com o pé da frente e volte à posição inicial. Alterne as pernas ou faça um lado de cada vez."
+      ],
+      "erros_comuns": [
+        "Dar um passo curto demais.",
+        "Bater o joelho de trás no chão.",
+        "Inclinar o tronco para a frente."
+      ]
+    },
+    {
+      "apelidos": [
+        "agachamento lateral",
+        "passada lateral"
+      ],
+      "musculos_secundarios": [
+        "adutores",
+        "gluteos"
+      ],
+      "equipamentos": [
+        []
+      ],
+      "unidade": "repeticoes",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": true,
+      "id": "afundo_lateral",
+      "nome": "Afundo lateral",
+      "musculo_principal": "quadriceps",
+      "padrao_movimento": "avanco",
+      "nivel": 2,
+      "posicao": "em_pe",
+      "vistas": [
+        "frente",
+        "costas",
+        "lateral"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 3000,
+        "destaque": [
+          "quadriceps",
+          "gluteos"
+        ],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": 0,
+              "thigh": 0,
+              "shin": 0,
+              "foot": 0,
+              "arm": -20,
+              "fore": -140,
+              "armAbd": 0,
+              "foreAbd": -21,
+              "legAbd": 3,
+              "an": {
+                "pt": "ankle",
+                "x": 0,
+                "y": 10
+              }
+            },
+            {
+              "torso": 35,
+              "thigh": 0,
+              "shin": 0,
+              "foot": 0,
+              "arm": -20,
+              "fore": -140,
+              "armAbd": 0,
+              "foreAbd": -21,
+              "legAbd": 3,
+              "right": {
+                "legAbd": 35
+              },
+              "left": {
+                "thigh": -45,
+                "shin": 65.3,
+                "foot": -20.2,
+                "legAbd": 0
+              },
+              "an": {
+                "pt": "ankle",
+                "x": 0,
+                "y": 10
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Fique em pé com os pés bem afastados para os lados.",
+        "Leve o quadril para trás e dobre um joelho, deixando a outra perna esticada.",
+        "Desça até a coxa da perna dobrada ficar quase na horizontal, com o pé inteiro no chão.",
+        "Empurre o chão e volte ao centro. Alterne os lados."
+      ],
+      "erros_comuns": [
+        "Tirar o calcanhar da perna dobrada do chão.",
+        "Deixar o joelho passar para dentro do pé."
+      ]
+    },
+    {
+      "apelidos": [
+        "step-up",
+        "subida no banco"
+      ],
+      "musculos_secundarios": [
+        "gluteos",
+        "posteriores_coxa"
+      ],
+      "equipamentos": [
+        [
+          "cadeira"
+        ],
+        [
+          "step"
+        ]
+      ],
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "agachamento_cadeira",
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": true,
+      "id": "subida_cadeira",
+      "nome": "Subida na cadeira",
+      "musculo_principal": "quadriceps",
+      "padrao_movimento": "avanco",
+      "nivel": 2,
+      "posicao": "em_pe",
+      "vistas": [
+        "lateral",
+        "costas"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 3000,
+        "destaque": [
+          "quadriceps",
+          "gluteos"
+        ],
+        "props": {
+          "chair": {
+            "x": 92,
+            "flip": true
+          }
+        },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": 12,
+              "thigh": 0,
+              "shin": 0,
+              "foot": 0,
+              "arm": -20,
+              "fore": -20,
+              "armAbd": 6,
+              "foreAbd": 6,
+              "legAbd": 3,
+              "right": {
+                "thigh": -80.7,
+                "shin": 109.8,
+                "foot": -29.1
+              },
+              "left": {
+                "thigh": -4.8,
+                "shin": 27,
+                "foot": -22.2
+              },
+              "an": {
+                "pt": "ankle",
+                "x": 78,
+                "y": 94
+              }
+            },
+            {
+              "torso": 3,
+              "thigh": 0,
+              "shin": 0,
+              "foot": 0,
+              "arm": -4,
+              "fore": -10,
+              "armAbd": 6,
+              "foreAbd": 6,
+              "legAbd": 3,
+              "right": {
+                "thigh": -6.4,
+                "shin": 11.9,
+                "foot": -5.5
+              },
+              "left": {
+                "thigh": -3.6,
+                "shin": 11.3,
+                "foot": -7.7
+              },
+              "an": {
+                "pt": "ankle",
+                "x": 78,
+                "y": 94
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Use uma cadeira firme, encostada na parede para não escorregar.",
+        "Apoie o pé inteiro no assento e incline o tronco um pouco para a frente.",
+        "Empurre com o pé que está na cadeira até ficar em pé sobre ela, juntando o outro pé.",
+        "Desça devagar com o mesmo pé que subiu por último. Faça todas as repetições e troque de perna."
+      ],
+      "erros_comuns": [
+        "Pegar impulso com o pé que está no chão.",
+        "Usar cadeira com rodinhas ou instável."
+      ]
+    },
+    {
+      "apelidos": [
+        "cadeirinha",
+        "wall sit"
+      ],
+      "musculos_secundarios": [
+        "gluteos"
+      ],
+      "equipamentos": [
+        [
+          "parede"
+        ]
+      ],
+      "unidade": "tempo",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "id": "agachamento_parede",
+      "nome": "Agachamento isométrico na parede",
+      "musculo_principal": "quadriceps",
+      "padrao_movimento": "agachar",
+      "nivel": 2,
+      "posicao": "em_pe",
+      "vistas": [
+        "lateral",
+        "frente"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 3000,
+        "props": {
+          "wall": -121
+        },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": 0,
+              "thigh": -90,
+              "shin": 90,
+              "foot": 0,
+              "arm": -90,
+              "fore": 0,
+              "armAbd": 6,
+              "foreAbd": 6,
+              "legAbd": 3,
+              "an": {
+                "pt": "ankle",
+                "x": 0,
+                "y": 10
+              }
+            },
+            {
+              "torso": 0,
+              "thigh": -88,
+              "shin": 88,
+              "foot": 0,
+              "arm": -86,
+              "fore": 0,
+              "armAbd": 6,
+              "foreAbd": 6,
+              "legAbd": 3,
+              "an": {
+                "pt": "ankle",
+                "x": 0,
+                "y": 10
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Encoste as costas na parede e afaste os pés dela uns dois palmos.",
+        "Deslize as costas para baixo até os joelhos formarem um ângulo reto.",
+        "Mantenha as costas na parede e os joelhos em cima dos tornozelos.",
+        "Segure pelo tempo indicado, respirando normalmente."
+      ],
+      "erros_comuns": [
+        "Ficar com os pés perto demais da parede.",
+        "Apoiar as mãos nas coxas para aliviar."
+      ]
+    },
+    {
+      "apelidos": [
+        "ponte unilateral",
+        "elevação de quadril com uma perna"
+      ],
+      "musculos_secundarios": [
+        "posteriores_coxa",
+        "lombar"
+      ],
+      "equipamentos": [
+        []
+      ],
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "ponte_gluteo",
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": true,
+      "id": "ponte_unilateral",
+      "nome": "Ponte de glúteo com uma perna",
+      "musculo_principal": "gluteos",
+      "padrao_movimento": "dobradica_quadril",
+      "nivel": 2,
+      "posicao": "deitado",
+      "vistas": [
+        "lateral"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2800,
+        "props": {
+          "mat": true
+        },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": -90,
+              "thigh": -135,
+              "shin": 160.6,
+              "foot": -25.6,
+              "arm": 0,
+              "fore": 0,
+              "armAbd": 8,
+              "legAbd": 4,
+              "left": {
+                "thigh": -135,
+                "shin": 0,
+                "foot": 45
+              },
+              "an": {
+                "pt": "ankle",
+                "x": 0,
+                "y": 10
+              }
+            },
+            {
+              "torso": -105,
+              "thigh": -105,
+              "shin": 149.2,
+              "foot": -44.2,
+              "arm": 15,
+              "fore": 0,
+              "armAbd": 8,
+              "legAbd": 4,
+              "left": {
+                "thigh": -105,
+                "shin": 0,
+                "foot": 15
+              },
+              "an": {
+                "pt": "ankle",
+                "x": 0,
+                "y": 10
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Deite de barriga para cima, com um pé no chão e a outra perna esticada para o alto.",
+        "Deixe os braços ao lado do corpo.",
+        "Empurre o chão com o calcanhar e suba o quadril até alinhar joelho, quadril e ombros.",
+        "Desça devagar. Faça todas as repetições e troque de perna."
+      ],
+      "erros_comuns": [
+        "Deixar o quadril cair para o lado da perna levantada.",
+        "Arquear a lombar no alto."
+      ]
+    },
+    {
+      "apelidos": [
+        "glúteo quatro apoios",
+        "donkey kick"
+      ],
+      "musculos_secundarios": [
+        "posteriores_coxa",
+        "lombar"
+      ],
+      "equipamentos": [
+        []
+      ],
+      "unidade": "repeticoes",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": true,
+      "id": "coice_gluteo",
+      "nome": "Coice de glúteo",
+      "musculo_principal": "gluteos",
+      "padrao_movimento": "dobradica_quadril",
+      "nivel": 1,
+      "posicao": "apoio_chao",
+      "vistas": [
+        "lateral"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2400,
+        "props": {
+          "mat": true
+        },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": 84,
+              "thigh": 0,
+              "shin": 90,
+              "foot": 90,
+              "arm": -84,
+              "fore": 0,
+              "armAbd": 4,
+              "foreAbd": 4,
+              "legAbd": 3,
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 107
+              }
+            },
+            {
+              "torso": 84,
+              "thigh": 0,
+              "shin": 90,
+              "foot": 90,
+              "arm": -84,
+              "fore": 0,
+              "armAbd": 4,
+              "foreAbd": 4,
+              "legAbd": 3,
+              "right": {
+                "thigh": 95,
+                "shin": 85,
+                "foot": 0
+              },
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 107
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Fique de quatro, com as mãos embaixo dos ombros e os joelhos embaixo do quadril.",
+        "Mantendo o joelho dobrado, leve uma perna para trás e para cima, com a sola do pé virada para o teto.",
+        "Suba até a coxa ficar alinhada com o tronco, apertando o glúteo.",
+        "Volte devagar sem encostar o joelho no chão. Faça todas as repetições e troque de perna."
+      ],
+      "erros_comuns": [
+        "Arquear a lombar para subir mais a perna.",
+        "Girar o quadril para o lado."
+      ]
+    },
+    {
+      "apelidos": [
+        "elevação lateral de perna",
+        "abdução lateral"
+      ],
+      "musculos_secundarios": [
+        "obliquos"
+      ],
+      "equipamentos": [
+        []
+      ],
+      "unidade": "repeticoes",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": true,
+      "id": "abducao_deitado",
+      "nome": "Abdução de perna deitado de lado",
+      "musculo_principal": "gluteos",
+      "padrao_movimento": "core",
+      "nivel": 1,
+      "posicao": "deitado",
+      "vistas": [
+        "lateral"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2400,
+        "props": {
+          "mat": true
+        },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": 90,
+              "roll": -90,
+              "thigh": 90,
+              "shin": 0,
+              "foot": 0,
+              "arm": 0,
+              "fore": 0,
+              "armAbd": 6,
+              "legAbd": 3,
+              "left": {
+                "arm": -180,
+                "armAbd": 0
+              },
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 36
+              }
+            },
+            {
+              "torso": 90,
+              "roll": -90,
+              "thigh": 90,
+              "shin": 0,
+              "foot": 0,
+              "arm": 0,
+              "fore": 0,
+              "armAbd": 6,
+              "legAbd": 3,
+              "left": {
+                "arm": -180,
+                "armAbd": 0
+              },
+              "right": {
+                "legAbd": 40
+              },
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 36
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Deite de lado com as pernas esticadas, uma em cima da outra, e apoie a cabeça no braço de baixo.",
+        "Mantenha o quadril parado, sem girar para trás.",
+        "Suba a perna de cima, com a ponta do pé virada para a frente.",
+        "Desça devagar. Faça todas as repetições e troque de lado."
+      ],
+      "erros_comuns": [
+        "Virar a ponta do pé para o teto.",
+        "Subir a perna rápido, balançando o corpo."
+      ]
+    },
+    {
+      "apelidos": [
+        "jump squat",
+        "agachamento saltado"
+      ],
+      "musculos_secundarios": [
+        "gluteos",
+        "panturrilhas"
+      ],
+      "equipamentos": [
+        []
+      ],
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "agachamento_livre",
+      "variacao_mais_dificil": null,
+      "impacto": "alto",
+      "barulho": "alto",
+      "unilateral": false,
+      "id": "agachamento_salto",
+      "nome": "Agachamento com salto",
+      "musculo_principal": "quadriceps",
+      "padrao_movimento": "agachar",
+      "nivel": 3,
+      "posicao": "em_pe",
+      "vistas": [
+        "lateral",
+        "frente",
+        "costas"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 1500,
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": 40,
+              "thigh": -80,
+              "shin": 125,
+              "foot": -45,
+              "arm": 45,
+              "fore": -10,
+              "armAbd": 6,
+              "foreAbd": 6,
+              "legAbd": 3,
+              "an": {
+                "pt": "ankle",
+                "x": 0,
+                "y": 10
+              }
+            },
+            {
+              "torso": 0,
+              "thigh": 0,
+              "shin": 0,
+              "foot": 35,
+              "arm": -165,
+              "fore": 0,
+              "armAbd": 18,
+              "foreAbd": 18,
+              "legAbd": 3,
+              "an": {
+                "pt": "ankle",
+                "x": 8.5,
+                "y": 60
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Fique com os pés na largura dos ombros.",
+        "Agache levando os braços para trás.",
+        "Salte com força para cima, jogando os braços para o alto.",
+        "Aterrisse suave, com os joelhos dobrados, e já desça para o próximo salto."
+      ],
+      "erros_comuns": [
+        "Aterrissar com as pernas esticadas.",
+        "Deixar os joelhos caírem para dentro na aterrissagem."
+      ]
+    },
+    {
+      "apelidos": [
+        "apoio na parede"
+      ],
+      "musculos_secundarios": [
+        "triceps",
+        "deltoide_anterior"
+      ],
+      "equipamentos": [
+        [
+          "parede"
+        ]
+      ],
+      "unidade": "repeticoes",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": "flexao_inclinada",
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "id": "flexao_parede",
+      "nome": "Flexão na parede",
+      "musculo_principal": "peitoral",
+      "padrao_movimento": "empurrar",
+      "nivel": 1,
+      "posicao": "em_pe",
+      "vistas": [
+        "lateral",
+        "costas"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2400,
+        "props": {
+          "wall": 216.5
+        },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": 20,
+              "thigh": 20,
+              "shin": 0,
+              "foot": -20,
+              "arm": -109.2,
+              "fore": -1.5,
+              "armAbd": 6,
+              "foreAbd": 6,
+              "legAbd": 3,
+              "an": {
+                "pt": "ankle",
+                "x": 0,
+                "y": 10
+              }
+            },
+            {
+              "torso": 36,
+              "thigh": 36,
+              "shin": 0,
+              "foot": -36,
+              "arm": -107.3,
+              "fore": 239.8,
+              "armAbd": 6,
+              "foreAbd": 6,
+              "legAbd": 3,
+              "an": {
+                "pt": "ankle",
+                "x": 0,
+                "y": 10
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Fique de frente para a parede, a um passo grande dela.",
+        "Apoie as mãos na parede na altura dos ombros, um pouco mais abertas que eles.",
+        "Com o corpo reto, dobre os cotovelos e aproxime o peito da parede.",
+        "Empurre a parede até esticar os braços."
+      ],
+      "erros_comuns": [
+        "Dobrar o quadril em vez de manter o corpo reto.",
+        "Abrir demais os cotovelos para os lados."
+      ]
+    },
+    {
+      "apelidos": [
+        "flexão com mãos na cadeira"
+      ],
+      "musculos_secundarios": [
+        "triceps",
+        "deltoide_anterior",
+        "abdomen"
+      ],
+      "equipamentos": [
+        [
+          "cadeira"
+        ]
+      ],
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "flexao_parede",
+      "variacao_mais_dificil": "flexao_joelhos",
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "id": "flexao_inclinada",
+      "nome": "Flexão inclinada",
+      "musculo_principal": "peitoral",
+      "padrao_movimento": "empurrar",
+      "nivel": 1,
+      "posicao": "apoio_chao",
+      "vistas": [
+        "lateral"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2400,
+        "props": {
+          "chair": {
+            "x": 36,
+            "flip": true
+          }
+        },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": 52.6,
+              "thigh": 52.6,
+              "shin": 0,
+              "foot": 27.4,
+              "arm": -53.4,
+              "fore": 1.5,
+              "armAbd": 6,
+              "foreAbd": 0,
+              "legAbd": 3,
+              "an": {
+                "pt": "hand",
+                "x": 0,
+                "y": 92
+              }
+            },
+            {
+              "torso": 70.7,
+              "thigh": 70.7,
+              "shin": 0,
+              "foot": 9.3,
+              "arm": 44.6,
+              "fore": -122.7,
+              "armAbd": 6,
+              "foreAbd": 0,
+              "legAbd": 3,
+              "an": {
+                "pt": "hand",
+                "x": 0,
+                "y": 92
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Encoste a cadeira na parede para não escorregar e apoie as mãos na beirada do assento.",
+        "Leve os pés para trás até o corpo ficar reto, da cabeça aos calcanhares.",
+        "Dobre os cotovelos e aproxime o peito do assento.",
+        "Empurre até esticar os braços."
+      ],
+      "erros_comuns": [
+        "Deixar o quadril cair.",
+        "Descer só a cabeça em vez do corpo todo."
+      ]
+    },
+    {
+      "apelidos": [
+        "flexão com pés na cadeira"
+      ],
+      "musculos_secundarios": [
+        "deltoide_anterior",
+        "triceps",
+        "abdomen"
+      ],
+      "equipamentos": [
+        [
+          "cadeira"
+        ]
+      ],
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "flexao_padrao",
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "id": "flexao_declinada",
+      "nome": "Flexão declinada",
+      "musculo_principal": "peitoral",
+      "padrao_movimento": "empurrar",
+      "nivel": 3,
+      "posicao": "apoio_chao",
+      "vistas": [
+        "lateral"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2400,
+        "props": {
+          "chair": {
+            "x": -300
+          }
+        },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": 89,
+              "thigh": 89,
+              "shin": 0,
+              "foot": -9,
+              "arm": -89.8,
+              "fore": 1.5,
+              "armAbd": 6,
+              "foreAbd": 0,
+              "legAbd": 3,
+              "an": {
+                "pt": "hand",
+                "x": 0,
+                "y": 8
+              }
+            },
+            {
+              "torso": 105,
+              "thigh": 105,
+              "shin": 0,
+              "foot": -25,
+              "arm": -196.1,
+              "fore": 144.9,
+              "armAbd": 6,
+              "foreAbd": 0,
+              "legAbd": 3,
+              "an": {
+                "pt": "hand",
+                "x": 0,
+                "y": 8
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Apoie as pontas dos pés no assento da cadeira e as mãos no chão, um pouco mais abertas que os ombros.",
+        "Deixe o corpo reto, da cabeça aos calcanhares.",
+        "Dobre os cotovelos e desça o peito até perto do chão.",
+        "Empurre até esticar os braços."
+      ],
+      "erros_comuns": [
+        "Deixar o quadril cair ou subir demais.",
+        "Usar uma cadeira que escorrega."
+      ]
+    },
+    {
+      "apelidos": [
+        "flexão fechada",
+        "flexão de tríceps"
+      ],
+      "musculos_secundarios": [
+        "peitoral",
+        "deltoide_anterior"
+      ],
+      "equipamentos": [
+        []
+      ],
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "flexao_padrao",
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "id": "flexao_diamante",
+      "nome": "Flexão diamante",
+      "musculo_principal": "triceps",
+      "padrao_movimento": "empurrar",
+      "nivel": 3,
+      "posicao": "apoio_chao",
+      "vistas": [
+        "lateral"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2400,
+        "destaque": [
+          "triceps",
+          "peitoral"
+        ],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": 71.8,
+              "thigh": 71.8,
+              "shin": 0,
+              "foot": 8.2,
+              "arm": -71,
+              "fore": -1.5,
+              "armAbd": 0,
+              "foreAbd": -6,
+              "legAbd": 3,
+              "an": {
+                "pt": "hand",
+                "x": 0,
+                "y": 8
+              }
+            },
+            {
+              "torso": 88.8,
+              "thigh": 88.8,
+              "shin": 0,
+              "foot": -8.8,
+              "arm": 13.4,
+              "fore": -147.2,
+              "armAbd": 0,
+              "foreAbd": -6,
+              "legAbd": 3,
+              "an": {
+                "pt": "hand",
+                "x": 0,
+                "y": 8
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Fique em posição de flexão com as mãos juntas embaixo do peito, formando um losango com os dedos.",
+        "Mantenha o corpo reto, da cabeça aos calcanhares.",
+        "Desça dobrando os cotovelos rente ao corpo.",
+        "Empurre até esticar os braços."
+      ],
+      "erros_comuns": [
+        "Abrir os cotovelos para os lados.",
+        "Deixar o quadril cair."
+      ]
+    },
+    {
+      "apelidos": [
+        "flexão em V invertido",
+        "pike push-up"
+      ],
+      "musculos_secundarios": [
+        "triceps",
+        "trapezio"
+      ],
+      "equipamentos": [
+        []
+      ],
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "flexao_padrao",
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "id": "flexao_pike",
+      "nome": "Flexão pike",
+      "musculo_principal": "deltoide_anterior",
+      "padrao_movimento": "empurrar",
+      "nivel": 3,
+      "posicao": "apoio_chao",
+      "vistas": [
+        "lateral"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2600,
+        "destaque": [
+          "deltoides",
+          "triceps"
+        ],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": 140,
+              "thigh": 40,
+              "shin": 0,
+              "foot": 20,
+              "arm": -179.2,
+              "fore": -1.5,
+              "armAbd": 6,
+              "foreAbd": 0,
+              "legAbd": 4,
+              "an": {
+                "pt": "hand",
+                "x": 0,
+                "y": 8
+              }
+            },
+            {
+              "torso": 156,
+              "thigh": 47,
+              "shin": 0,
+              "foot": 13,
+              "arm": -180.4,
+              "fore": -60.8,
+              "armAbd": 6,
+              "foreAbd": 0,
+              "legAbd": 4,
+              "an": {
+                "pt": "hand",
+                "x": 0,
+                "y": 8
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Fique em posição de flexão e leve o quadril para o alto, formando um V de cabeça para baixo.",
+        "Deixe as mãos na largura dos ombros e a cabeça entre os braços.",
+        "Dobre os cotovelos e leve o topo da cabeça na direção do chão, entre as mãos.",
+        "Empurre até esticar os braços."
+      ],
+      "erros_comuns": [
+        "Abaixar o quadril durante a descida.",
+        "Abrir os cotovelos para os lados."
+      ]
+    },
+    {
+      "apelidos": [
+        "tríceps no banco",
+        "paralela na cadeira"
+      ],
+      "musculos_secundarios": [
+        "peitoral",
+        "deltoide_anterior"
+      ],
+      "equipamentos": [
+        [
+          "cadeira"
+        ]
+      ],
+      "unidade": "repeticoes",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "id": "mergulho_cadeira",
+      "nome": "Mergulho na cadeira",
+      "musculo_principal": "triceps",
+      "padrao_movimento": "empurrar",
+      "nivel": 2,
+      "posicao": "sentado",
+      "vistas": [
+        "lateral",
+        "frente"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2400,
+        "props": {
+          "chair": true
+        },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": 0,
+              "thigh": -84,
+              "shin": 52.1,
+              "foot": 31.9,
+              "arm": 20,
+              "fore": 0,
+              "armAbd": 8,
+              "foreAbd": 0,
+              "legAbd": 5,
+              "an": {
+                "pt": "hand",
+                "x": 45,
+                "y": 92
+              }
+            },
+            {
+              "torso": 6,
+              "thigh": -109.1,
+              "shin": 62.2,
+              "foot": 46.8,
+              "arm": 88.6,
+              "fore": -115.3,
+              "armAbd": 8,
+              "foreAbd": 0,
+              "legAbd": 5,
+              "an": {
+                "pt": "hand",
+                "x": 45,
+                "y": 92
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Sente na beirada de uma cadeira firme e apoie as mãos no assento, ao lado do quadril.",
+        "Tire o quadril da cadeira e leve os pés para a frente, com os joelhos dobrados.",
+        "Dobre os cotovelos para trás e desça o quadril.",
+        "Empurre com as mãos até esticar os braços."
+      ],
+      "erros_comuns": [
+        "Abrir os cotovelos para os lados.",
+        "Descer demais e forçar os ombros.",
+        "Afastar o quadril da cadeira."
+      ]
+    },
+    {
+      "apelidos": [
+        "prancha de lado"
+      ],
+      "musculos_secundarios": [
+        "abdomen",
+        "gluteos"
+      ],
+      "equipamentos": [
+        []
+      ],
+      "unidade": "tempo",
+      "variacao_mais_facil": "prancha",
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": true,
+      "id": "prancha_lateral",
+      "nome": "Prancha lateral",
+      "musculo_principal": "obliquos",
+      "padrao_movimento": "core",
+      "nivel": 2,
+      "posicao": "apoio_chao",
+      "vistas": [
+        "lateral"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 3000,
+        "props": {
+          "mat": true
+        },
+        "destaque": [
+          "abdomen"
+        ],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": 78.2,
+              "roll": -90,
+              "thigh": 78.2,
+              "shin": 0,
+              "foot": -90,
+              "arm": 0,
+              "fore": -90,
+              "armAbd": 90,
+              "foreAbd": 0,
+              "legAbd": 2,
+              "right": {
+                "arm": 0,
+                "fore": 0,
+                "armAbd": 90,
+                "foreAbd": 90
+              },
+              "an": {
+                "pt": "elbow",
+                "side": "left",
+                "x": 0,
+                "y": 10
+              }
+            },
+            {
+              "torso": 78.2,
+              "roll": -90,
+              "thigh": 78.2,
+              "shin": 0,
+              "foot": -90,
+              "arm": 0,
+              "fore": -90,
+              "armAbd": 90,
+              "foreAbd": 0,
+              "legAbd": 2,
+              "right": {
+                "arm": 0,
+                "fore": 0,
+                "armAbd": 84,
+                "foreAbd": 84
+              },
+              "an": {
+                "pt": "elbow",
+                "side": "left",
+                "x": 0,
+                "y": 10
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Deite de lado e apoie o antebraço no chão, com o cotovelo embaixo do ombro.",
+        "Estique as pernas, uma em cima da outra.",
+        "Suba o quadril até o corpo ficar reto, da cabeça aos pés.",
+        "Segure pelo tempo indicado e troque de lado."
+      ],
+      "erros_comuns": [
+        "Deixar o quadril cair.",
+        "Apoiar o cotovelo longe do ombro."
+      ]
+    },
+    {
+      "apelidos": [
+        "shoulder tap"
+      ],
+      "musculos_secundarios": [
+        "obliquos",
+        "deltoide_anterior",
+        "triceps"
+      ],
+      "equipamentos": [
+        []
+      ],
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "prancha",
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "id": "prancha_toque_ombro",
+      "nome": "Prancha com toque no ombro",
+      "musculo_principal": "abdomen",
+      "padrao_movimento": "core",
+      "nivel": 2,
+      "posicao": "apoio_chao",
+      "vistas": [
+        "lateral"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2800,
+        "props": {
+          "mat": true
+        },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": 71.8,
+              "thigh": 71.8,
+              "shin": 0,
+              "foot": 8.2,
+              "arm": -71,
+              "fore": -1.5,
+              "armAbd": 6,
+              "foreAbd": 0,
+              "legAbd": 7,
+              "an": {
+                "pt": "ankle",
+                "x": -269.4,
+                "y": 30.1
+              }
+            },
+            {
+              "torso": 71.8,
+              "thigh": 71.8,
+              "shin": 0,
+              "foot": 8.2,
+              "arm": -71,
+              "fore": -1.5,
+              "armAbd": 6,
+              "foreAbd": 0,
+              "legAbd": 7,
+              "an": {
+                "pt": "ankle",
+                "x": -269.4,
+                "y": 30.1
+              },
+              "right": {
+                "arm": -50,
+                "fore": -125,
+                "armAbd": -10,
+                "foreAbd": -55
+              }
+            },
+            {
+              "torso": 71.8,
+              "thigh": 71.8,
+              "shin": 0,
+              "foot": 8.2,
+              "arm": -71,
+              "fore": -1.5,
+              "armAbd": 6,
+              "foreAbd": 0,
+              "legAbd": 7,
+              "an": {
+                "pt": "ankle",
+                "x": -269.4,
+                "y": 30.1
+              }
+            },
+            {
+              "torso": 71.8,
+              "thigh": 71.8,
+              "shin": 0,
+              "foot": 8.2,
+              "arm": -71,
+              "fore": -1.5,
+              "armAbd": 6,
+              "foreAbd": 0,
+              "legAbd": 7,
+              "an": {
+                "pt": "ankle",
+                "x": -269.4,
+                "y": 30.1
+              },
+              "left": {
+                "arm": -50,
+                "fore": -125,
+                "armAbd": -10,
+                "foreAbd": -55
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Fique em posição de flexão, com os braços esticados e os pés um pouco afastados.",
+        "Tire uma mão do chão e toque o ombro oposto.",
+        "Volte a mão para o chão e repita com a outra.",
+        "Mantenha o quadril parado o tempo todo."
+      ],
+      "erros_comuns": [
+        "Balançar o quadril de um lado para o outro.",
+        "Fazer rápido demais e perder a posição."
+      ]
+    },
+    {
+      "apelidos": [
+        "inseto morto"
+      ],
+      "musculos_secundarios": [
+        "obliquos"
+      ],
+      "equipamentos": [
+        []
+      ],
+      "unidade": "repeticoes",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": "hollow_hold",
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "id": "dead_bug",
+      "nome": "Dead bug",
+      "musculo_principal": "abdomen",
+      "padrao_movimento": "core",
+      "nivel": 1,
+      "posicao": "deitado",
+      "vistas": [
+        "lateral"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 4000,
+        "props": {
+          "mat": true
+        },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": -90,
+              "thigh": -180,
+              "shin": 90,
+              "foot": 0,
+              "arm": -90,
+              "fore": 0,
+              "armAbd": 8,
+              "foreAbd": 0,
+              "legAbd": 6,
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 27
+              }
+            },
+            {
+              "torso": -90,
+              "thigh": -180,
+              "shin": 90,
+              "foot": 0,
+              "arm": -90,
+              "fore": 0,
+              "armAbd": 8,
+              "foreAbd": 0,
+              "legAbd": 6,
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 27
+              },
+              "right": {
+                "arm": -188
+              },
+              "left": {
+                "thigh": -100,
+                "shin": 0,
+                "foot": 10
+              }
+            },
+            {
+              "torso": -90,
+              "thigh": -180,
+              "shin": 90,
+              "foot": 0,
+              "arm": -90,
+              "fore": 0,
+              "armAbd": 8,
+              "foreAbd": 0,
+              "legAbd": 6,
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 27
+              }
+            },
+            {
+              "torso": -90,
+              "thigh": -180,
+              "shin": 90,
+              "foot": 0,
+              "arm": -90,
+              "fore": 0,
+              "armAbd": 8,
+              "foreAbd": 0,
+              "legAbd": 6,
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 27
+              },
+              "left": {
+                "arm": -188
+              },
+              "right": {
+                "thigh": -100,
+                "shin": 0,
+                "foot": 10
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Deite de barriga para cima com os braços esticados para o teto e os joelhos dobrados no alto.",
+        "Encoste a lombar no chão.",
+        "Estique uma perna e leve o braço oposto para trás da cabeça, sem encostar no chão.",
+        "Volte ao centro e troque os lados."
+      ],
+      "erros_comuns": [
+        "Tirar a lombar do chão.",
+        "Mexer o braço e a perna do mesmo lado."
+      ]
+    },
+    {
+      "apelidos": [
+        "bicicleta",
+        "abdominal cruzado"
+      ],
+      "musculos_secundarios": [
+        "obliquos"
+      ],
+      "equipamentos": [
+        []
+      ],
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "abdominal_crunch",
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "id": "abdominal_bicicleta",
+      "nome": "Abdominal bicicleta",
+      "musculo_principal": "abdomen",
+      "padrao_movimento": "core",
+      "nivel": 2,
+      "posicao": "deitado",
+      "vistas": [
+        "lateral"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2000,
+        "props": {
+          "mat": true
+        },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": -62,
+              "twist": 35,
+              "arm": 180,
+              "fore": 0,
+              "armAbd": 80,
+              "foreAbd": -45,
+              "legAbd": 4,
+              "left": {
+                "thigh": -150,
+                "shin": 120,
+                "foot": 0
+              },
+              "right": {
+                "thigh": -112,
+                "shin": 8,
+                "foot": 0
+              },
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 27
+              }
+            },
+            {
+              "torso": -62,
+              "twist": -35,
+              "arm": 180,
+              "fore": 0,
+              "armAbd": 80,
+              "foreAbd": -45,
+              "legAbd": 4,
+              "right": {
+                "thigh": -150,
+                "shin": 120,
+                "foot": 0
+              },
+              "left": {
+                "thigh": -112,
+                "shin": 8,
+                "foot": 0
+              },
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 27
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Deite de barriga para cima com as mãos atrás da cabeça e os pés fora do chão.",
+        "Tire os ombros do chão.",
+        "Leve um joelho em direção ao peito e gire o tronco, aproximando o cotovelo oposto dele.",
+        "Troque os lados, esticando a perna que estava dobrada, como se pedalasse."
+      ],
+      "erros_comuns": [
+        "Puxar a cabeça com as mãos.",
+        "Fazer rápido demais, sem girar o tronco."
+      ]
+    },
+    {
+      "apelidos": [
+        "abdominal infra",
+        "elevação de pernas deitado"
+      ],
+      "musculos_secundarios": [
+        "obliquos"
+      ],
+      "equipamentos": [
+        []
+      ],
+      "unidade": "repeticoes",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "id": "elevacao_pernas",
+      "nome": "Elevação de pernas",
+      "musculo_principal": "abdomen",
+      "padrao_movimento": "core",
+      "nivel": 2,
+      "posicao": "deitado",
+      "vistas": [
+        "lateral"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2800,
+        "props": {
+          "mat": true
+        },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": -90,
+              "thigh": -100,
+              "shin": 0,
+              "foot": 0,
+              "arm": 0,
+              "fore": 0,
+              "armAbd": 12,
+              "foreAbd": 0,
+              "legAbd": 3,
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 27
+              }
+            },
+            {
+              "torso": -90,
+              "thigh": -178,
+              "shin": 0,
+              "foot": 0,
+              "arm": 0,
+              "fore": 0,
+              "armAbd": 12,
+              "foreAbd": 0,
+              "legAbd": 3,
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 27
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Deite de barriga para cima com as pernas esticadas e os braços ao lado do corpo.",
+        "Encoste a lombar no chão.",
+        "Suba as pernas juntas até apontarem para o teto.",
+        "Desça devagar, parando antes de encostar os pés no chão."
+      ],
+      "erros_comuns": [
+        "Arquear a lombar na descida.",
+        "Deixar as pernas caírem rápido."
+      ]
+    },
+    {
+      "apelidos": [
+        "perdigueiro",
+        "quatro apoios alternado"
+      ],
+      "musculos_secundarios": [
+        "gluteos",
+        "abdomen"
+      ],
+      "equipamentos": [
+        []
+      ],
+      "unidade": "repeticoes",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "id": "bird_dog",
+      "nome": "Bird dog",
+      "musculo_principal": "lombar",
+      "padrao_movimento": "core",
+      "nivel": 1,
+      "posicao": "apoio_chao",
+      "vistas": [
+        "lateral"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 4400,
+        "props": {
+          "mat": true
+        },
+        "destaque": [
+          "lombar",
+          "gluteos"
+        ],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": 84,
+              "thigh": 0,
+              "shin": 90,
+              "foot": 90,
+              "arm": -84,
+              "fore": 0,
+              "armAbd": 4,
+              "foreAbd": 4,
+              "legAbd": 3,
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 107
+              }
+            },
+            {
+              "torso": 84,
+              "thigh": 0,
+              "shin": 90,
+              "foot": 90,
+              "arm": -84,
+              "fore": 0,
+              "armAbd": 4,
+              "foreAbd": 4,
+              "legAbd": 3,
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 107
+              },
+              "right": {
+                "arm": -174,
+                "fore": 0
+              },
+              "left": {
+                "thigh": 92,
+                "shin": 0,
+                "foot": 90
+              }
+            },
+            {
+              "torso": 84,
+              "thigh": 0,
+              "shin": 90,
+              "foot": 90,
+              "arm": -84,
+              "fore": 0,
+              "armAbd": 4,
+              "foreAbd": 4,
+              "legAbd": 3,
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 107
+              }
+            },
+            {
+              "torso": 84,
+              "thigh": 0,
+              "shin": 90,
+              "foot": 90,
+              "arm": -84,
+              "fore": 0,
+              "armAbd": 4,
+              "foreAbd": 4,
+              "legAbd": 3,
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 107
+              },
+              "left": {
+                "arm": -174,
+                "fore": 0
+              },
+              "right": {
+                "thigh": 92,
+                "shin": 0,
+                "foot": 90
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Fique de quatro, com as mãos embaixo dos ombros e os joelhos embaixo do quadril.",
+        "Estique um braço para a frente e a perna oposta para trás, até ficarem alinhados com o tronco.",
+        "Segure um segundo, sem girar o quadril.",
+        "Volte e troque os lados."
+      ],
+      "erros_comuns": [
+        "Arquear a lombar ao subir a perna.",
+        "Levantar o braço e a perna do mesmo lado."
+      ]
+    },
+    {
+      "apelidos": [
+        "hollow hold",
+        "prancha invertida em canoa"
+      ],
+      "musculos_secundarios": [
+        "obliquos"
+      ],
+      "equipamentos": [
+        []
+      ],
+      "unidade": "tempo",
+      "variacao_mais_facil": "dead_bug",
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "id": "hollow_hold",
+      "nome": "Canoa",
+      "musculo_principal": "abdomen",
+      "padrao_movimento": "core",
+      "nivel": 3,
+      "posicao": "deitado",
+      "vistas": [
+        "lateral"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 3000,
+        "props": {
+          "mat": true
+        },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": -74,
+              "thigh": -105,
+              "shin": 0,
+              "foot": 0,
+              "arm": 172,
+              "fore": 0,
+              "armAbd": 6,
+              "foreAbd": 0,
+              "legAbd": 3,
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 24
+              }
+            },
+            {
+              "torso": -72,
+              "thigh": -107,
+              "shin": 0,
+              "foot": 0,
+              "arm": 170,
+              "fore": 0,
+              "armAbd": 6,
+              "foreAbd": 0,
+              "legAbd": 3,
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 24
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Deite de barriga para cima com os braços esticados para trás da cabeça.",
+        "Encoste bem a lombar no chão.",
+        "Tire ombros e pernas do chão ao mesmo tempo, formando uma canoa.",
+        "Segure pelo tempo indicado. Se a lombar sair do chão, suba mais as pernas."
+      ],
+      "erros_comuns": [
+        "Deixar a lombar sair do chão.",
+        "Prender a respiração."
+      ]
+    },
+    {
+      "apelidos": [
+        "remador",
+        "canivete grupado"
+      ],
+      "musculos_secundarios": [
+        "obliquos"
+      ],
+      "equipamentos": [
+        []
+      ],
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "abdominal_crunch",
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "id": "abdominal_remador",
+      "nome": "Abdominal remador",
+      "musculo_principal": "abdomen",
+      "padrao_movimento": "core",
+      "nivel": 2,
+      "posicao": "deitado",
+      "vistas": [
+        "lateral"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2400,
+        "props": {
+          "mat": true
+        },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": -90,
+              "thigh": -90,
+              "shin": 0,
+              "foot": 0,
+              "arm": -185,
+              "fore": 0,
+              "armAbd": 8,
+              "foreAbd": 0,
+              "legAbd": 3,
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 27
+              }
+            },
+            {
+              "torso": -28,
+              "thigh": -145,
+              "shin": 140,
+              "foot": 5,
+              "arm": -62,
+              "fore": 0,
+              "armAbd": 8,
+              "foreAbd": 0,
+              "legAbd": 3,
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 27
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Deite de barriga para cima com braços e pernas esticados.",
+        "Ao mesmo tempo, suba o tronco e dobre os joelhos em direção ao peito.",
+        "Leve os braços para a frente, ao lado das pernas.",
+        "Volte devagar até deitar de novo."
+      ],
+      "erros_comuns": [
+        "Pegar impulso jogando os braços.",
+        "Cair de uma vez ao voltar."
+      ]
+    },
+    {
+      "apelidos": [
+        "burpi"
+      ],
+      "musculos_secundarios": [
+        "quadriceps",
+        "peitoral",
+        "abdomen"
+      ],
+      "equipamentos": [
+        []
+      ],
+      "unidade": "repeticoes",
+      "variacao_mais_facil": "burpee_sem_salto",
+      "variacao_mais_dificil": null,
+      "impacto": "alto",
+      "barulho": "alto",
+      "unilateral": false,
+      "id": "burpee",
+      "nome": "Burpee",
+      "musculo_principal": "corpo_inteiro",
+      "padrao_movimento": "cardio",
+      "nivel": 4,
+      "posicao": "em_pe",
+      "vistas": [
+        "lateral"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 3600,
+        "destaque": [
+          "quadriceps",
+          "peitoral"
+        ],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": 0,
+              "thigh": 0,
+              "shin": 0,
+              "foot": 35,
+              "arm": -170,
+              "fore": 0,
+              "armAbd": 15,
+              "foreAbd": 15,
+              "legAbd": 3,
+              "an": {
+                "pt": "ankle",
+                "x": 8.5,
+                "y": 55
+              }
+            },
+            {
+              "torso": 50,
+              "thigh": -72,
+              "shin": 117,
+              "foot": -45,
+              "arm": -57.2,
+              "fore": 1.5,
+              "armAbd": 8,
+              "foreAbd": 4,
+              "legAbd": 3,
+              "an": {
+                "pt": "ankle",
+                "x": 0,
+                "y": 10
+              }
+            },
+            {
+              "torso": 71.8,
+              "thigh": 71.8,
+              "shin": 0,
+              "foot": 8.2,
+              "arm": -72.6,
+              "fore": 1.5,
+              "armAbd": 6,
+              "foreAbd": 0,
+              "legAbd": 3,
+              "an": {
+                "pt": "ankle",
+                "x": -202.7,
+                "y": 32.8
+              }
+            },
+            {
+              "torso": 50,
+              "thigh": -72,
+              "shin": 117,
+              "foot": -45,
+              "arm": -57.2,
+              "fore": 1.5,
+              "armAbd": 8,
+              "foreAbd": 4,
+              "legAbd": 3,
+              "an": {
+                "pt": "ankle",
+                "x": 0,
+                "y": 10
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Fique em pé, agache e apoie as mãos no chão à frente dos pés.",
+        "Jogue os pés para trás e fique em posição de prancha.",
+        "Traga os pés de volta para perto das mãos.",
+        "Salte para cima com os braços esticados e já comece o próximo."
+      ],
+      "erros_comuns": [
+        "Deixar o quadril cair na prancha.",
+        "Aterrissar com as pernas esticadas."
+      ]
+    },
+    {
+      "apelidos": [
+        "burpee de apartamento",
+        "burpee caminhado"
+      ],
+      "musculos_secundarios": [
+        "quadriceps",
+        "peitoral",
+        "abdomen"
+      ],
+      "equipamentos": [
+        []
+      ],
+      "unidade": "repeticoes",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": "burpee",
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "id": "burpee_sem_salto",
+      "nome": "Burpee sem salto",
+      "musculo_principal": "corpo_inteiro",
+      "padrao_movimento": "cardio",
+      "nivel": 2,
+      "posicao": "em_pe",
+      "vistas": [
+        "lateral"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 4400,
+        "destaque": [
+          "quadriceps",
+          "peitoral"
+        ],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": 0,
+              "thigh": 0,
+              "shin": 0,
+              "foot": 0,
+              "arm": 0,
+              "fore": -10,
+              "armAbd": 6,
+              "foreAbd": 6,
+              "legAbd": 3,
+              "an": {
+                "pt": "ankle",
+                "x": 0,
+                "y": 10
+              }
+            },
+            {
+              "torso": 50,
+              "thigh": -72,
+              "shin": 117,
+              "foot": -45,
+              "arm": -57.2,
+              "fore": 1.5,
+              "armAbd": 8,
+              "foreAbd": 4,
+              "legAbd": 3,
+              "an": {
+                "pt": "ankle",
+                "x": 0,
+                "y": 10
+              }
+            },
+            {
+              "torso": 71.8,
+              "thigh": 71.8,
+              "shin": 0,
+              "foot": 8.2,
+              "arm": -72.6,
+              "fore": 1.5,
+              "armAbd": 6,
+              "foreAbd": 0,
+              "legAbd": 3,
+              "an": {
+                "pt": "ankle",
+                "x": -202.7,
+                "y": 32.8
+              }
+            },
+            {
+              "torso": 50,
+              "thigh": -72,
+              "shin": 117,
+              "foot": -45,
+              "arm": -57.2,
+              "fore": 1.5,
+              "armAbd": 8,
+              "foreAbd": 4,
+              "legAbd": 3,
+              "an": {
+                "pt": "ankle",
+                "x": 0,
+                "y": 10
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Fique em pé, agache e apoie as mãos no chão à frente dos pés.",
+        "Leve um pé de cada vez para trás até ficar em posição de prancha.",
+        "Volte um pé de cada vez para perto das mãos.",
+        "Fique em pé, sem saltar, e repita."
+      ],
+      "erros_comuns": [
+        "Deixar o quadril cair na prancha.",
+        "Arredondar as costas ao agachar."
+      ]
+    },
+    {
+      "apelidos": [
+        "skipping",
+        "joelho alto"
+      ],
+      "musculos_secundarios": [
+        "quadriceps",
+        "abdomen",
+        "panturrilhas"
+      ],
+      "equipamentos": [
+        []
+      ],
+      "unidade": "tempo",
+      "variacao_mais_facil": "marcha_estacionaria",
+      "variacao_mais_dificil": null,
+      "impacto": "alto",
+      "barulho": "medio",
+      "unilateral": false,
+      "id": "joelho_alto",
+      "nome": "Corrida com joelho alto",
+      "musculo_principal": "corpo_inteiro",
+      "padrao_movimento": "cardio",
+      "nivel": 2,
+      "posicao": "em_pe",
+      "vistas": [
+        "lateral",
+        "frente"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 1000,
+        "destaque": [
+          "quadriceps",
+          "abdomen"
+        ],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": 0,
+              "thigh": 0,
+              "shin": 0,
+              "foot": 0,
+              "arm": 0,
+              "fore": -80,
+              "armAbd": 6,
+              "foreAbd": 6,
+              "legAbd": 3,
+              "right": {
+                "thigh": -88,
+                "shin": 92,
+                "foot": 10,
+                "arm": 35,
+                "fore": -80
+              },
+              "left": {
+                "thigh": 0,
+                "shin": 0,
+                "foot": 18,
+                "arm": -55,
+                "fore": -80
+              },
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 200
+              }
+            },
+            {
+              "torso": 0,
+              "thigh": -25,
+              "shin": 50,
+              "foot": 10,
+              "arm": 0,
+              "fore": -80,
+              "armAbd": 6,
+              "foreAbd": 6,
+              "legAbd": 3,
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 205
+              }
+            },
+            {
+              "torso": 0,
+              "thigh": 0,
+              "shin": 0,
+              "foot": 0,
+              "arm": 0,
+              "fore": -80,
+              "armAbd": 6,
+              "foreAbd": 6,
+              "legAbd": 3,
+              "left": {
+                "thigh": -88,
+                "shin": 92,
+                "foot": 10,
+                "arm": 35,
+                "fore": -80
+              },
+              "right": {
+                "thigh": 0,
+                "shin": 0,
+                "foot": 18,
+                "arm": -55,
+                "fore": -80
+              },
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 200
+              }
+            },
+            {
+              "torso": 0,
+              "thigh": -25,
+              "shin": 50,
+              "foot": 10,
+              "arm": 0,
+              "fore": -80,
+              "armAbd": 6,
+              "foreAbd": 6,
+              "legAbd": 3,
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 205
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Corra no lugar subindo bem os joelhos, até a altura do quadril.",
+        "Pise com a ponta dos pés.",
+        "Balance os braços junto, como numa corrida.",
+        "Mantenha o tronco reto e o ritmo pelo tempo indicado."
+      ],
+      "erros_comuns": [
+        "Inclinar o tronco para trás.",
+        "Subir pouco os joelhos."
+      ]
+    },
+    {
+      "apelidos": [
+        "mountain climber",
+        "alpinista"
+      ],
+      "musculos_secundarios": [
+        "quadriceps",
+        "deltoide_anterior"
+      ],
+      "equipamentos": [
+        []
+      ],
+      "unidade": "tempo",
+      "variacao_mais_facil": "prancha",
+      "variacao_mais_dificil": null,
+      "impacto": "medio",
+      "barulho": "baixo",
+      "unilateral": false,
+      "id": "escalador",
+      "nome": "Escalador",
+      "musculo_principal": "abdomen",
+      "padrao_movimento": "cardio",
+      "nivel": 2,
+      "posicao": "apoio_chao",
+      "vistas": [
+        "lateral"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 1000,
+        "destaque": [
+          "abdomen",
+          "quadriceps"
+        ],
+        "movimento": {
+          "type": "continuous",
+          "id": "escalador"
+        }
+      },
+      "passo_a_passo": [
+        "Fique em posição de flexão, com os braços esticados.",
+        "Traga um joelho em direção ao peito.",
+        "Volte a perna e traga a outra, alternando rápido.",
+        "Mantenha o quadril baixo e os ombros em cima das mãos."
+      ],
+      "erros_comuns": [
+        "Subir o quadril.",
+        "Deixar os ombros passarem muito à frente das mãos."
+      ]
+    },
+    {
+      "apelidos": [
+        "polichinelo alternado",
+        "step jack"
+      ],
+      "musculos_secundarios": [
+        "deltoide_lateral",
+        "panturrilhas"
+      ],
+      "equipamentos": [
+        []
+      ],
+      "unidade": "tempo",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": "polichinelo",
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "id": "polichinelo_sem_salto",
+      "nome": "Polichinelo sem salto",
+      "musculo_principal": "corpo_inteiro",
+      "padrao_movimento": "cardio",
+      "nivel": 1,
+      "posicao": "em_pe",
+      "vistas": [
+        "frente",
+        "lateral",
+        "costas"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 2000,
+        "destaque": [
+          "deltoides",
+          "panturrilhas"
+        ],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": 0,
+              "thigh": 0,
+              "shin": 0,
+              "foot": 0,
+              "arm": 0,
+              "fore": 0,
+              "armAbd": 8,
+              "foreAbd": 8,
+              "legAbd": 3,
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 195
+              }
+            },
+            {
+              "torso": 0,
+              "thigh": 0,
+              "shin": 0,
+              "foot": 0,
+              "arm": 0,
+              "fore": 0,
+              "armAbd": 160,
+              "foreAbd": 168,
+              "legAbd": 3,
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 195
+              },
+              "right": {
+                "legAbd": 14,
+                "foot": 15
+              }
+            },
+            {
+              "torso": 0,
+              "thigh": 0,
+              "shin": 0,
+              "foot": 0,
+              "arm": 0,
+              "fore": 0,
+              "armAbd": 8,
+              "foreAbd": 8,
+              "legAbd": 3,
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 195
+              }
+            },
+            {
+              "torso": 0,
+              "thigh": 0,
+              "shin": 0,
+              "foot": 0,
+              "arm": 0,
+              "fore": 0,
+              "armAbd": 160,
+              "foreAbd": 168,
+              "legAbd": 3,
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 195
+              },
+              "left": {
+                "legAbd": 14,
+                "foot": 15
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Fique em pé com os braços ao lado do corpo.",
+        "Leve um pé para o lado e, ao mesmo tempo, suba os braços acima da cabeça.",
+        "Volte ao centro e repita para o outro lado.",
+        "Mantenha um ritmo constante, sem saltar."
+      ],
+      "erros_comuns": [
+        "Dobrar demais os cotovelos.",
+        "Perder o ritmo entre os lados."
+      ]
+    },
+    {
+      "apelidos": [
+        "skater",
+        "salto lateral"
+      ],
+      "musculos_secundarios": [
+        "gluteos",
+        "panturrilhas"
+      ],
+      "equipamentos": [
+        []
+      ],
+      "unidade": "tempo",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": null,
+      "impacto": "alto",
+      "barulho": "medio",
+      "unilateral": false,
+      "id": "patinador",
+      "nome": "Patinador",
+      "musculo_principal": "quadriceps",
+      "padrao_movimento": "cardio",
+      "nivel": 3,
+      "posicao": "em_pe",
+      "vistas": [
+        "frente",
+        "costas",
+        "lateral"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 1600,
+        "destaque": [
+          "quadriceps",
+          "gluteos"
+        ],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": 32,
+              "thigh": 0,
+              "shin": 0,
+              "foot": 0,
+              "arm": 0,
+              "fore": -10,
+              "armAbd": 6,
+              "foreAbd": 6,
+              "legAbd": 3,
+              "right": {
+                "thigh": -38,
+                "shin": 62,
+                "foot": -24,
+                "legAbd": 20,
+                "arm": 45,
+                "fore": -20,
+                "armAbd": 10
+              },
+              "left": {
+                "thigh": 28,
+                "shin": 70,
+                "foot": 0,
+                "legAbd": -18,
+                "arm": -70,
+                "fore": -20,
+                "armAbd": -25
+              },
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 157.6
+              }
+            },
+            {
+              "torso": 26,
+              "thigh": -15,
+              "shin": 45,
+              "foot": 10,
+              "arm": -10,
+              "fore": -20,
+              "armAbd": 6,
+              "foreAbd": 6,
+              "legAbd": 4,
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 202.6
+              }
+            },
+            {
+              "torso": 32,
+              "thigh": 0,
+              "shin": 0,
+              "foot": 0,
+              "arm": 0,
+              "fore": -10,
+              "armAbd": 6,
+              "foreAbd": 6,
+              "legAbd": 3,
+              "left": {
+                "thigh": -38,
+                "shin": 62,
+                "foot": -24,
+                "legAbd": 20,
+                "arm": 45,
+                "fore": -20,
+                "armAbd": 10
+              },
+              "right": {
+                "thigh": 28,
+                "shin": 70,
+                "foot": 0,
+                "legAbd": -18,
+                "arm": -70,
+                "fore": -20,
+                "armAbd": -25
+              },
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 157.6
+              }
+            },
+            {
+              "torso": 26,
+              "thigh": -15,
+              "shin": 45,
+              "foot": 10,
+              "arm": -10,
+              "fore": -20,
+              "armAbd": 6,
+              "foreAbd": 6,
+              "legAbd": 4,
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 202.6
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Fique apoiado em uma perna, com o joelho dobrado e o tronco inclinado à frente.",
+        "Salte para o lado e caia na outra perna.",
+        "Cruze a perna livre por trás e balance os braços para ajudar.",
+        "Continue saltando de um lado para o outro."
+      ],
+      "erros_comuns": [
+        "Cair com o joelho esticado.",
+        "Deixar o joelho de apoio cair para dentro."
+      ]
+    },
+    {
+      "apelidos": [
+        "socos no ar",
+        "shadow boxing"
+      ],
+      "musculos_secundarios": [
+        "abdomen",
+        "obliquos",
+        "triceps"
+      ],
+      "equipamentos": [
+        []
+      ],
+      "unidade": "tempo",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "id": "sombra_boxe",
+      "nome": "Sombra de boxe",
+      "musculo_principal": "deltoide_anterior",
+      "padrao_movimento": "cardio",
+      "nivel": 1,
+      "posicao": "em_pe",
+      "vistas": [
+        "lateral",
+        "frente"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 1600,
+        "destaque": [
+          "deltoides",
+          "abdomen"
+        ],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": 8,
+              "thigh": 0,
+              "shin": 0,
+              "foot": 0,
+              "arm": 0,
+              "fore": -10,
+              "armAbd": 6,
+              "foreAbd": 6,
+              "legAbd": 6,
+              "twist": 18,
+              "right": {
+                "thigh": -1.8,
+                "shin": 30.4,
+                "foot": -28.6,
+                "arm": -96,
+                "fore": 0,
+                "armAbd": 4,
+                "foreAbd": 0
+              },
+              "left": {
+                "thigh": -27.8,
+                "shin": 29.3,
+                "foot": -1.5,
+                "arm": -25,
+                "fore": -135,
+                "armAbd": 4,
+                "foreAbd": -8
+              },
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 184
+              }
+            },
+            {
+              "torso": 8,
+              "thigh": 0,
+              "shin": 0,
+              "foot": 0,
+              "arm": 0,
+              "fore": -10,
+              "armAbd": 6,
+              "foreAbd": 6,
+              "legAbd": 6,
+              "twist": 0,
+              "right": {
+                "thigh": -1.8,
+                "shin": 30.4,
+                "foot": -28.6,
+                "arm": -25,
+                "fore": -135,
+                "armAbd": 4,
+                "foreAbd": -8
+              },
+              "left": {
+                "thigh": -27.8,
+                "shin": 29.3,
+                "foot": -1.5,
+                "arm": -25,
+                "fore": -135,
+                "armAbd": 4,
+                "foreAbd": -8
+              },
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 184
+              }
+            },
+            {
+              "torso": 8,
+              "thigh": 0,
+              "shin": 0,
+              "foot": 0,
+              "arm": 0,
+              "fore": -10,
+              "armAbd": 6,
+              "foreAbd": 6,
+              "legAbd": 6,
+              "twist": -18,
+              "right": {
+                "thigh": -1.8,
+                "shin": 30.4,
+                "foot": -28.6,
+                "arm": -25,
+                "fore": -135,
+                "armAbd": 4,
+                "foreAbd": -8
+              },
+              "left": {
+                "thigh": -27.8,
+                "shin": 29.3,
+                "foot": -1.5,
+                "arm": -96,
+                "fore": 0,
+                "armAbd": 4,
+                "foreAbd": 0
+              },
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 184
+              }
+            },
+            {
+              "torso": 8,
+              "thigh": 0,
+              "shin": 0,
+              "foot": 0,
+              "arm": 0,
+              "fore": -10,
+              "armAbd": 6,
+              "foreAbd": 6,
+              "legAbd": 6,
+              "twist": 0,
+              "right": {
+                "thigh": -1.8,
+                "shin": 30.4,
+                "foot": -28.6,
+                "arm": -25,
+                "fore": -135,
+                "armAbd": 4,
+                "foreAbd": -8
+              },
+              "left": {
+                "thigh": -27.8,
+                "shin": 29.3,
+                "foot": -1.5,
+                "arm": -25,
+                "fore": -135,
+                "armAbd": 4,
+                "foreAbd": -8
+              },
+              "an": {
+                "pt": "hip",
+                "x": 0,
+                "y": 184
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Fique com um pé à frente do outro, joelhos levemente dobrados e as mãos protegendo o rosto.",
+        "Soque o ar à frente com uma mão, girando o tronco, e volte à guarda.",
+        "Alterne as mãos num ritmo constante.",
+        "Mantenha o abdômen firme e não estique o cotovelo com tranco."
+      ],
+      "erros_comuns": [
+        "Baixar a guarda entre os socos.",
+        "Travar o cotovelo com força no fim do soco."
+      ]
+    },
+    {
+      "apelidos": [
+        "círculos com os braços"
+      ],
+      "musculos_secundarios": [
+        "trapezio"
+      ],
+      "equipamentos": [
+        []
+      ],
+      "unidade": "tempo",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "id": "rotacao_bracos",
+      "nome": "Rotação de braços",
+      "musculo_principal": "deltoide_lateral",
+      "padrao_movimento": "mobilidade",
+      "nivel": 1,
+      "posicao": "em_pe",
+      "vistas": [
+        "lateral",
+        "frente"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 1800,
+        "destaque": [
+          "deltoides"
+        ],
+        "movimento": {
+          "type": "continuous",
+          "id": "circulos_braco"
+        }
+      },
+      "passo_a_passo": [
+        "Fique em pé e abra os braços para os lados, na altura dos ombros.",
+        "Faça círculos com os braços esticados, começando pequenos e aumentando.",
+        "Depois de metade do tempo, inverta o sentido."
+      ],
+      "erros_comuns": [
+        "Subir os ombros em direção às orelhas.",
+        "Fazer movimentos bruscos."
+      ]
+    },
+    {
+      "apelidos": [
+        "pêndulo de perna",
+        "leg swing"
+      ],
+      "musculos_secundarios": [
+        "gluteos",
+        "quadriceps"
+      ],
+      "equipamentos": [
+        []
+      ],
+      "unidade": "repeticoes",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": true,
+      "id": "balanco_perna",
+      "nome": "Balanço de perna",
+      "musculo_principal": "posteriores_coxa",
+      "padrao_movimento": "mobilidade",
+      "nivel": 1,
+      "posicao": "em_pe",
+      "vistas": [
+        "lateral",
+        "frente"
+      ],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 1800,
+        "destaque": [
+          "posteriores_coxa",
+          "gluteos"
+        ],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            {
+              "torso": 0,
+              "thigh": 0,
+              "shin": 0,
+              "foot": 0,
+              "arm": 0,
+              "fore": 0,
+              "armAbd": 60,
+              "foreAbd": 60,
+              "legAbd": 3,
+              "right": {
+                "thigh": -55,
+                "shin": 8,
+                "foot": -10
+              },
+              "an": {
+                "pt": "ankle",
+                "side": "left",
+                "x": 0,
+                "y": 10
+              }
+            },
+            {
+              "torso": 0,
+              "thigh": 0,
+              "shin": 0,
+              "foot": 0,
+              "arm": 0,
+              "fore": 0,
+              "armAbd": 60,
+              "foreAbd": 60,
+              "legAbd": 3,
+              "right": {
+                "thigh": 32,
+                "shin": 10,
+                "foot": 10
+              },
+              "an": {
+                "pt": "ankle",
+                "side": "left",
+                "x": 0,
+                "y": 10
+              }
+            }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Fique em pé ao lado de uma parede e apoie uma mão nela, se precisar de equilíbrio.",
+        "Balance uma perna para a frente e para trás, com o joelho quase esticado.",
+        "Aumente a amplitude aos poucos, sem forçar.",
+        "Faça o tempo indicado e troque de perna."
+      ],
+      "erros_comuns": [
+        "Balançar o tronco junto com a perna.",
+        "Forçar a amplitude logo no começo."
+      ]
+    }
+  ]
+}

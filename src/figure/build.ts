@@ -14,6 +14,7 @@ import {
   normalize,
   openPath,
   perpForward,
+  rotate,
   scale,
   segmentDir,
   sub,
@@ -62,8 +63,13 @@ type Limbs = {
 type Skeleton = {
   P: Vec3; // centro do quadril (raiz)
   up: Vec3; // eixo do tronco
-  fwd: Vec3; // frente do tronco
-  right: Vec3; // lateral (+z)
+  fwd: Vec3; // frente da parte de cima (tórax)
+  right: Vec3; // lateral da parte de cima (+z sem rotação)
+  fwdL: Vec3; // frente da parte de baixo (pelve)
+  rightL: Vec3;
+  /** Gira uma direção calculada no plano lateral para a parte de baixo / de cima. */
+  dirL: (v: Vec3) => Vec3;
+  dirU: (v: Vec3) => Vec3;
   head: Vec3;
   sides: Record<Side, Limbs>;
 };
@@ -85,37 +91,45 @@ function skeleton(p: Pose, P: Vec3): Skeleton {
   const t = p.torso;
   const D = Math.PI / 180;
   const up: Vec3 = [Math.sin(t * D), Math.cos(t * D), 0];
-  const fwd: Vec3 = [Math.cos(t * D), -Math.sin(t * D), 0];
-  const right: Vec3 = [0, 0, 1];
+  const roll = p.roll ?? 0;
+  const twist = p.twist ?? 0;
+  const dirL = (v: Vec3) => rotate(v, up, roll);
+  const dirU = (v: Vec3) => rotate(v, up, roll + twist);
+  const fwd0: Vec3 = [Math.cos(t * D), -Math.sin(t * D), 0];
+  const right0: Vec3 = [0, 0, 1];
+  const fwdL = dirL(fwd0);
+  const rightL = dirL(right0);
+  const fwd = dirU(fwd0);
+  const right = dirU(right0);
   const sides = {} as Record<Side, Limbs>;
   for (const side of [1, -1] as Side[]) {
     // Ângulo do membro deste lado: o valor próprio do lado (right/left) ou o comum.
     const own = side === 1 ? p.right : p.left;
     const g = (k: LimbKey) => own?.[k] ?? p[k] ?? 0;
-    const hip = add(P, scale(right, BODY.hipHalfWidth * side));
+    const hip = add(P, scale(rightL, BODY.hipHalfWidth * side));
     const thighW = g('thigh');
     const shinW = thighW + g('shin');
     const footW = shinW + g('foot');
     const la = g('legAbd');
-    const knee = add(hip, scale(segmentDir(thighW, la, side), BODY.thigh));
-    const ankle = add(knee, scale(segmentDir(shinW, la, side), BODY.shin));
-    const footDir: Vec3 = [Math.cos(footW * D), -Math.sin(footW * D), 0];
-    const footNormal: Vec3 = [-Math.sin(footW * D), -Math.cos(footW * D), 0];
+    const knee = add(hip, scale(dirL(segmentDir(thighW, la, side)), BODY.thigh));
+    const ankle = add(knee, scale(dirL(segmentDir(shinW, la, side)), BODY.shin));
+    const footDir = dirL([Math.cos(footW * D), -Math.sin(footW * D), 0]);
+    const footNormal = dirL([-Math.sin(footW * D), -Math.cos(footW * D), 0]);
     const shoulder = sum(P, scale(up, BODY.shoulderHeight), scale(right, BODY.shoulderHalfWidth * side));
     const armW = t + g('arm');
     const foreW = armW + g('fore');
-    const elbow = add(shoulder, scale(segmentDir(armW, g('armAbd'), side), BODY.upperArm));
-    const foreDir = segmentDir(foreW, g('foreAbd'), side);
+    const elbow = add(shoulder, scale(dirU(segmentDir(armW, g('armAbd'), side)), BODY.upperArm));
+    const foreDir = dirU(segmentDir(foreW, g('foreAbd'), side));
     const wrist = add(elbow, scale(foreDir, BODY.forearmToWrist));
     const hand = add(elbow, scale(foreDir, BODY.forearmToHand));
     sides[side] = { hip, knee, ankle, footDir, footNormal, thighW, shinW, shoulder, elbow, wrist, hand, armW, foreDir };
   }
   const head = sum(P, scale(up, BODY.headHeight), scale(fwd, 5));
-  return { P, up, fwd, right, head, sides };
+  return { P, up, fwd, right, fwdL, rightL, dirL, dirU, head, sides };
 }
 
-function anchorPoint(S: Skeleton, pt: Pose['an']['pt']): Vec3 {
-  return pt === 'hip' ? S.P : S.sides[1][pt];
+function anchorPoint(S: Skeleton, an: Pose['an']): Vec3 {
+  return an.pt === 'hip' ? S.P : S.sides[an.side === 'left' ? -1 : 1][an.pt];
 }
 
 // Projeções: [x tela, y tela (para baixo), profundidade (+ = perto da câmera)]
@@ -130,6 +144,13 @@ const CAMERA: Record<FigureView, Vec3> = {
   costas: [-1, 0, 0],
 };
 
+/** Esqueleto já posicionado pela âncora (para ferramentas de criação de poses). */
+export function placedSkeleton(p: Pose) {
+  const first = skeleton(p, [0, 0, 0]);
+  const a = anchorPoint(first, p.an);
+  return skeleton(p, [p.an.x - a[0], p.an.y - a[1], 0]);
+}
+
 export type FigureFrame = { items: DrawItem[]; points: Vec2[] };
 
 /** Monta o quadro do instante `t` (0 a 1) na vista escolhida. */
@@ -140,9 +161,7 @@ export function buildFrame(anim: FigureAnimation, t: number, view: FigureView): 
   const p = poseAt(anim.motion, t);
 
   // Posiciona o esqueleto para que o ponto preso fique onde a pose manda.
-  const first = skeleton(p, [0, 0, 0]);
-  const a = anchorPoint(first, p.an.pt);
-  const S = skeleton(p, [p.an.x - a[0], p.an.y - a[1], 0]);
+  const S = placedSkeleton(p);
 
   const items: DrawItem[] = [];
   const points: Vec2[] = [];
@@ -181,19 +200,26 @@ export function buildFrame(anim: FigureAnimation, t: number, view: FigureView): 
     blob(corners, 0, fill, C.chairOutline);
   };
 
-  const { P, up, fwd, right } = S;
+  const { P, up, fwd, right, fwdL, rightL } = S;
 
   // --- Tronco: pelve e tórax como "anéis" envolvidos por um fecho convexo
-  const ring = (h: number, w: number, dpt: number, cf: number): Vec3[] => {
+  const ring = (h: number, w: number, dpt: number, cf: number, f: Vec3, r: Vec3): Vec3[] => {
     const o: Vec3[] = [];
     for (let i = 0; i < 14; i++) {
       const ph = (i / 14) * 2 * Math.PI;
-      o.push(sum(P, scale(up, h), scale(fwd, cf + dpt * Math.sin(ph)), scale(right, w * Math.cos(ph))));
+      o.push(sum(P, scale(up, h), scale(f, cf + dpt * Math.sin(ph)), scale(r, w * Math.cos(ph))));
     }
     return o;
   };
-  const pelvis = [...ring(50, 20, 15, 2), ...ring(12, 25, 16, 0), ...ring(-10, 21, 13, -1)];
-  const chest = [...ring(112, 22, 13, 0), ...ring(98, 31, 18, 4), ...ring(75, 27, 19, 6), ...ring(48, 21, 15, 3)];
+  const lo = [fwdL, rightL] as const;
+  const hi = [fwd, right] as const;
+  const pelvis = [...ring(50, 20, 15, 2, ...lo), ...ring(12, 25, 16, 0, ...lo), ...ring(-10, 21, 13, -1, ...lo)];
+  const chest = [
+    ...ring(112, 22, 13, 0, ...hi),
+    ...ring(98, 31, 18, 4, ...hi),
+    ...ring(75, 27, 19, 6, ...hi),
+    ...ring(48, 21, 15, 3, ...hi),
+  ];
   const pelvisDepth = blob(pelvis, 0);
   // Detalhes do tronco ficam por cima da pelve e do tórax (o que estiver mais perto).
   const torsoTop = Math.max(pelvisDepth, blob(chest, 0.1));
@@ -255,11 +281,11 @@ export function buildFrame(anim: FigureAnimation, t: number, view: FigureView): 
   // --- Membros
   for (const side of [1, -1] as Side[]) {
     const L = S.sides[side];
-    const gluteCenter = sum(P, scale(right, 12 * side), scale(fwd, -10), scale(up, -4));
-    ball(gluteCenter, 15, 0.2, hl('gluteos'), add(gluteCenter, scale(fwd, -20)));
+    const gluteCenter = sum(P, scale(rightL, 12 * side), scale(fwdL, -10), scale(up, -4));
+    ball(gluteCenter, 15, 0.2, hl('gluteos'), add(gluteCenter, scale(fwdL, -20)));
 
     capsule(L.hip, L.knee, 15, 10, 10, false);
-    const qf = perpForward(L.thighW);
+    const qf = S.dirL(perpForward(L.thighW));
     const thighVec = sub(L.knee, L.hip);
     const q1 = sum(L.hip, scale(thighVec, 0.18), scale(qf, 6));
     const q2 = sum(L.hip, scale(thighVec, 0.85), scale(qf, 4));
@@ -273,7 +299,7 @@ export function buildFrame(anim: FigureAnimation, t: number, view: FigureView): 
     }
 
     capsule(L.knee, L.ankle, 10, 6, 10, false);
-    const cb = scale(perpForward(L.shinW), -1);
+    const cb = scale(S.dirL(perpForward(L.shinW)), -1);
     const shinVec = sub(L.ankle, L.knee);
     const c1 = sum(L.knee, scale(shinVec, 0.12), scale(cb, 4));
     const c2 = sum(L.knee, scale(shinVec, 0.62), scale(cb, 3));
@@ -289,7 +315,7 @@ export function buildFrame(anim: FigureAnimation, t: number, view: FigureView): 
     );
 
     capsule(L.shoulder, L.elbow, 9, 7, 10, false);
-    const bf = perpForward(L.armW);
+    const bf = S.dirU(perpForward(L.armW));
     const armVec = sub(L.elbow, L.shoulder);
     for (const [muscle, sgn, rr] of [
       ['biceps', 1, 6],
@@ -362,9 +388,30 @@ export function buildFrame(anim: FigureAnimation, t: number, view: FigureView): 
   }
 
   if (props.chair) {
-    box(-42, 50, 75, 84, -30, 30, C.chair); // assento
-    for (const x of [-38, 46]) for (const z of [-27, 27]) box(x - 2, x + 2, 0, 75, z - 2, z + 2, C.chair); // pés
-    box(-44, -36, 84, 165, -30, 30, C.chair); // encosto
+    const o = props.chair === true ? {} : props.chair;
+    const ox = o.x ?? 0;
+    const fx = (x: number) => (o.flip ? 4 - x : x) + ox; // espelha em volta do centro do assento
+    const cbox = (x0: number, x1: number, y0: number, y1: number, z0: number, z1: number) => {
+      const a = fx(x0);
+      const b = fx(x1);
+      box(Math.min(a, b), Math.max(a, b), y0, y1, z0, z1, C.chair);
+    };
+    cbox(-42, 50, 75, 84, -30, 30); // assento
+    for (const x of [-38, 46]) for (const z of [-27, 27]) cbox(x - 2, x + 2, 0, 75, z - 2, z + 2); // pés
+    cbox(-44, -36, 84, 165, -30, 30); // encosto
+  }
+
+  if (props.wall !== undefined) {
+    const x = props.wall;
+    const x2 = x + (x > 0 ? 14 : -14);
+    // De lado aparece inteira; de frente/costas só se estiver atrás do boneco (fundo).
+    const behind = view === 'lateral' || (view === 'frente' ? x < 0 : x > 0);
+    if (behind) {
+      const pts: Vec2[] = [];
+      for (const xx of [x, x2]) for (const y of [0, 400]) for (const z of [-70, 70]) pts.push([pr([xx, y, z])[0], pr([xx, y, z])[1]]);
+      const h = convexHull(pts);
+      push({ depth: view === 'lateral' ? -70 : -1e8, path: closedPath(h), fill: C.chair, stroke: 'none' });
+    }
   }
 
   if (props.mat) {

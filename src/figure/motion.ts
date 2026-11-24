@@ -1,4 +1,4 @@
-import { ease, lerp } from './math';
+import { ease, ik2, lerp } from './math';
 import type { ContinuousMotionId, FigureMotion, LimbAngles, LimbKey, Pose } from './types';
 
 const LIMB_KEYS: LimbKey[] = ['thigh', 'shin', 'foot', 'arm', 'fore', 'armAbd', 'foreAbd', 'legAbd'];
@@ -21,7 +21,9 @@ function mixSide(a: Pose, b: Pose, side: 'right' | 'left', u: number): Partial<L
 function mix(a: Pose, b: Pose, u: number): Pose {
   const o = {
     torso: lerp(a.torso, b.torso, u),
-    an: { pt: a.an.pt, x: lerp(a.an.x, b.an.x, u), y: lerp(a.an.y, b.an.y, u) },
+    roll: lerp(a.roll ?? 0, b.roll ?? 0, u),
+    twist: lerp(a.twist ?? 0, b.twist ?? 0, u),
+    an: { pt: a.an.pt, side: a.an.side, x: lerp(a.an.x, b.an.x, u), y: lerp(a.an.y, b.an.y, u) },
     right: mixSide(a, b, 'right', u),
     left: mixSide(a, b, 'left', u),
   } as Pose;
@@ -42,6 +44,18 @@ export function poseAt(motion: FigureMotion, t: number): Pose {
   const local = t * n - seg; // 0..1 dentro do trecho
   const u = local < MOVE_FRACTION ? ease(local / MOVE_FRACTION) : 1;
   return mix(poses[seg], poses[(seg + 1) % n], u);
+}
+
+/** Escalador: mãos presas, cada pé vai e volta pelo chão, levantando um pouco ao avançar. */
+function climberLeg(phase: number): Partial<LimbAngles> {
+  const hip: [number, number] = [-101.3, 111.7]; // com mãos em (0, 8) e tronco a 86°
+  const w = 2 * Math.PI * phase;
+  // 0 = pé atrás, 1 = joelho no peito; passa mais tempo nas pontas (troca rápida das pernas)
+  const s = 0.5 - (0.5 * Math.tanh(2.5 * Math.cos(w))) / Math.tanh(2.5);
+  const lift = Math.max(0, Math.sin(w)) * 22;
+  const foot: [number, number] = [lerp(-267, -62, s), 30 + lift];
+  const [thigh, shinW] = ik2(hip, foot, 95, 90, 1);
+  return { thigh, shin: shinW - thigh, foot: 80 - shinW };
 }
 
 const CONTINUOUS: Record<ContinuousMotionId, (t: number) => Pose> = {
@@ -69,4 +83,31 @@ const CONTINUOUS: Record<ContinuousMotionId, (t: number) => Pose> = {
       ropeAngle: 2 * Math.PI * t,
     };
   },
+  escalador: (t) => ({
+    torso: 86,
+    thigh: 0,
+    shin: 0,
+    foot: 0,
+    arm: -86,
+    fore: -1.5,
+    armAbd: 6,
+    foreAbd: 0,
+    legAbd: 3,
+    right: climberLeg(t),
+    left: climberLeg(t + 0.5),
+    an: { pt: 'hand', x: 0, y: 8 },
+  }),
+  // Braços abertos desenhando círculos (frente → cima → trás → baixo).
+  circulos_braco: (t) => ({
+    torso: 0,
+    thigh: 0,
+    shin: 0,
+    foot: 0,
+    arm: -90 - 360 * t,
+    fore: 0,
+    armAbd: 74,
+    foreAbd: 74,
+    legAbd: 4,
+    an: { pt: 'ankle', x: 0, y: 10 },
+  }),
 };
