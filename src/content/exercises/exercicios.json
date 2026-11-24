@@ -758,7 +758,7 @@
       "nivel": 2,
       "unidade": "tempo",
       "variacao_mais_facil": null,
-      "variacao_mais_dificil": null,
+      "variacao_mais_dificil": "corda_alternada",
       "impacto": "alto",
       "barulho": "alto",
       "unilateral": false,

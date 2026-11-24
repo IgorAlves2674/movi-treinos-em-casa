@@ -59,29 +59,172 @@ function climberLeg(phase: number): Partial<LimbAngles> {
   return { thigh, shin: shinW - thigh, foot: 80 - shinW };
 }
 
+/** Pular corda com os dois pés: `height` = altura do pulo, `turns` = giros da corda por pulo. */
+function jumpRope(t: number, height: number, turns: number): Pose {
+  const air = t >= 0.25 && t < 0.75;
+  let lift = 0;
+  let bend = 0;
+  if (air) lift = Math.sin((Math.PI * (t - 0.25)) / 0.5);
+  else bend = Math.sin((Math.PI * ((t + 0.25) % 1)) / 0.5);
+  const thigh = -12 * bend - 3 * lift;
+  const shinW = 12 * bend + 4 * lift;
+  const footW = 24 * lift;
+  return {
+    torso: 3,
+    thigh,
+    shin: shinW - thigh,
+    foot: footW - shinW,
+    arm: 15,
+    fore: -55,
+    armAbd: 14,
+    foreAbd: 22,
+    legAbd: 3,
+    an: { pt: 'ankle', x: 0, y: 10 + height * lift },
+    ropeAngle: 2 * Math.PI * t * turns,
+  };
+}
+
+/** Altura do piso da esteira (topo da lona). */
+export const TREADMILL_DECK = 14;
+
+/** Andar ou correr no lugar (esteira): pernas em oposição, quadril na altura do pé de apoio. */
+function gait(t: number, run: boolean): Pose {
+  const w = 2 * Math.PI * t;
+  const legAt = (phase: number) => {
+    const thigh = -(run ? 38 : 24) * Math.sin(phase);
+    // Joelho dobra mais quando a perna volta para a frente (balanço).
+    const swing = Math.max(0, Math.sin(phase + (run ? 0.9 : 1.2)));
+    const shin = (run ? 18 : 4) + (run ? 95 : 42) * swing;
+    const shinW = thigh + shin;
+    return { thigh, shin, foot: -shinW * (run ? 0.6 : 0.9) };
+  };
+  const R = legAt(w);
+  const L = legAt(w + Math.PI);
+  const drop = (l: { thigh: number; shin: number }) =>
+    95 * Math.cos((l.thigh * Math.PI) / 180) + 90 * Math.cos(((l.thigh + l.shin) * Math.PI) / 180);
+  const bounce = run ? 10 * Math.abs(Math.sin(w)) : 0;
+  const armSwing = run ? 40 : 22;
+  return {
+    torso: run ? 10 : 3,
+    thigh: 0,
+    shin: 0,
+    foot: 0,
+    arm: 0,
+    fore: run ? -95 : -25,
+    armAbd: 6,
+    foreAbd: 6,
+    legAbd: 3,
+    right: { ...R, arm: armSwing * Math.sin(w) },
+    left: { ...L, arm: armSwing * Math.sin(w + Math.PI) },
+    an: { pt: 'hip', x: 0, y: TREADMILL_DECK + 10 + Math.max(drop(R), drop(L)) + bounce },
+  };
+}
+
+/** Bicicleta ergométrica: posições fixas do selim (quadril), pedivela e guidão. */
+export const BIKE = {
+  hip: [-35, 188] as [number, number],
+  crank: [25, 55] as [number, number],
+  crankR: 28,
+  handle: [88, 236] as [number, number],
+};
+
+/** Perna seguindo o pedal (ângulo `phase`) a partir do quadril. */
+function pedalLeg(hip: [number, number], crank: [number, number], rad: number, phase: number, footW: number) {
+  const f: [number, number] = [crank[0] + rad * Math.cos(phase), crank[1] + rad * Math.sin(phase)];
+  const [thigh, shinW] = ik2(hip, f, 95, 90, 1);
+  return { thigh, shin: shinW - thigh, foot: footW - shinW };
+}
+
+/** Elíptico: quadril fixo, pés numa elipse, mãos indo e voltando nos braços do aparelho. */
+export const ELLIPTICAL = {
+  hip: [-15, 212] as [number, number],
+  center: [0, 38] as [number, number],
+  rx: 36,
+  ry: 14,
+  pivot: [104, 150] as [number, number],
+};
+export const ellipticalFoot = (phase: number): [number, number] => [
+  ELLIPTICAL.center[0] + ELLIPTICAL.rx * Math.cos(phase),
+  ELLIPTICAL.center[1] + ELLIPTICAL.ry * Math.sin(phase),
+];
+export const ellipticalHand = (phase: number): [number, number] => [62 - 24 * Math.cos(phase), 255];
+
 const CONTINUOUS: Record<ContinuousMotionId, (t: number) => Pose> = {
   // Pulo com a corda passando por baixo dos pés no alto do pulo.
-  pular_corda: (t) => {
-    const air = t >= 0.25 && t < 0.75;
-    let lift = 0;
-    let bend = 0;
-    if (air) lift = Math.sin((Math.PI * (t - 0.25)) / 0.5);
-    else bend = Math.sin((Math.PI * ((t + 0.25) % 1)) / 0.5);
-    const thigh = -12 * bend - 3 * lift;
-    const shinW = 12 * bend + 4 * lift;
-    const footW = 24 * lift;
+  pular_corda: (t) => jumpRope(t, 26, 1),
+  // Dois giros da corda por pulo, pulo mais alto.
+  corda_dupla: (t) => jumpRope(t, 46, 2),
+  // Um pé de cada vez, como uma corridinha no lugar: dois giros da corda por ciclo.
+  corda_alternada: (t) => {
+    const half = t < 0.5 ? 0 : 1;
+    const u = (t * 2) % 1;
+    const lift = Math.max(0, Math.sin(Math.PI * u)) * 10;
+    const free = { thigh: -14, shin: 62, foot: 12 };
+    const support = { thigh: 0, shin: 0, foot: 18 };
     return {
       torso: 3,
-      thigh,
-      shin: shinW - thigh,
-      foot: footW - shinW,
+      thigh: 0,
+      shin: 0,
+      foot: 0,
       arm: 15,
       fore: -55,
       armAbd: 14,
       foreAbd: 22,
       legAbd: 3,
-      an: { pt: 'ankle', x: 0, y: 10 + 26 * lift },
-      ropeAngle: 2 * Math.PI * t,
+      right: half === 0 ? free : support,
+      left: half === 0 ? support : free,
+      an: { pt: 'hip', x: 0, y: 199 + lift },
+      ropeAngle: 4 * Math.PI * t,
+    };
+  },
+  caminhada_esteira: (t) => gait(t, false),
+  corrida_esteira: (t) => gait(t, true),
+  bicicleta: (t) => {
+    const w = 2 * Math.PI * t;
+    const torso = 25;
+    const S: [number, number] = [BIKE.hip[0] + 100 * Math.sin((torso * Math.PI) / 180), BIKE.hip[1] + 100 * Math.cos((torso * Math.PI) / 180)];
+    const [armW, foreW] = ik2(S, BIKE.handle, 55, 56, -1);
+    return {
+      torso,
+      thigh: 0,
+      shin: 0,
+      foot: 0,
+      arm: armW - torso,
+      fore: foreW - armW,
+      armAbd: 10,
+      foreAbd: 4,
+      legAbd: 4,
+      right: pedalLeg(BIKE.hip, BIKE.crank, BIKE.crankR, w, 0),
+      left: pedalLeg(BIKE.hip, BIKE.crank, BIKE.crankR, w + Math.PI, 0),
+      an: { pt: 'hip', x: BIKE.hip[0], y: BIKE.hip[1] },
+    };
+  },
+  eliptico: (t) => {
+    const w = 2 * Math.PI * t;
+    const torso = 5;
+    const S: [number, number] = [ELLIPTICAL.hip[0] + 100 * Math.sin((torso * Math.PI) / 180), ELLIPTICAL.hip[1] + 100 * Math.cos((torso * Math.PI) / 180)];
+    const arm = (phase: number) => {
+      const [aW, fW] = ik2(S, ellipticalHand(phase), 55, 56, -1);
+      return { arm: aW - torso, fore: fW - aW };
+    };
+    const leg = (phase: number) => {
+      const f = ellipticalFoot(phase);
+      const [thigh, shinW] = ik2(ELLIPTICAL.hip, f, 95, 90, 1);
+      return { thigh, shin: shinW - thigh, foot: -shinW };
+    };
+    return {
+      torso,
+      thigh: 0,
+      shin: 0,
+      foot: 0,
+      arm: 0,
+      fore: 0,
+      armAbd: 8,
+      foreAbd: 4,
+      legAbd: 4,
+      right: { ...leg(w), ...arm(w) },
+      left: { ...leg(w + Math.PI), ...arm(w + Math.PI) },
+      an: { pt: 'hip', x: ELLIPTICAL.hip[0], y: ELLIPTICAL.hip[1] },
     };
   },
   escalador: (t) => ({

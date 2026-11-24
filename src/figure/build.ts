@@ -23,7 +23,7 @@ import {
   type Vec2,
   type Vec3,
 } from './math';
-import { poseAt } from './motion';
+import { BIKE, ELLIPTICAL, poseAt, TREADMILL_DECK } from './motion';
 import type { DrawItem, FigureAnimation, FigureMuscle, FigureView, LimbKey, Pose, ViewBox } from './types';
 
 export const FIGURE_COLORS = {
@@ -459,6 +459,56 @@ export function buildFrame(anim: FigureAnimation, t: number, view: FigureView): 
     push({ depth: (pa[2] + pb[2]) / 2 + 10.35, path: closedPath(pts), fill: C.bar, stroke: C.weightOutline }, pts);
     if (props.bar.posts)
       for (const s of [-1, 1]) box(x - 3, x + 3, 0, y, 70 * s - 3, 70 * s + 3, C.chair);
+  }
+
+  // --- Aparelhos de cardio: hastes (linhas grossas) e blocos, em posições fixas.
+  const rod = (a: Vec3, b: Vec3, width: number, bias = 10.3, color: string = C.bar) => {
+    const pts: Vec2[] = [a, b].map((v) => [pr(v)[0], pr(v)[1]] as Vec2);
+    push({ depth: (depthOf(a) + depthOf(b)) / 2 + bias, path: openPath(pts), fill: 'none', stroke: color, strokeWidth: width }, pts);
+  };
+  const ring2 = (c: Vec3, rad: number, bias: number, fill: string) => {
+    const c2 = pr(c);
+    const pts = circlePoints(c2, rad, 24);
+    push({ depth: c2[2] + bias, path: closedPath(pts), fill, stroke: C.weightOutline }, pts);
+  };
+  if (props.treadmill) {
+    const d = TREADMILL_DECK;
+    box(-150, 165, 0, d, -38, 38, C.chair); // lona
+    for (const z of [-34, 34]) {
+      rod([142, d, z], [158, 236, z], 5, 0); // colunas
+      rod([158, 236, z], [100, 238, z], 5, 0); // apoios das mãos
+    }
+    box(150, 178, 230, 260, -30, 30, C.chair); // painel
+  }
+  if (props.bike) {
+    const [hx, hy] = BIKE.hip;
+    const [cx, cy] = BIKE.crank;
+    rod([-90, 5, 0], [150, 5, 0], 7, 0); // base
+    rod([cx, cy, 0], [hx + 6, hy - 22, 0], 7, 0); // tubo do selim
+    box(hx - 18, hx + 22, hy - 22, hy - 14, -10, 10, C.chair); // selim
+    rod([cx, cy, 0], [BIKE.handle[0] - 12, BIKE.handle[1] - 30, 0], 7, 0); // tubo do guidão
+    rod([BIKE.handle[0] - 12, BIKE.handle[1] - 30, 0], [BIKE.handle[0], BIKE.handle[1], 0], 6, 0);
+    rod([BIKE.handle[0], BIKE.handle[1], -26], [BIKE.handle[0], BIKE.handle[1], 26], 5, 0); // guidão
+    ring2([118, 62, 0], 40, 0, C.chair); // volante
+    rod([cx, cy, 0], [118, 62, 0], 4, 0.1);
+    for (const side of [1, -1] as Side[]) {
+      const a = S.sides[side].ankle;
+      rod([cx, cy, 20 * side], [a[0], a[1], 20 * side], 4, 0.2); // pedivela
+    }
+  }
+  if (props.elliptical) {
+    const [px, py] = ELLIPTICAL.pivot;
+    rod([-110, 5, 0], [140, 5, 0], 7, 0); // trilho
+    rod([140, 5, 0], [px, py + 60, 0], 8, 0); // coluna da frente
+    box(px - 4, px + 20, py + 60, py + 90, -22, 22, C.chair); // painel
+    for (const side of [1, -1] as Side[]) {
+      const L = S.sides[side];
+      const z = 24 * side;
+      rod([px, py, z], [L.hand[0], L.hand[1], L.hand[2]], 5, 10.2); // braço móvel
+      const f = sum(L.ankle, scale(L.footNormal, 9));
+      rod(add(f, [-26, 0, 0]), add(f, [24, 0, 0]), 6, 10.1); // pedal
+      rod(f, [px, py, z], 4, 0); // haste do pedal
+    }
   }
 
   if (props.chair) {

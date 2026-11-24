@@ -1,0 +1,200 @@
+{
+  "versao": 1,
+  "exercicios": [
+    {
+      "id": "corda_alternada",
+      "nome": "Pular corda alternando os pés",
+      "apelidos": ["corda corridinha", "pular corda alternado"],
+      "musculo_principal": "panturrilhas",
+      "musculos_secundarios": ["quadriceps", "deltoide_anterior"],
+      "padrao_movimento": "cardio",
+      "equipamentos": [["corda"]],
+      "nivel": 2,
+      "unidade": "tempo",
+      "variacao_mais_facil": "pular_corda",
+      "variacao_mais_dificil": "corda_dupla",
+      "impacto": "medio",
+      "barulho": "medio",
+      "unilateral": false,
+      "posicao": "em_pe",
+      "vistas": ["lateral", "frente"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 900,
+        "props": { "rope": true },
+        "destaque": ["panturrilhas", "quadriceps"],
+        "movimento": { "type": "continuous", "id": "corda_alternada" }
+      },
+      "passo_a_passo": [
+        "Segure as pontas da corda com os cotovelos perto do corpo.",
+        "Gire a corda com os punhos e, a cada volta, passe por cima dela com um pé de cada vez.",
+        "Mantenha os saltos baixos, na ponta dos pés, como uma corridinha no lugar.",
+        "Siga num ritmo constante pelo tempo indicado."
+      ],
+      "erros_comuns": ["Girar a corda com os braços inteiros em vez dos punhos.", "Levantar demais os joelhos."]
+    },
+    {
+      "id": "corda_dupla",
+      "nome": "Corda dupla",
+      "apelidos": ["double under", "pular corda duplo"],
+      "musculo_principal": "panturrilhas",
+      "musculos_secundarios": ["quadriceps", "deltoide_anterior", "antebraco"],
+      "padrao_movimento": "cardio",
+      "equipamentos": [["corda"]],
+      "nivel": 5,
+      "unidade": "tempo",
+      "variacao_mais_facil": "corda_alternada",
+      "variacao_mais_dificil": null,
+      "impacto": "alto",
+      "barulho": "alto",
+      "unilateral": false,
+      "posicao": "em_pe",
+      "vistas": ["lateral", "frente"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 760,
+        "props": { "rope": true },
+        "destaque": ["panturrilhas", "quadriceps"],
+        "movimento": { "type": "continuous", "id": "corda_dupla" }
+      },
+      "passo_a_passo": [
+        "Comece pulando corda normal para pegar o ritmo.",
+        "Dê um pulo mais alto e gire a corda mais rápido, para ela passar duas vezes embaixo dos pés.",
+        "Aterrisse na ponta dos pés, com os joelhos levemente dobrados.",
+        "Intercale pulos simples se precisar recuperar o ritmo."
+      ],
+      "erros_comuns": [
+        "Dobrar os joelhos para a frente em vez de pular mais alto.",
+        "Abrir os braços, perdendo velocidade na corda."
+      ]
+    },
+    {
+      "id": "caminhada_esteira",
+      "nome": "Caminhada na esteira",
+      "apelidos": ["caminhada inclinada", "esteira caminhando"],
+      "musculo_principal": "corpo_inteiro",
+      "musculos_secundarios": ["quadriceps", "gluteos", "panturrilhas"],
+      "padrao_movimento": "cardio",
+      "equipamentos": [["esteira"]],
+      "nivel": 1,
+      "unidade": "tempo",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": "corrida_esteira",
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "em_pe",
+      "vistas": ["lateral", "costas"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 1400,
+        "props": { "treadmill": true },
+        "destaque": ["quadriceps", "gluteos"],
+        "movimento": { "type": "continuous", "id": "caminhada_esteira" }
+      },
+      "passo_a_passo": [
+        "Suba na esteira parada, segure no apoio e comece numa velocidade baixa.",
+        "Aumente a velocidade até uma caminhada firme, em que dá para conversar com algum esforço.",
+        "Para deixar mais puxado, aumente a inclinação em vez da velocidade.",
+        "Solte as mãos do apoio e balance os braços naturalmente."
+      ],
+      "erros_comuns": ["Ficar segurando no apoio o tempo todo.", "Caminhar na beirada da lona."]
+    },
+    {
+      "id": "corrida_esteira",
+      "nome": "Corrida na esteira",
+      "apelidos": ["esteira correndo", "trote na esteira"],
+      "musculo_principal": "corpo_inteiro",
+      "musculos_secundarios": ["quadriceps", "posteriores_coxa", "panturrilhas"],
+      "padrao_movimento": "cardio",
+      "equipamentos": [["esteira"]],
+      "nivel": 3,
+      "unidade": "tempo",
+      "variacao_mais_facil": "caminhada_esteira",
+      "variacao_mais_dificil": null,
+      "impacto": "alto",
+      "barulho": "medio",
+      "unilateral": false,
+      "posicao": "em_pe",
+      "vistas": ["lateral", "costas"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 760,
+        "props": { "treadmill": true },
+        "destaque": ["quadriceps", "posteriores_coxa"],
+        "movimento": { "type": "continuous", "id": "corrida_esteira" }
+      },
+      "passo_a_passo": [
+        "Aqueça caminhando por alguns minutos.",
+        "Aumente a velocidade aos poucos até um trote confortável.",
+        "Pise embaixo do corpo, com passos curtos, e mantenha o tronco levemente inclinado à frente.",
+        "No fim, diminua a velocidade e caminhe antes de parar."
+      ],
+      "erros_comuns": ["Dar passadas longas, pisando com o calcanhar muito à frente.", "Olhar para os pés."]
+    },
+    {
+      "id": "bicicleta_ergometrica",
+      "nome": "Bicicleta ergométrica",
+      "apelidos": ["bike", "bicicleta"],
+      "musculo_principal": "quadriceps",
+      "musculos_secundarios": ["gluteos", "panturrilhas", "posteriores_coxa"],
+      "padrao_movimento": "cardio",
+      "equipamentos": [["bicicleta"]],
+      "nivel": 1,
+      "unidade": "tempo",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "sentado",
+      "vistas": ["lateral", "costas"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 1100,
+        "props": { "bike": true },
+        "destaque": ["quadriceps", "gluteos"],
+        "movimento": { "type": "continuous", "id": "bicicleta" }
+      },
+      "passo_a_passo": [
+        "Ajuste o banco: com o pedal embaixo, o joelho fica quase esticado.",
+        "Segure o guidão sem travar os cotovelos e mantenha as costas retas.",
+        "Pedale num ritmo constante, ajustando a carga para manter o esforço indicado.",
+        "Nos tiros, aumente a carga ou a velocidade e depois volte ao ritmo leve."
+      ],
+      "erros_comuns": ["Banco baixo demais, forçando os joelhos.", "Balançar o quadril no banco."]
+    },
+    {
+      "id": "eliptico",
+      "nome": "Elíptico",
+      "apelidos": ["transport", "elíptica"],
+      "musculo_principal": "corpo_inteiro",
+      "musculos_secundarios": ["quadriceps", "gluteos", "dorsais", "peitoral"],
+      "padrao_movimento": "cardio",
+      "equipamentos": [["eliptico"]],
+      "nivel": 1,
+      "unidade": "tempo",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "em_pe",
+      "vistas": ["lateral", "costas"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 1300,
+        "props": { "elliptical": true },
+        "destaque": ["quadriceps", "gluteos"],
+        "movimento": { "type": "continuous", "id": "eliptico" }
+      },
+      "passo_a_passo": [
+        "Suba nos pedais segurando nos braços móveis do aparelho.",
+        "Faça o movimento empurrando e puxando os braços junto com as pernas.",
+        "Mantenha o tronco reto e o peso distribuído no pé inteiro.",
+        "Ajuste a carga para manter o esforço indicado."
+      ],
+      "erros_comuns": ["Inclinar o tronco sobre o painel.", "Ficar na ponta dos pés."]
+    }
+  ]
+}

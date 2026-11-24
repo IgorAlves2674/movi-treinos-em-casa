@@ -68,7 +68,16 @@ export type Pose = LimbAngles & {
 };
 
 /** Funções de movimento contínuo (ex.: pular corda), que não cabem em poses-chave. */
-export type ContinuousMotionId = 'pular_corda' | 'circulos_braco' | 'escalador';
+export type ContinuousMotionId =
+  | 'pular_corda'
+  | 'corda_alternada'
+  | 'corda_dupla'
+  | 'circulos_braco'
+  | 'escalador'
+  | 'caminhada_esteira'
+  | 'corrida_esteira'
+  | 'bicicleta'
+  | 'eliptico';
 
 export type FigureMotion =
   /** 2 a 4 poses-chave, interpoladas em loop: cada pose → próxima → … → primeira. */
@@ -118,6 +127,10 @@ export type FigureProps = {
    * dois apoios até o chão (barra baixa, para a barra australiana).
    */
   bar?: { x: number; y: number; posts?: boolean };
+  /** Aparelhos de cardio (posições fixas, combinando com os movimentos contínuos). */
+  treadmill?: boolean;
+  bike?: boolean;
+  elliptical?: boolean;
 };
 
 export type FigureAnimation = {
