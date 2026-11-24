@@ -62,9 +62,12 @@ gatilho `movi_before_write`, RLS e políticas) + registro em `src/db/tables.ts`.
   para deitar de lado e `twist` para girar o tronco). Movimentos que não cabem em poses-chave
   (pular corda, escalador, círculos com os braços) são funções em `src/figure/motion.ts`.
 - Equipamentos desenhados: colchonete, cadeira (pode mudar de lugar e virar), parede, halteres
-  e corda.
+  corda, e halteres (um em cada mão, só na direita ou um segurado com as duas).
 - `npm run check:content` confere ids, variações, equipamentos, vistas e se o boneco não
   atravessa o chão.
+- Os arquivos `peso_corporal.json` e `halteres.json` são gerados por `scripts/autoria/*.ts`
+  (poses calculadas com cinemática inversa + textos). Edite o script e rode de novo
+  (`npx tsx scripts/autoria/halteres.ts`) em vez de mexer no JSON à mão.
 - `npx tsx scripts/preview-poses.ts poses.html id1,id2` gera uma página com as poses-chave de
   cada exercício em todas as vistas, para conferir sem abrir o app.
 - `scripts/pose-lab.ts` ajuda a calcular ângulos quando mãos e pés precisam ficar presos
