@@ -9,18 +9,22 @@ import { InfoIcon, SwapIcon } from '@/components/icons';
 import { Card, PrimaryButton, Screen, SecondaryButton, T } from '@/components/ui';
 import { animacaoDoBoneco, getExercicio } from '@/content/exercises';
 import { fmt, strings } from '@/i18n';
+import { formatDecimal } from '@/lib/dates';
 import { useProfile } from '@/profile/useProfile';
-import { colors, radius, spacing } from '@/theme';
+import { colors, fonts, radius, spacing } from '@/theme';
 import { setDraft, useDraft } from '@/workout/draft';
+import { prepareWorkout } from '@/workout/plan';
 import { startSession } from '@/workout/session';
 import { generatorProfile } from '@/workout/fromProfile';
 import {
   blockSeconds,
   canSwap,
   generateWorkout,
+  mainExerciseIds,
+  setsOf,
   swapExercise,
-  type Prescription,
   type WorkoutBlock,
+  type WorkoutItem,
 } from '@/workout/generator';
 
 const s = strings.workout;
@@ -47,7 +51,7 @@ export default function WorkoutListScreen() {
       </Screen>
     );
   }
-  const { workout, minutes } = draft;
+  const { workout, minutes, kind, plan } = draft;
   const mainCount = workout.blocks
     .filter((b) => b.kind === 'sets' || b.kind === 'circuit')
     .reduce((n, b) => n + b.items.length, 0);
@@ -56,7 +60,7 @@ export default function WorkoutListScreen() {
     <Screen>
       <Stack.Screen options={{ title: s.title }} />
       <View style={{ gap: 4 }}>
-        <T variant="h2">{s.heading}</T>
+        <T variant="h2">{plan ? fmt(s.planHeading, plan) : s.heading}</T>
         <T variant="body" color={colors.textSecondary}>
           {fmt(s.summary, { minutes: workout.estimatedMinutes, count: mainCount })}
         </T>
@@ -75,7 +79,7 @@ export default function WorkoutListScreen() {
           key={bi}
           block={block}
           onInfo={setInfoId}
-          onSwap={(ii) => setDraft({ workout: swapExercise(workout, bi, ii, gp), minutes })}
+          onSwap={(ii) => setDraft({ ...draft, workout: swapExercise(workout, bi, ii, gp) })}
           swappable={(ii) => canSwap(workout, bi, ii, gp)}
         />
       ))}
@@ -87,17 +91,22 @@ export default function WorkoutListScreen() {
           onPress={async () => {
             setStarting(true);
             try {
-              const sessionId = await startSession(db, workout, 'avulso');
+              const sessionId = await startSession(db, workout, kind);
               router.push({ pathname: '/player', params: { sessionId } });
             } finally {
               setStarting(false);
             }
           }}
         />
-        <SecondaryButton
-          label={s.regenerate}
-          onPress={() => setDraft({ workout: generateWorkout({ ...gp, minutes }), minutes })}
-        />
+        {kind === 'avulso' && (
+          <SecondaryButton
+            label={s.regenerate}
+            onPress={async () => {
+              const fresh = generateWorkout({ ...gp, minutes }, { avoidIds: mainExerciseIds(workout) });
+              setDraft({ ...draft, workout: await prepareWorkout(db, fresh, gp) });
+            }}
+          />
+        )}
       </View>
 
       <ExerciseInfoModal exerciseId={infoId} onClose={() => setInfoId(null)} />
@@ -125,9 +134,13 @@ function blockHeader(b: WorkoutBlock): { title: string; hint: string } {
   }
 }
 
-function prescriptionText(p: Prescription): string {
-  const base = p.kind === 'reps' ? fmt(s.reps, { min: p.min, max: p.max }) : fmt(s.seconds, { s: p.seconds });
-  return p.perSide ? base + s.perSide : base;
+function prescriptionText(it: WorkoutItem, block: WorkoutBlock): string {
+  const p = it.prescription;
+  let text = p.kind === 'reps' ? fmt(s.reps, { min: p.min, max: p.max }) : fmt(s.seconds, { s: p.seconds });
+  if (p.perSide) text += s.perSide;
+  if (block.kind === 'sets' && it.extraSets) text += fmt(s.extraSets, { n: setsOf(block, it) });
+  if (p.kind === 'reps' && p.loadKg) text += fmt(s.load, { kg: formatDecimal(p.loadKg) });
+  return text;
 }
 
 function BlockCard({
@@ -155,7 +168,8 @@ function BlockCard({
         <ExerciseRow
           key={`${it.exerciseId}-${ii}`}
           exerciseId={it.exerciseId}
-          detail={prescriptionText(it.prescription)}
+          detail={prescriptionText(it, block)}
+          note={it.progress ? s.progress[it.progress] : undefined}
           compact={!isMain}
           onInfo={() => onInfo(it.exerciseId)}
           onSwap={isMain && swappable(ii) ? () => onSwap(ii) : undefined}
@@ -169,12 +183,14 @@ function BlockCard({
 const ExerciseRow = memo(function ExerciseRow({
   exerciseId,
   detail,
+  note,
   compact,
   onInfo,
   onSwap,
 }: {
   exerciseId: string;
   detail: string;
+  note?: string;
   compact: boolean;
   onInfo: () => void;
   onSwap?: () => void;
@@ -194,6 +210,11 @@ const ExerciseRow = memo(function ExerciseRow({
         <T variant="caption" color={colors.textSecondary}>
           {detail}
         </T>
+        {note && (
+          <T variant="caption" color={colors.primary} style={{ fontFamily: fonts.semibold }}>
+            {note}
+          </T>
+        )}
       </Pressable>
       <Pressable accessibilityRole="button" accessibilityLabel={s.info} onPress={onInfo} hitSlop={8} style={styles.iconBtn}>
         <InfoIcon />

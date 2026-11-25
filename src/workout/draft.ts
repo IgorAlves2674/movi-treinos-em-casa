@@ -6,7 +6,14 @@ import type { GeneratorProfile, Workout } from './generator';
  * Treino montado e ainda não começado (fica só na memória). O player e o
  * histórico (etapa 6) vão gravar o treino feito no banco.
  */
-export type Draft = { workout: Workout; minutes: GeneratorProfile['minutes'] };
+export type Draft = {
+  workout: Workout;
+  minutes: GeneratorProfile['minutes'];
+  /** Treino do plano semanal ou avulso (vai para o histórico). */
+  kind: 'avulso' | 'plano';
+  /** Treino do plano: qual da semana (1..total). */
+  plan?: { n: number; total: number };
+};
 let current: Draft | null = null;
 const listeners = new Set<() => void>();
 

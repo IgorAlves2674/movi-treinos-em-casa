@@ -41,7 +41,8 @@
     "typecheck": "tsc --noEmit",
     "lint": "expo lint",
     "check:content": "tsx scripts/check-content.ts",
-    "check:generator": "tsx scripts/check-generator.ts"
+    "check:generator": "tsx scripts/check-generator.ts",
+    "check:progression": "tsx scripts/check-progression.ts"
   },
   "private": true
 }

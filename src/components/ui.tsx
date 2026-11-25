@@ -68,15 +68,20 @@ export function PrimaryButton({
 export function SecondaryButton({
   label,
   style,
+  color = colors.primary,
   ...rest
-}: PressableProps & { label: string; style?: StyleProp<ViewStyle> }) {
+}: PressableProps & { label: string; style?: StyleProp<ViewStyle>; color?: string }) {
   return (
     <Pressable
       accessibilityRole="button"
       {...rest}
-      style={({ pressed }) => [styles.secondaryButton, { opacity: pressed ? 0.7 : 1 }, style]}
+      style={({ pressed }) => [
+        styles.secondaryButton,
+        { borderColor: color, opacity: rest.disabled ? 0.5 : pressed ? 0.7 : 1 },
+        style,
+      ]}
     >
-      <Text style={[type.label, { color: colors.primary }]}>{label}</Text>
+      <Text style={[type.label, { color }]}>{label}</Text>
     </Pressable>
   );
 }

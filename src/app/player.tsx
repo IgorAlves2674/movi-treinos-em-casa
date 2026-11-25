@@ -145,13 +145,18 @@ function Player({
     const e = getExercicio(st.exerciseId);
     if (!e || !usesLoad(e)) return;
     let cancelled = false;
-    lastLoad(db, st.exerciseId).then((kg) => {
+    // A carga já usada neste treino; senão a sugerida pela progressão; senão a última usada.
+    const suggested = st.prescription.kind === 'reps' ? st.prescription.loadKg : undefined;
+    lastLoad(db, st.exerciseId, sessionId).then(async (inSession) => {
+      if (inSession !== null || suggested !== undefined) return inSession ?? suggested ?? null;
+      return lastLoad(db, st.exerciseId);
+    }).then((kg) => {
       if (!cancelled) setLoad(kg);
     });
     return () => {
       cancelled = true;
     };
-  }, [db, steps, index]);
+  }, [db, steps, index, sessionId]);
 
   const goTo = useCallback(
     async (next: number) => {

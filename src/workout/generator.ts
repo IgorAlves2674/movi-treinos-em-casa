@@ -32,13 +32,39 @@ export type GeneratorProfile = {
   equipment: Equipamento[];
   avoidJumpsNoise: boolean;
   avoidImpact: boolean;
+  /** Maior carga disponível (progressão de carga, spec 8.1). */
+  dumbbellMaxKg?: number | null;
+  barbellMaxKg?: number | null;
 };
 
 export type Prescription =
-  | { kind: 'reps'; min: number; max: number; perSide: boolean }
+  /** `loadKg`: carga sugerida pela progressão (senão o player usa a última). */
+  | { kind: 'reps'; min: number; max: number; perSide: boolean; loadKg?: number }
   | { kind: 'time'; seconds: number; perSide: boolean };
 
-export type WorkoutItem = { slot: SlotId; exerciseId: string; prescription: Prescription };
+/** O que a progressão mudou neste exercício (aparece na lista e no player). */
+export type ProgressNote =
+  | 'harder'
+  | 'easier'
+  | 'moreLoad'
+  | 'lessLoad'
+  | 'moreSets'
+  | 'lessSets'
+  | 'moreReps'
+  | 'lessReps'
+  | 'moreTime';
+
+export type WorkoutItem = {
+  slot: SlotId;
+  exerciseId: string;
+  prescription: Prescription;
+  /** Séries a mais só deste exercício (blocos de séries; progressão). */
+  extraSets?: number;
+  progress?: ProgressNote;
+};
+
+/** Séries deste exercício num bloco de séries. */
+export const setsOf = (b: { sets: number }, it: WorkoutItem) => b.sets + (it.extraSets ?? 0);
 
 export type WorkoutBlock =
   | { kind: 'warmup'; items: WorkoutItem[] }
@@ -238,7 +264,8 @@ export function blockSeconds(b: WorkoutBlock): number {
       return b.items.reduce((s, it) => s + workSeconds(it.prescription) + 5, 0);
     case 'sets':
       return b.items.reduce(
-        (s, it) => s + b.sets * workSeconds(it.prescription) + (b.sets - 1) * b.restBetweenSetsS + TRANSITION_S,
+        (s, it) =>
+          s + setsOf(b, it) * workSeconds(it.prescription) + (setsOf(b, it) - 1) * b.restBetweenSetsS + TRANSITION_S,
         0,
       );
     case 'circuit': {
@@ -542,4 +569,30 @@ export function canSwap(workout: Workout, blockIndex: number, itemIndex: number,
   if (!item || item.slot === 'aquecimento' || item.slot === 'alongamento') return false;
   const used = new Set(workout.blocks.flatMap((b) => b.items.map((i) => i.exerciseId)));
   return candidates(item.slot, p, used).length > 0;
+}
+
+/**
+ * Plano semanal (spec 7.1): `days` treinos de corpo inteiro. Cada um evita os
+ * exercícios dos anteriores da semana (e do último treino feito), para alternar.
+ */
+export function generateWeek(
+  p: GeneratorProfile,
+  days: number,
+  opts: { avoidIds?: readonly string[]; rng?: Rng } = {},
+): Workout[] {
+  const out: Workout[] = [];
+  let recent = [...(opts.avoidIds ?? [])];
+  for (let i = 0; i < days; i++) {
+    const w = generateWorkout(p, { avoidIds: recent, rng: opts.rng });
+    out.push(w);
+    // Evita principalmente o treino de antes e o de antes dele (com 5+ dias, repetir um pouco é inevitável).
+    const ids = mainExerciseIds(w);
+    recent = [...ids, ...recent].slice(0, ids.length * 2);
+  }
+  return out;
+}
+
+/** Exercícios da parte principal (sem aquecimento e alongamento). */
+export function mainExerciseIds(w: Workout): string[] {
+  return w.blocks.flatMap((b) => (b.kind === 'sets' || b.kind === 'circuit' ? b.items.map((i) => i.exerciseId) : []));
 }

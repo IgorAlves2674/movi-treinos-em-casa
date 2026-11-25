@@ -5,11 +5,12 @@
  */
 import type { SQLiteDatabase } from 'expo-sqlite';
 
-import { getExercicio, type Exercicio } from '@/content/exercises';
+import { getExercicio } from '@/content/exercises';
 import { insertRow, nowIso, updateRow } from '@/db/repository';
 import type { Feeling, SetLogRow, WorkoutSessionRow } from '@/db/tables';
 
-import type { Prescription, Workout, WorkoutBlock } from './generator';
+import { usesLoad } from './loads';
+import { mainExerciseIds, setsOf, type Prescription, type Workout, type WorkoutBlock } from './generator';
 
 export type WorkStep = {
   kind: 'work';
@@ -48,11 +49,12 @@ export function buildSteps(workout: Workout): Step[] {
     if (b.kind === 'warmup' || b.kind === 'cooldown') {
       b.items.forEach((_, ii) => steps.push(work(bi, b, ii, 1, 1)));
     } else if (b.kind === 'sets') {
-      b.items.forEach((_, ii) => {
-        for (let r = 1; r <= b.sets; r++) {
-          steps.push(work(bi, b, ii, r, b.sets));
+      b.items.forEach((it, ii) => {
+        const n = setsOf(b, it);
+        for (let r = 1; r <= n; r++) {
+          steps.push(work(bi, b, ii, r, n));
           // Descanso entre séries e também antes do próximo exercício.
-          const isLastOfBlock = r === b.sets && ii === b.items.length - 1;
+          const isLastOfBlock = r === n && ii === b.items.length - 1;
           if (!isLastOfBlock) steps.push({ kind: 'rest', blockIndex: bi, seconds: b.restBetweenSetsS, reason: 'sets' });
         }
       });
@@ -86,11 +88,7 @@ export function workSecondsOf(p: Prescription): number {
   return p.kind === 'time' ? p.seconds * (p.perSide ? 2 : 1) : 0;
 }
 
-const LOAD_ITEMS = new Set(['halteres', 'barra_anilhas', 'kettlebell', 'caneleira']);
-/** O exercício usa carga (halter, barra, kettlebell, caneleira)? Então pede o peso. */
-export function usesLoad(e: Exercicio): boolean {
-  return e.equipamentos.length > 0 && e.equipamentos.every((op) => op.some((i) => LOAD_ITEMS.has(i)));
-}
+export { usesLoad } from './loads';
 
 // ------------------------------------------------------------------ gravação
 
@@ -130,13 +128,13 @@ export async function setFeeling(db: SQLiteDatabase, sessionId: string, feeling:
   await updateRow(db, 'workout_sessions', sessionId, { feeling });
 }
 
-/** Última carga usada no exercício (para já vir preenchida). */
-export async function lastLoad(db: SQLiteDatabase, exerciseId: string): Promise<number | null> {
+/** Última carga usada no exercício (para já vir preenchida); com `sessionId`, só neste treino. */
+export async function lastLoad(db: SQLiteDatabase, exerciseId: string, sessionId?: string): Promise<number | null> {
   const r = await db.getFirstAsync<{ load_kg: number | null }>(
     `SELECT load_kg FROM set_logs
-     WHERE deleted_at IS NULL AND exercise_id = ? AND load_kg IS NOT NULL
+     WHERE deleted_at IS NULL AND exercise_id = ? AND load_kg IS NOT NULL ${sessionId ? 'AND session_id = ?' : ''}
      ORDER BY performed_at DESC LIMIT 1`,
-    [exerciseId],
+    sessionId ? [exerciseId, sessionId] : [exerciseId],
   );
   return r?.load_kg ?? null;
 }
@@ -150,8 +148,7 @@ export async function lastWorkoutExerciseIds(db: SQLiteDatabase): Promise<string
   );
   if (!s) return [];
   try {
-    const w = JSON.parse(s.planned) as Workout;
-    return w.blocks.flatMap((b) => (b.kind === 'sets' || b.kind === 'circuit' ? b.items.map((i) => i.exerciseId) : []));
+    return mainExerciseIds(JSON.parse(s.planned) as Workout);
   } catch {
     return [];
   }

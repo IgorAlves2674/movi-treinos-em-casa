@@ -48,8 +48,14 @@ export default function MonthlyTestScreen() {
       return;
     }
     if (savingRef.current) return;
+    const final = skip ? { ...result, plank_s: null } : result;
+    // Pulou os três: não grava (senão o próximo teste ficaria bloqueado por um mês).
+    if (final.pushups === null && final.squats_1min === null && final.plank_s === null) {
+      router.back();
+      return;
+    }
     savingRef.current = true;
-    await saveMonthlyTest(db, skip ? { ...result, plank_s: null } : result);
+    await saveMonthlyTest(db, final);
     setStage(3);
   }
 

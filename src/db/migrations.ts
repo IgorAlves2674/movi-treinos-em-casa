@@ -116,6 +116,22 @@ const MIGRATIONS: string[] = [
   CREATE INDEX IF NOT EXISTS monthly_tests_dirty ON monthly_tests (_dirty);
   CREATE INDEX IF NOT EXISTS monthly_tests_tested_on ON monthly_tests (tested_on);
   `,
+  // 5: plano semanal (spec 7.1)
+  `
+  CREATE TABLE IF NOT EXISTS weekly_plans (
+    id TEXT PRIMARY KEY NOT NULL,
+    user_id TEXT,
+    week_start TEXT NOT NULL,
+    profile_key TEXT NOT NULL,
+    workouts TEXT NOT NULL,
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL,
+    deleted_at TEXT,
+    _dirty INTEGER NOT NULL DEFAULT 1
+  );
+  CREATE INDEX IF NOT EXISTS weekly_plans_dirty ON weekly_plans (_dirty);
+  CREATE INDEX IF NOT EXISTS weekly_plans_week ON weekly_plans (week_start);
+  `,
 ];
 
 export async function migrateDbIfNeeded(db: SQLiteDatabase): Promise<void> {

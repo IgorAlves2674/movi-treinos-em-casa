@@ -22,7 +22,7 @@ Sem configurar, o app funciona só com os dados no celular (offline).
 2. **Authentication → Sign In / Providers → Allow anonymous sign-ins**: ligar.
 3. **SQL Editor**: rode os arquivos de `supabase/migrations/` na ordem do nome
    (`20261123000000_base.sql`, `20261125000000_profiles.sql`, `20261126000000_workouts.sql`,
-   `20261127000000_monthly_tests.sql`).
+   `20261127000000_monthly_tests.sql`, `20261128000000_weekly_plans.sql`).
 4. Copie `.env.example` para `.env.local` e preencha `EXPO_PUBLIC_SUPABASE_URL` e
    `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY` (Project Settings → API). Nunca use a `service_role`.
 5. Reinicie o Expo (`npx expo start --clear`). Em **Perfil → Diagnóstico** aparece o ID do
@@ -135,3 +135,20 @@ gatilho `movi_before_write`, RLS e políticas) + registro em `src/db/tables.ts`.
   até a falha (cronômetro), com comparação com o teste anterior.
 - Limites do plano grátis (peso dos últimos 30 dias, só recordes, sem teste mensal) entram
   na etapa 10 (assinatura).
+
+## Plano semanal e progressão (etapa 8, spec 7.1 e 8.1)
+
+- `src/workout/plan.ts`: plano da semana (`weekly_plans`): um treino de corpo inteiro por
+  dia de treino do perfil, montado na segunda (ou quando o perfil muda), cada um evitando
+  os exercícios dos anteriores. Não fica preso a dias da semana: o "Treino de hoje" é o
+  próximo que falta. Também carrega o histórico das séries e prepara o treino
+  (`prepareWorkout`) com a progressão.
+- `src/workout/progression.ts` (sem banco): sobe um degrau quando bate o topo da faixa em
+  todas as séries 2 treinos seguidos (variação mais difícil → carga → série a mais →
+  repetições; por tempo: variação ou +5 s), desce quando fica abaixo do mínimo 2 vezes,
+  usa a variação em que a pessoa está na família e aplica o "Como foi?" do último treino.
+  `npm run check:progression` confere com situações de exemplo.
+- Início: semana com os dias treinados, "Treino de hoje" (ou feito / semana completa),
+  peso, último recorde batido e aviso do teste mensal.
+- A lista do treino mostra o que a progressão mudou (↑/↓) e a carga sugerida, que já vem
+  preenchida no player.

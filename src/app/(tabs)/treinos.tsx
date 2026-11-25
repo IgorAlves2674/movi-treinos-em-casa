@@ -13,6 +13,7 @@ import { colors, spacing } from '@/theme';
 import { setDraft } from '@/workout/draft';
 import { generatorProfile } from '@/workout/fromProfile';
 import { generateWorkout, type GeneratorProfile } from '@/workout/generator';
+import { prepareWorkout } from '@/workout/plan';
 import { lastWorkoutExerciseIds } from '@/workout/session';
 
 const s = strings.workouts;
@@ -44,7 +45,9 @@ export default function WorkoutsScreen() {
     if (!profile) return;
     // Evita repetir os exercícios do último treino feito (spec 7.2, passo 3).
     const avoidIds = await lastWorkoutExerciseIds(db);
-    setDraft({ workout: generateWorkout({ ...generatorProfile(profile), minutes: chosen }, { avoidIds }), minutes: chosen });
+    const gp = generatorProfile(profile);
+    const workout = await prepareWorkout(db, generateWorkout({ ...gp, minutes: chosen }, { avoidIds }), gp);
+    setDraft({ workout, minutes: chosen, kind: 'avulso' });
     router.push('/treino');
   }
 

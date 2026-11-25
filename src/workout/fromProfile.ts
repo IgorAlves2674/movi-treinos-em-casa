@@ -18,5 +18,7 @@ export function generatorProfile(p: ProfileRow): GeneratorProfile {
     equipment,
     avoidJumpsNoise: p.avoid_jumps_noise === 1,
     avoidImpact: p.avoid_impact === 1,
+    dumbbellMaxKg: p.dumbbell_max_kg,
+    barbellMaxKg: p.barbell_max_kg,
   };
 }

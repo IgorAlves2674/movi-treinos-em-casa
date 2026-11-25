@@ -84,6 +84,13 @@ export const SYNCED_TABLES = [
     name: 'monthly_tests',
     columns: ['tested_on', 'pushups', 'squats_1min', 'plank_s'],
   },
+  {
+    // Plano semanal (spec 7.1): os treinos da semana, montados na segunda (ou quando o perfil muda).
+    // `profile_key` guarda o que foi usado para montar; se o perfil mudar, o plano é refeito.
+    name: 'weekly_plans',
+    columns: ['week_start', 'profile_key', 'workouts'],
+    jsonColumns: ['workouts'],
+  },
 ] as const satisfies readonly SyncedTable[];
 
 export type SyncedTableName = (typeof SYNCED_TABLES)[number]['name'];
@@ -169,4 +176,11 @@ export type MonthlyTestRow = BaseRow & {
   pushups: number | null;
   squats_1min: number | null;
   plank_s: number | null;
+};
+
+export type WeeklyPlanRow = BaseRow & {
+  week_start: string;
+  profile_key: string;
+  /** JSON de Workout[]. */
+  workouts: string;
 };

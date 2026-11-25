@@ -39,6 +39,8 @@ export type ExerciseProgress = {
   /** Melhor série de cada treino, do mais antigo ao mais novo. */
   points: Point[];
   best: Point;
+  /** Último treino que bateu a melhor marca de antes (a primeira vez não conta). */
+  beaten: { at: Point; previous: number } | null;
 };
 
 /** Agrupa as séries por exercício: melhor de cada treino + melhor de todas (recorde). */
@@ -62,10 +64,23 @@ export function progressByExercise(logs: LogLite[]): ExerciseProgress[] {
     if (points.length === 0) continue;
     // Recorde: o primeiro treino que chegou no maior valor.
     const best = points.reduce((a, b) => (b.value > a.value ? b : a));
-    out.push({ exerciseId, metric, points, best });
+    let beaten: ExerciseProgress['beaten'] = null;
+    let top = points[0].value;
+    for (const pt of points.slice(1)) {
+      if (pt.value > top) beaten = { at: pt, previous: top };
+      top = Math.max(top, pt.value);
+    }
+    out.push({ exerciseId, metric, points, best, beaten });
   }
   // Recordes mais recentes primeiro.
   return out.sort((a, b) => b.best.date.localeCompare(a.best.date));
+}
+
+/** Recorde batido mais recente (para o Início). */
+export function latestBeaten(progress: ExerciseProgress[]): ExerciseProgress | undefined {
+  return progress
+    .filter((p) => p.beaten)
+    .sort((a, b) => b.beaten!.at.date.localeCompare(a.beaten!.at.date))[0];
 }
 
 /** Séries dos treinos concluídos (recordes e gráficos por exercício). */
