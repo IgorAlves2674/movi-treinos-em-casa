@@ -1,0 +1,343 @@
+{
+  "versao": 1,
+  "exercicios": [
+    {
+      "id": "alongamento_quadriceps",
+      "nome": "Alongamento de quadríceps em pé",
+      "apelidos": ["alongamento da coxa"],
+      "musculo_principal": "quadriceps",
+      "musculos_secundarios": [],
+      "padrao_movimento": "alongamento",
+      "equipamentos": [[]],
+      "nivel": 1,
+      "unidade": "tempo",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": true,
+      "posicao": "em_pe",
+      "vistas": ["lateral", "frente"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 4000,
+        "destaque": ["quadriceps"],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": 0, "thigh": 0, "shin": 0, "foot": 0, "arm": 0, "fore": -10, "armAbd": 6, "foreAbd": 6, "legAbd": 3, "right": { "thigh": 14, "shin": 150, "foot": 40, "arm": 23.3, "fore": -1.5, "armAbd": 4, "foreAbd": 4 }, "left": { "arm": -15, "fore": -10, "armAbd": 55, "foreAbd": 55 }, "an": { "pt": "ankle", "side": "left", "x": 0, "y": 10 } },
+            { "torso": 2, "thigh": 0, "shin": 0, "foot": 0, "arm": 0, "fore": -10, "armAbd": 6, "foreAbd": 6, "legAbd": 3, "right": { "thigh": 14, "shin": 150, "foot": 40, "arm": 23.3, "fore": -1.5, "armAbd": 4, "foreAbd": 4 }, "left": { "arm": -15, "fore": -10, "armAbd": 55, "foreAbd": 55 }, "an": { "pt": "ankle", "side": "left", "x": 0, "y": 10 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Em pé, apoie uma mão na parede se precisar de equilíbrio.",
+        "Dobre um joelho e segure o pé atrás, puxando o calcanhar em direção ao glúteo.",
+        "Mantenha os joelhos alinhados e o quadril encaixado.",
+        "Segure e troque de perna."
+      ],
+      "erros_comuns": ["Abrir o joelho para o lado.", "Arquear a lombar."]
+    },
+    {
+      "id": "alongamento_posteriores",
+      "nome": "Alongamento de posteriores sentado",
+      "apelidos": ["alcançar os pés"],
+      "musculo_principal": "posteriores_coxa",
+      "musculos_secundarios": ["lombar", "panturrilhas"],
+      "padrao_movimento": "alongamento",
+      "equipamentos": [[]],
+      "nivel": 1,
+      "unidade": "tempo",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "sentado",
+      "vistas": ["lateral"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 4000,
+        "destaque": ["posteriores_coxa"],
+        "props": { "mat": true },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": 48, "thigh": -90, "shin": 0, "foot": 0, "arm": -118, "fore": 0, "armAbd": 6, "foreAbd": 0, "legAbd": 4, "an": { "pt": "hip", "x": 0, "y": 27 } },
+            { "torso": 50, "thigh": -90, "shin": 0, "foot": 0, "arm": -118, "fore": 0, "armAbd": 6, "foreAbd": 0, "legAbd": 4, "an": { "pt": "hip", "x": 0, "y": 27 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Sente no chão com as pernas esticadas à frente.",
+        "Incline o tronco à frente a partir do quadril, levando as mãos em direção aos pés.",
+        "Vá até sentir alongar a parte de trás das coxas, sem forçar.",
+        "Segure respirando devagar."
+      ],
+      "erros_comuns": ["Arredondar muito as costas para alcançar mais longe.", "Dobrar os joelhos."]
+    },
+    {
+      "id": "alongamento_gluteo",
+      "nome": "Joelho ao peito",
+      "apelidos": ["alongamento de glúteo deitado"],
+      "musculo_principal": "gluteos",
+      "musculos_secundarios": ["lombar"],
+      "padrao_movimento": "alongamento",
+      "equipamentos": [[]],
+      "nivel": 1,
+      "unidade": "tempo",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": true,
+      "posicao": "deitado",
+      "vistas": ["lateral"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 4000,
+        "destaque": ["gluteos"],
+        "props": { "mat": true },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": -80, "thigh": -90, "shin": 0, "foot": 0, "legAbd": 4, "right": { "thigh": -195, "shin": 150, "foot": 0 }, "an": { "pt": "hip", "x": 0, "y": 27 }, "arm": -70.9, "fore": 28.5, "armAbd": 10, "foreAbd": -10 },
+            { "torso": -82, "thigh": -90, "shin": 0, "foot": 0, "legAbd": 4, "right": { "thigh": -195, "shin": 150, "foot": 0 }, "an": { "pt": "hip", "x": 0, "y": 27 }, "arm": -70.9, "fore": 28.5, "armAbd": 10, "foreAbd": -10 }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Deite de barriga para cima com as pernas esticadas.",
+        "Abrace um joelho e puxe em direção ao peito.",
+        "Mantenha a outra perna esticada no chão e os ombros relaxados.",
+        "Segure e troque de lado."
+      ],
+      "erros_comuns": ["Tirar a cabeça do chão com força.", "Prender a respiração."]
+    },
+    {
+      "id": "alongamento_peitoral",
+      "nome": "Alongamento de peitoral",
+      "apelidos": ["abertura de peito"],
+      "musculo_principal": "peitoral",
+      "musculos_secundarios": ["deltoide_anterior"],
+      "padrao_movimento": "alongamento",
+      "equipamentos": [[]],
+      "nivel": 1,
+      "unidade": "tempo",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "em_pe",
+      "vistas": ["lateral", "costas"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 4000,
+        "destaque": ["peitoral", "deltoides"],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": -3, "thigh": 0, "shin": 0, "foot": 0, "arm": 38, "fore": -4, "armAbd": 4, "foreAbd": -16, "legAbd": 3, "an": { "pt": "ankle", "x": 0, "y": 10 } },
+            { "torso": -3, "thigh": 0, "shin": 0, "foot": 0, "arm": 44, "fore": -4, "armAbd": 4, "foreAbd": -16, "legAbd": 3, "an": { "pt": "ankle", "x": 0, "y": 10 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Em pé, entrelace as mãos atrás das costas.",
+        "Estique os braços e afaste as mãos do corpo, abrindo o peito.",
+        "Leve os ombros para trás e para baixo.",
+        "Segure respirando devagar."
+      ],
+      "erros_comuns": ["Inclinar o tronco à frente.", "Subir os ombros."]
+    },
+    {
+      "id": "alongamento_ombro",
+      "nome": "Alongamento de ombro cruzado",
+      "apelidos": ["braço cruzado"],
+      "musculo_principal": "deltoide_posterior",
+      "musculos_secundarios": ["trapezio", "dorsais"],
+      "padrao_movimento": "alongamento",
+      "equipamentos": [[]],
+      "nivel": 1,
+      "unidade": "tempo",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": true,
+      "posicao": "em_pe",
+      "vistas": ["frente", "lateral"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 4000,
+        "destaque": ["deltoides"],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": 0, "thigh": 0, "shin": 0, "foot": 0, "arm": 0, "fore": -10, "armAbd": 6, "foreAbd": 6, "legAbd": 3, "right": { "arm": -90, "fore": 0, "armAbd": -58, "foreAbd": -58 }, "left": { "arm": -55, "fore": -100, "armAbd": 0, "foreAbd": -45 }, "an": { "pt": "ankle", "x": 0, "y": 10 } },
+            { "torso": 2, "thigh": 0, "shin": 0, "foot": 0, "arm": 0, "fore": -10, "armAbd": 6, "foreAbd": 6, "legAbd": 3, "right": { "arm": -90, "fore": 0, "armAbd": -58, "foreAbd": -58 }, "left": { "arm": -55, "fore": -100, "armAbd": 0, "foreAbd": -45 }, "an": { "pt": "ankle", "x": 0, "y": 10 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Em pé, leve um braço esticado na frente do peito.",
+        "Com a outra mão, puxe esse braço para perto do corpo, segurando acima do cotovelo.",
+        "Mantenha o ombro baixo, longe da orelha.",
+        "Segure e troque de braço."
+      ],
+      "erros_comuns": ["Girar o tronco junto com o braço.", "Puxar pelo cotovelo com força."]
+    },
+    {
+      "id": "alongamento_triceps",
+      "nome": "Alongamento de tríceps",
+      "apelidos": ["mão nas costas por cima"],
+      "musculo_principal": "triceps",
+      "musculos_secundarios": ["dorsais"],
+      "padrao_movimento": "alongamento",
+      "equipamentos": [[]],
+      "nivel": 1,
+      "unidade": "tempo",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": true,
+      "posicao": "em_pe",
+      "vistas": ["frente", "lateral", "costas"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 4000,
+        "destaque": ["triceps"],
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": 0, "thigh": 0, "shin": 0, "foot": 0, "arm": 0, "fore": -10, "armAbd": 6, "foreAbd": 6, "legAbd": 3, "right": { "arm": -172, "fore": -150, "armAbd": 14, "foreAbd": -35 }, "left": { "arm": -150, "fore": -95, "armAbd": 20, "foreAbd": -55 }, "an": { "pt": "ankle", "x": 0, "y": 10 } },
+            { "torso": 2, "thigh": 0, "shin": 0, "foot": 0, "arm": 0, "fore": -10, "armAbd": 6, "foreAbd": 6, "legAbd": 3, "right": { "arm": -172, "fore": -150, "armAbd": 14, "foreAbd": -35 }, "left": { "arm": -150, "fore": -95, "armAbd": 20, "foreAbd": -55 }, "an": { "pt": "ankle", "x": 0, "y": 10 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Em pé, leve um braço para cima e dobre o cotovelo, deixando a mão atrás da cabeça.",
+        "Com a outra mão, empurre de leve o cotovelo para trás.",
+        "Mantenha o tronco reto, sem arquear a lombar.",
+        "Segure e troque de braço."
+      ],
+      "erros_comuns": ["Inclinar a cabeça para a frente.", "Arquear a lombar."]
+    },
+    {
+      "id": "alongamento_panturrilha",
+      "nome": "Alongamento de panturrilha na parede",
+      "apelidos": ["panturrilha na parede"],
+      "musculo_principal": "panturrilhas",
+      "musculos_secundarios": [],
+      "padrao_movimento": "alongamento",
+      "equipamentos": [["parede"]],
+      "nivel": 1,
+      "unidade": "tempo",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": true,
+      "posicao": "em_pe",
+      "vistas": ["lateral", "costas"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 4000,
+        "destaque": ["panturrilhas"],
+        "props": { "wall": 110.7 },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": 24, "right": { "thigh": -38.4, "shin": 51.9, "foot": -13.5 }, "left": { "thigh": 31.1, "shin": 1.2, "foot": -32.3 }, "thigh": 0, "shin": 0, "foot": 0, "legAbd": 4, "arm": -79.9, "fore": -47.4, "armAbd": 8, "foreAbd": 8, "an": { "pt": "ankle", "x": 0, "y": 10 } },
+            { "torso": 24, "right": { "thigh": -38.4, "shin": 51.9, "foot": -13.5 }, "left": { "thigh": 31.1, "shin": 1.2, "foot": -32.3 }, "thigh": 0, "shin": 0, "foot": 0, "legAbd": 4, "arm": -79.9, "fore": -47.4, "armAbd": 8, "foreAbd": 8, "an": { "pt": "ankle", "x": 0, "y": 10 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "De frente para a parede, apoie as mãos nela na altura do peito.",
+        "Dê um passo grande para trás com uma perna, deixando-a esticada e o calcanhar no chão.",
+        "Dobre a perna da frente e leve o quadril em direção à parede até sentir a panturrilha de trás.",
+        "Segure e troque de perna."
+      ],
+      "erros_comuns": ["Tirar o calcanhar de trás do chão.", "Virar o pé de trás para fora."]
+    },
+    {
+      "id": "alongamento_lombar",
+      "nome": "Postura da criança",
+      "apelidos": ["alongamento de lombar ajoelhado"],
+      "musculo_principal": "lombar",
+      "musculos_secundarios": ["dorsais", "gluteos"],
+      "padrao_movimento": "alongamento",
+      "equipamentos": [[]],
+      "nivel": 1,
+      "unidade": "tempo",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "apoio_chao",
+      "vistas": ["lateral"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 4000,
+        "destaque": ["lombar", "dorsais"],
+        "props": { "mat": true },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": 100, "thigh": -52.3, "shin": 142.3, "foot": 90, "legAbd": 6, "arm": -168.8, "fore": 1.5, "armAbd": 10, "foreAbd": 10, "an": { "pt": "knee", "x": 0, "y": 12 } },
+            { "torso": 101, "thigh": -52.3, "shin": 142.3, "foot": 90, "legAbd": 6, "arm": -168.8, "fore": 1.5, "armAbd": 10, "foreAbd": 10, "an": { "pt": "knee", "x": 0, "y": 12 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Ajoelhe no chão e sente sobre os calcanhares.",
+        "Incline o tronco à frente e estique os braços no chão, à frente da cabeça.",
+        "Deixe a testa perto do chão e relaxe os ombros.",
+        "Segure respirando fundo, soltando as costas a cada expiração."
+      ],
+      "erros_comuns": ["Tirar o quadril dos calcanhares.", "Tensionar os ombros."]
+    },
+    {
+      "id": "alongamento_abdomen",
+      "nome": "Cobra",
+      "apelidos": ["alongamento de abdômen"],
+      "musculo_principal": "abdomen",
+      "musculos_secundarios": ["peitoral"],
+      "padrao_movimento": "alongamento",
+      "equipamentos": [[]],
+      "nivel": 1,
+      "unidade": "tempo",
+      "variacao_mais_facil": null,
+      "variacao_mais_dificil": null,
+      "impacto": "baixo",
+      "barulho": "baixo",
+      "unilateral": false,
+      "posicao": "deitado",
+      "vistas": ["lateral"],
+      "animacao": {
+        "tipo": "boneco",
+        "duracao_ms": 4000,
+        "destaque": ["abdomen"],
+        "props": { "mat": true },
+        "movimento": {
+          "type": "keyframes",
+          "poses": [
+            { "torso": 42, "thigh": 90, "shin": 0, "foot": 90, "legAbd": 4, "arm": -3.6, "fore": -70.9, "armAbd": 10, "foreAbd": 10, "an": { "pt": "hip", "x": 0, "y": 24 } },
+            { "torso": 40, "thigh": 90, "shin": 0, "foot": 90, "legAbd": 4, "arm": -3.6, "fore": -70.9, "armAbd": 10, "foreAbd": 10, "an": { "pt": "hip", "x": 0, "y": 24 } }
+          ]
+        }
+      },
+      "passo_a_passo": [
+        "Deite de barriga para baixo com as mãos no chão, ao lado do peito.",
+        "Empurre o chão e levante o tronco, deixando o quadril encostado.",
+        "Suba só até onde for confortável para a lombar.",
+        "Segure respirando devagar."
+      ],
+      "erros_comuns": ["Tirar o quadril do chão.", "Subir os ombros em direção às orelhas."]
+    }
+  ]
+}

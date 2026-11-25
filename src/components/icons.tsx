@@ -135,3 +135,28 @@ export function CheckIcon({ color = colors.textOnDark, size = 16 }: IconProps) {
     </Svg>
   );
 }
+
+export function InfoIcon({ color = colors.primary, size = 20 }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24">
+      <Circle cx={12} cy={12} r={9} fill="none" stroke={color} strokeWidth={2} />
+      <Path d="M12 11v6" stroke={color} strokeWidth={2} strokeLinecap="round" />
+      <Circle cx={12} cy={7.5} r={1.3} fill={color} />
+    </Svg>
+  );
+}
+
+export function SwapIcon({ color = colors.primary, size = 20 }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24">
+      <Path
+        d="M4 9h13l-3.5-3.5M20 15H7l3.5 3.5"
+        fill="none"
+        stroke={color}
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}

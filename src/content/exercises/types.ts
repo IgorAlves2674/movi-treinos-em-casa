@@ -37,6 +37,8 @@ export const PADROES_MOVIMENTO = [
   'core',
   'cardio',
   'mobilidade',
+  /** Alongamentos do fim do treino (spec 7.5). */
+  'alongamento',
 ] as const;
 export type PadraoMovimento = (typeof PADROES_MOVIMENTO)[number];
 
