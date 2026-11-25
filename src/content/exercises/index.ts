@@ -50,16 +50,25 @@ const MUSCULO_NO_BONECO: Partial<Record<Musculo, FigureMuscle>> = {
   panturrilhas: 'panturrilhas',
 };
 
-/** Converte o exercício na animação que o boneco entende. */
+const animCache = new WeakMap<Exercicio, FigureAnimation>();
+
+/**
+ * Converte o exercício na animação que o boneco entende. Devolve sempre o mesmo
+ * objeto para o mesmo exercício, senão a animação recomeça a cada nova renderização.
+ */
 export function animacaoDoBoneco(e: Exercicio): FigureAnimation {
+  const cached = animCache.get(e);
+  if (cached) return cached;
   const principal = MUSCULO_NO_BONECO[e.musculo_principal];
-  return {
+  const anim: FigureAnimation = {
     durationMs: e.animacao.duracao_ms,
     views: e.vistas,
     highlight: e.animacao.destaque ?? (principal ? [principal] : []),
     props: e.animacao.props,
     motion: e.animacao.movimento,
   };
+  animCache.set(e, anim);
+  return anim;
 }
 
 /**

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { memo, useEffect, useMemo, useState } from 'react';
 import { StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
 import Svg, { G, Line, Path } from 'react-native-svg';
 
@@ -19,7 +19,7 @@ type Props = {
  * Boneco animado (spec seção 6). Monta cada quadro com `buildFrame` e desenha
  * com react-native-svg. A área tem fundo escuro e proporção 13:10.
  */
-export function FigureView({ anim, view, paused = false, frozenAt, style }: Props) {
+export const FigureView = memo(function FigureView({ anim, view, paused = false, frozenAt, style }: Props) {
   // Vistas não disponíveis (ex.: exercício deitado) caem na lateral.
   const safeView = anim.views.includes(view) ? view : 'lateral';
   const box = useMemo(() => frameBox(anim, safeView), [anim, safeView]);
@@ -58,7 +58,7 @@ export function FigureView({ anim, view, paused = false, frozenAt, style }: Prop
       </Svg>
     </View>
   );
-}
+});
 
 const styles = StyleSheet.create({
   stage: {
