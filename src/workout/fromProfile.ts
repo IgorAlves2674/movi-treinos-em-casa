@@ -20,5 +20,10 @@ export function generatorProfile(p: ProfileRow): GeneratorProfile {
     avoidImpact: p.avoid_impact === 1,
     dumbbellMaxKg: p.dumbbell_max_kg,
     barbellMaxKg: p.barbell_max_kg,
+    rest: {
+      ...(p.rest_sets_s != null ? { sets: p.rest_sets_s } : {}),
+      ...(p.rest_circuit_exercise_s != null ? { circuitExercise: p.rest_circuit_exercise_s } : {}),
+      ...(p.rest_circuit_round_s != null ? { circuitRound: p.rest_circuit_round_s } : {}),
+    },
   };
 }

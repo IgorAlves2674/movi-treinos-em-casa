@@ -25,6 +25,9 @@ export function profileKey(p: ProfileRow): string {
     p.equipment,
     p.avoid_jumps_noise,
     p.avoid_impact,
+    p.rest_sets_s,
+    p.rest_circuit_exercise_s,
+    p.rest_circuit_round_s,
   ]);
 }
 

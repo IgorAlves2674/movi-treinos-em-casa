@@ -50,6 +50,9 @@ export const SYNCED_TABLES = [
       'health_ack_at',
       'health_data_consent_at',
       'onboarding_completed_at',
+      'rest_sets_s',
+      'rest_circuit_exercise_s',
+      'rest_circuit_round_s',
     ],
     jsonColumns: ['equipment'],
     boolColumns: ['avoid_jumps_noise', 'avoid_impact'],
@@ -136,6 +139,10 @@ export type ProfileRow = BaseRow & {
   health_ack_at: string | null;
   health_data_consent_at: string | null;
   onboarding_completed_at: string | null;
+  /** Descanso escolhido no Perfil (segundos); null = padrão do nível. */
+  rest_sets_s: number | null;
+  rest_circuit_exercise_s: number | null;
+  rest_circuit_round_s: number | null;
 };
 
 export type Feeling = 'facil' | 'na_medida' | 'pesado';

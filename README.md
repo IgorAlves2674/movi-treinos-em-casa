@@ -22,7 +22,8 @@ Sem configurar, o app funciona só com os dados no celular (offline).
 2. **Authentication → Sign In / Providers → Allow anonymous sign-ins**: ligar.
 3. **SQL Editor**: rode os arquivos de `supabase/migrations/` na ordem do nome
    (`20261123000000_base.sql`, `20261125000000_profiles.sql`, `20261126000000_workouts.sql`,
-   `20261127000000_monthly_tests.sql`, `20261128000000_weekly_plans.sql`).
+   `20261127000000_monthly_tests.sql`, `20261128000000_weekly_plans.sql`,
+   `20261129000000_profile_rest_delete_account.sql`).
 4. Copie `.env.example` para `.env.local` e preencha `EXPO_PUBLIC_SUPABASE_URL` e
    `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY` (Project Settings → API). Nunca use a `service_role`.
 5. Reinicie o Expo (`npx expo start --clear`). Em **Perfil → Diagnóstico** aparece o ID do
@@ -152,3 +153,18 @@ gatilho `movi_before_write`, RLS e políticas) + registro em `src/db/tables.ts`.
   peso, último recorde batido e aviso do teste mensal.
 - A lista do treino mostra o que a progressão mudou (↑/↓) e a carga sugerida, que já vem
   preenchida no player.
+
+## Perfil e Biblioteca (etapa 9, spec seção 3)
+
+- `src/app/(tabs)/perfil.tsx`: resumo do perfil com uma linha por parte (dados, objetivo,
+  nível, dias e tempo, restrições, equipamentos, descanso), assinatura (etapa 10) e
+  "Excluir conta".
+- `src/app/editar-perfil.tsx` + `src/profile/edit.ts`: edita cada parte com as mesmas
+  perguntas do onboarding (`src/profile/ProfileForms.tsx`). Mudar o treino refaz o plano
+  da semana. Descanso: entre séries, entre exercícios e entre voltas; igual ao padrão do
+  nível fica vazio no banco.
+- `src/profile/deleteAccount.ts`: apaga o usuário no Supabase (função
+  `delete_my_account`, os dados vão junto por `on delete cascade`), apaga tudo no celular
+  e recomeça do onboarding. Sem internet não apaga nada e avisa.
+- `src/app/biblioteca.tsx` (menu ⋮): todos os exercícios com busca (sem acento), filtro
+  por grupo, "Só com meus equipamentos" e a janela de informações.

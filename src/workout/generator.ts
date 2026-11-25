@@ -35,6 +35,8 @@ export type GeneratorProfile = {
   /** Maior carga disponível (progressão de carga, spec 8.1). */
   dumbbellMaxKg?: number | null;
   barbellMaxKg?: number | null;
+  /** Descanso escolhido no Perfil; o que faltar vem do nível (spec 7.4). */
+  rest?: Partial<RestTimes>;
 };
 
 export type Prescription =
@@ -234,7 +236,8 @@ const REPS: Record<Goal, [number, number]> = {
 };
 
 /** Descanso padrão (spec 7.4). */
-export const REST: Record<Level, { sets: number; circuitExercise: number; circuitRound: number }> = {
+export type RestTimes = { sets: number; circuitExercise: number; circuitRound: number };
+export const REST: Record<Level, RestTimes> = {
   iniciante: { sets: 75, circuitExercise: 15, circuitRound: 120 },
   intermediario: { sets: 60, circuitExercise: 10, circuitRound: 90 },
   avancado: { sets: 45, circuitExercise: 5, circuitRound: 60 },
@@ -414,8 +417,18 @@ function fillSlots(
 }
 
 /** Divide a parte principal em séries e circuito, conforme o objetivo (spec 7.3). */
+/** Descanso do treino: o escolhido no Perfil ou o padrão do nível. */
+export function restFor(p: Pick<GeneratorProfile, 'level' | 'rest'>): RestTimes {
+  const d = REST[p.level];
+  return {
+    sets: p.rest?.sets ?? d.sets,
+    circuitExercise: p.rest?.circuitExercise ?? d.circuitExercise,
+    circuitRound: p.rest?.circuitRound ?? d.circuitRound,
+  };
+}
+
 function shape(items: WorkoutItem[], p: GeneratorProfile): WorkoutBlock[] {
-  const rest = REST[p.level];
+  const rest = restFor(p);
   const sets = (its: WorkoutItem[]): WorkoutBlock => ({
     kind: 'sets',
     sets: SETS[p.level],

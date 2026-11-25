@@ -132,6 +132,12 @@ const MIGRATIONS: string[] = [
   CREATE INDEX IF NOT EXISTS weekly_plans_dirty ON weekly_plans (_dirty);
   CREATE INDEX IF NOT EXISTS weekly_plans_week ON weekly_plans (week_start);
   `,
+  // 6: descanso escolhido no Perfil (spec 7.4); vazio = padrão do nível
+  `
+  ALTER TABLE profiles ADD COLUMN rest_sets_s INTEGER;
+  ALTER TABLE profiles ADD COLUMN rest_circuit_exercise_s INTEGER;
+  ALTER TABLE profiles ADD COLUMN rest_circuit_round_s INTEGER;
+  `,
 ];
 
 export async function migrateDbIfNeeded(db: SQLiteDatabase): Promise<void> {
