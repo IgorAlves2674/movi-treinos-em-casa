@@ -78,6 +78,12 @@ export const SYNCED_TABLES = [
       'performed_at',
     ],
   },
+  {
+    // Teste mensal (spec 8.3): flexões máximas, agachamentos em 1 min e prancha até a falha.
+    // Cada teste pode ficar vazio (a pessoa pulou).
+    name: 'monthly_tests',
+    columns: ['tested_on', 'pushups', 'squats_1min', 'plank_s'],
+  },
 ] as const satisfies readonly SyncedTable[];
 
 export type SyncedTableName = (typeof SYNCED_TABLES)[number]['name'];
@@ -156,4 +162,11 @@ export type BodyLog = BaseRow & {
   waist_cm: number | null;
   hip_cm: number | null;
   arm_cm: number | null;
+};
+
+export type MonthlyTestRow = BaseRow & {
+  tested_on: string;
+  pushups: number | null;
+  squats_1min: number | null;
+  plank_s: number | null;
 };

@@ -99,6 +99,23 @@ const MIGRATIONS: string[] = [
   CREATE INDEX IF NOT EXISTS set_logs_session ON set_logs (session_id);
   CREATE INDEX IF NOT EXISTS set_logs_exercise ON set_logs (exercise_id);
   `,
+  // 4: teste mensal (spec 8.3)
+  `
+  CREATE TABLE IF NOT EXISTS monthly_tests (
+    id TEXT PRIMARY KEY NOT NULL,
+    user_id TEXT,
+    tested_on TEXT NOT NULL,
+    pushups INTEGER,
+    squats_1min INTEGER,
+    plank_s INTEGER,
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL,
+    deleted_at TEXT,
+    _dirty INTEGER NOT NULL DEFAULT 1
+  );
+  CREATE INDEX IF NOT EXISTS monthly_tests_dirty ON monthly_tests (_dirty);
+  CREATE INDEX IF NOT EXISTS monthly_tests_tested_on ON monthly_tests (tested_on);
+  `,
 ];
 
 export async function migrateDbIfNeeded(db: SQLiteDatabase): Promise<void> {

@@ -1,4 +1,3 @@
-import * as Haptics from 'expo-haptics';
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { useSQLiteContext } from 'expo-sqlite';
@@ -7,13 +6,17 @@ import { Modal, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { FigureView } from '@/components/figure/FigureView';
+import { Stepper } from '@/components/Stepper';
 import { ViewSelector } from '@/components/figure/ViewSelector';
 import { ProgressBar } from '@/components/form';
 import { Card, PrimaryButton, SecondaryButton, T } from '@/components/ui';
 import { animacaoDoBoneco, getExercicio } from '@/content/exercises';
 import type { WorkoutSessionRow } from '@/db/tables';
 import type { FigureView as View3D } from '@/figure/types';
+import { useNow } from '@/hooks/useNow';
 import { fmt, strings } from '@/i18n';
+import { buzz } from '@/lib/buzz';
+import { mmss } from '@/lib/dates';
 import { colors, fonts, radius, spacing } from '@/theme';
 import type { Prescription, Workout } from '@/workout/generator';
 import {
@@ -32,14 +35,6 @@ import {
 const s = strings.player;
 
 /** Vibração curta; no navegador não existe e é ignorada. */
-function buzz(kind: 'tick' | 'done' = 'done') {
-  const p =
-    kind === 'done'
-      ? Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success)
-      : Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-  p.catch(() => undefined);
-}
-
 /** Mantém a tela acesa durante o treino (só no celular; no navegador não há suporte). */
 function useScreenAwake() {
   useEffect(() => {
@@ -53,19 +48,7 @@ function useScreenAwake() {
 }
 
 /** Relógio que atualiza a cada `ms` (para cronômetro e contagens). */
-function useNow(ms = 250) {
-  const [now, setNow] = useState(() => Date.now());
-  useEffect(() => {
-    const id = setInterval(() => setNow(Date.now()), ms);
-    return () => clearInterval(id);
-  }, [ms]);
-  return now;
-}
 
-const mmss = (sec: number) => {
-  const t = Math.max(0, Math.ceil(sec));
-  return `${Math.floor(t / 60)}:${String(t % 60).padStart(2, '0')}`;
-};
 
 function targetText(p: Prescription) {
   const w = strings.workout;
@@ -464,54 +447,6 @@ function RestPanel({
   );
 }
 
-/** Campo com − e + (repetições, carga). */
-function Stepper({
-  label,
-  value,
-  onChange,
-  min,
-  max,
-  step,
-  emptyLabel,
-}: {
-  label: string;
-  value: number | null;
-  onChange: (n: number) => void;
-  min: number;
-  max: number;
-  step: number;
-  emptyLabel?: string;
-}) {
-  const v = value ?? 0;
-  return (
-    <View style={styles.stepper}>
-      <T variant="label" style={{ flex: 1 }}>
-        {label}
-      </T>
-      <Pressable
-        accessibilityRole="button"
-        accessibilityLabel={`${label} −`}
-        onPress={() => onChange(Math.max(min, v - step))}
-        style={styles.stepBtn}
-      >
-        <T variant="h2" color={colors.primary}>
-          −
-        </T>
-      </Pressable>
-      <T style={styles.stepValue}>{value === null && emptyLabel ? emptyLabel : String(v)}</T>
-      <Pressable
-        accessibilityRole="button"
-        accessibilityLabel={`${label} +`}
-        onPress={() => onChange(Math.min(max, v + step))}
-        style={styles.stepBtn}
-      >
-        <T variant="h2" color={colors.primary}>
-          +
-        </T>
-      </Pressable>
-    </View>
-  );
-}
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.background },
@@ -535,26 +470,6 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   bigTimer: { fontFamily: fonts.bold, fontSize: 56, color: colors.text, fontVariant: ['tabular-nums'] },
-  stepper: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: spacing.md,
-    backgroundColor: colors.surface,
-    borderRadius: radius.lg,
-    borderWidth: 1,
-    borderColor: colors.border,
-    paddingVertical: spacing.sm,
-    paddingHorizontal: spacing.lg,
-  },
-  stepBtn: {
-    width: 44,
-    height: 44,
-    borderRadius: radius.pill,
-    backgroundColor: colors.primarySoft,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  stepValue: { fontFamily: fonts.bold, fontSize: 24, minWidth: 64, textAlign: 'center', color: colors.text },
   backdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.4)', justifyContent: 'center', padding: spacing.xl },
   dialog: { gap: spacing.md, padding: spacing.xl },
 });

@@ -21,7 +21,8 @@ Sem configurar, o app funciona só com os dados no celular (offline).
 1. Crie um projeto em supabase.com.
 2. **Authentication → Sign In / Providers → Allow anonymous sign-ins**: ligar.
 3. **SQL Editor**: rode os arquivos de `supabase/migrations/` na ordem do nome
-   (`20261123000000_base.sql`, `20261125000000_profiles.sql`, `20261126000000_workouts.sql`).
+   (`20261123000000_base.sql`, `20261125000000_profiles.sql`, `20261126000000_workouts.sql`,
+   `20261127000000_monthly_tests.sql`).
 4. Copie `.env.example` para `.env.local` e preencha `EXPO_PUBLIC_SUPABASE_URL` e
    `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY` (Project Settings → API). Nunca use a `service_role`.
 5. Reinicie o Expo (`npx expo start --clear`). Em **Perfil → Diagnóstico** aparece o ID do
@@ -120,3 +121,17 @@ gatilho `movi_before_write`, RLS e políticas) + registro em `src/db/tables.ts`.
   aquecimento/alongamento", vibração no fim das contagens e tela acesa (só no celular).
 - `src/app/fim-treino.tsx`: duração, exercícios, séries, recordes e "Como foi?".
 - Aba Treinos: histórico dos treinos feitos; o próximo treino evita os exercícios do último.
+
+## Evolução (etapa 7, spec 8.3)
+
+- `src/progress/streak.ts`: sequência de semanas (pelo menos um treino por semana) e de dias.
+- `src/progress/stats.ts`: recordes e gráficos por exercício (melhor série de cada treino:
+  carga, tempo ou repetições), peso e medidas do dia (um registro por dia; registrar de novo
+  atualiza) e o teste mensal (`monthly_tests`, de 28 em 28 dias).
+- `src/app/(tabs)/evolucao.tsx`: sequência, teste mensal, peso com gráfico, medidas,
+  recordes e gráfico por exercício. `src/components/LineChart.tsx` desenha os gráficos.
+- `src/app/registrar-peso.tsx`: peso e medidas opcionais (cintura, quadril, braço).
+- `src/app/teste-mensal.tsx`: flexões máximas, agachamentos em 1 min (contagem) e prancha
+  até a falha (cronômetro), com comparação com o teste anterior.
+- Limites do plano grátis (peso dos últimos 30 dias, só recordes, sem teste mensal) entram
+  na etapa 10 (assinatura).
