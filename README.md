@@ -91,14 +91,19 @@ gatilho `movi_before_write`, RLS e políticas) + registro em `src/db/tables.ts`.
 - Em desenvolvimento: **Perfil → Refazer o onboarding** apaga o perfil (exclusão lógica) para
   testar de novo.
 
-## Gerador de treino avulso (spec seção 7)
+## Gerador de treino (spec seção 7)
 
+- **Todo treino é de corpo inteiro** (decisão de 25/11/2026): não há escolha de grupo
+  muscular. Cada treino cobre pernas, empurrar, puxar, quadril, core e cardio conforme o
+  tempo, com vagas extras sorteadas (ombro, braços, panturrilha…) para variar.
 - `src/workout/generator.ts`: funções puras. Filtra por equipamento, nível e restrições;
-  monta vagas por grupo (padrões de movimento); sorteia com peso (nível perto do ideal,
-  menos chance para o último treino e para variações do mesmo exercício); separa em séries
-  e circuito pelo objetivo; descanso pelo nível (7.4); aquecimento e 4 a 6 alongamentos
-  (7.5); ajusta ao tempo com número de exercícios, séries e voltas; ordena por posição.
+  sorteia com peso (nível perto do ideal, menos chance para o último treino, para variações
+  do mesmo exercício e para músculos que já apareceram); separa em séries e circuito pelo
+  objetivo (15 min: sempre circuito); descanso pelo nível (7.4); aquecimento e alongamento
+  proporcionais ao tempo (7.5); ajusta ao tempo com número de exercícios, séries e voltas;
+  ordena por posição.
 - Sem equipamento para puxar, o treino avisa e usa exercícios de lombar (spec 5.3).
-- Telas: **Treinos** (escolher grupos) → **Seu treino** (`src/app/treino.tsx`: lista,
-  janela de informações e botão trocar). O treino montado fica só na memória até a etapa 6.
+- Telas: **Treinos** (escolher a duração do treino avulso) → **Seu treino**
+  (`src/app/treino.tsx`: lista, janela de informações e botão trocar). O treino montado fica
+  só na memória até a etapa 6.
 - Alongamentos: `alongamentos.json`, gerado por `scripts/autoria/alongamentos.ts`.

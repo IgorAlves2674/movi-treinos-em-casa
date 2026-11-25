@@ -7,12 +7,10 @@ import { getExercicio } from '../src/content/exercises';
 import type { Equipamento } from '../src/content/exercises/types';
 import type { Goal, Level } from '../src/db/tables';
 import {
-  FOCUS_GROUPS,
   generateWorkout,
   hasEquipment,
   respectsRestrictions,
   swapExercise,
-  type FocusGroup,
   type GeneratorProfile,
   type Workout,
 } from '../src/workout/generator';
@@ -32,7 +30,8 @@ const LEVELS: Level[] = ['iniciante', 'intermediario', 'avancado'];
 const GOALS: Goal[] = ['emagrecer', 'forca', 'condicionamento', 'manter'];
 const MINUTES = [15, 30, 45, 60] as const;
 const KITS: Equipamento[][] = [[], ['halteres'], ['halteres', 'barra_fixa', 'elastico_alca'], ['barra_anilhas', 'kettlebell', 'corda', 'esteira']];
-const FOCI: FocusGroup[][] = [...FOCUS_GROUPS.map((g) => [g]), ['peito', 'costas'], ['pernas', 'abdomen'], ['bracos', 'ombros', 'cardio']];
+// Vários sorteios por perfil para pegar mais combinações de vagas.
+const REPEATS = 12;
 
 const erros: string[] = [];
 let total = 0;
@@ -54,6 +53,9 @@ function check(w: Workout, p: GeneratorProfile, label: string) {
     if (b.kind === 'cooldown' && (b.items.length < 4 || b.items.length > 6)) err(`${b.items.length} alongamentos`);
     if (b.kind === 'warmup' && b.items.length < 3) err('aquecimento curto');
   }
+  // Corpo inteiro: com 30 min ou mais, pernas e empurrar sempre aparecem.
+  const slots = w.blocks.flatMap((b) => b.items.map((i) => i.slot));
+  if (p.minutes >= 30 && !slots.includes('pernas') && !slots.includes('quadril')) err('treino sem pernas');
   const mainCount = w.blocks.filter((b) => b.kind === 'sets' || b.kind === 'circuit').flatMap((b) => b.items).length;
   if (mainCount < 2) err(`só ${mainCount} exercícios na parte principal`);
   const diff = w.estimatedMinutes - p.minutes;
@@ -73,11 +75,11 @@ for (const level of LEVELS)
           [false, false],
           [true, true],
         ])
-          for (const focus of FOCI) {
+          for (let rep = 0; rep < REPEATS; rep++) {
             const p: GeneratorProfile = { level, goal, minutes, equipment, avoidJumpsNoise, avoidImpact };
             const rng = seeded(seed++);
-            const w = generateWorkout(focus, p, { rng });
-            const label = `${level}/${goal}/${minutes}min/[${equipment.join(',')}]/${avoidJumpsNoise ? 'apto' : '-'}/${focus.join('+')}`;
+            const w = generateWorkout(p, { rng });
+            const label = `${level}/${goal}/${minutes}min/[${equipment.join(',')}]/${avoidJumpsNoise ? 'apto' : '-'}/#${rep}`;
             check(w, p, label);
             // Trocar não pode quebrar as regras.
             const bi = w.blocks.findIndex((b) => b.kind === 'sets' || b.kind === 'circuit');
@@ -87,7 +89,7 @@ for (const level of LEVELS)
 
 if (process.argv.includes('exemplo')) {
   const p: GeneratorProfile = { level: 'intermediario', goal: 'forca', minutes: 45, equipment: ['halteres', 'elastico_alca'], avoidJumpsNoise: true, avoidImpact: false };
-  const w = generateWorkout(['corpo_inteiro'], p, { rng: seeded(42) });
+  const w = generateWorkout(p, { rng: seeded(42) });
   console.log(`Exemplo (${w.estimatedMinutes} min):`);
   for (const b of w.blocks) {
     console.log(`  [${b.kind}${b.kind === 'sets' ? ` ${b.sets}x` : b.kind === 'circuit' ? ` ${b.rounds} voltas` : ''}]`);

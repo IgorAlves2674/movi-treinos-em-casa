@@ -36,7 +36,7 @@ export const ptBR = {
     weeklyPlanEmpty: 'Seu plano semanal vai aparecer aqui.',
     startWorkout: 'Começar treino',
     customWorkout: 'Montar treino personalizado',
-    customWorkoutHint: 'Escolha os grupos musculares',
+    customWorkoutHint: 'Um treino avulso, na duração que quiser',
     weight: 'Peso',
     lastRecord: 'Último recorde',
     noData: '—',
@@ -46,18 +46,9 @@ export const ptBR = {
   workouts: {
     title: 'Treinos',
     buildTitle: 'Montar treino avulso',
-    buildHint: 'Escolha um ou mais grupos, ou corpo inteiro.',
-    groups: {
-      corpo_inteiro: 'Corpo inteiro',
-      peito: 'Peito',
-      costas: 'Costas',
-      ombros: 'Ombros',
-      bracos: 'Braços',
-      pernas: 'Pernas e glúteos',
-      abdomen: 'Abdômen',
-      cardio: 'Cardio',
-    },
-    settingsLine: '{minutes} min · {level}',
+    buildHint: 'Um treino de corpo inteiro com o que você tem em casa.',
+    duration: 'Duração',
+    settingsLine: 'Nível {level} · equipamentos do seu perfil',
     levels: { iniciante: 'Iniciante', intermediario: 'Intermediário', avancado: 'Avançado' },
     build: 'Montar treino',
     history: 'Histórico',
@@ -65,6 +56,7 @@ export const ptBR = {
   },
   workout: {
     title: 'Seu treino',
+    heading: 'Treino de corpo inteiro',
     summary: '~{minutes} min · {count} exercícios',
     warmup: 'Aquecimento',
     warmupHint: '~{minutes} min',
@@ -84,12 +76,12 @@ export const ptBR = {
     regenerate: 'Montar outro',
     start: 'Começar treino',
     startSoon: 'O player do treino chega na próxima etapa.',
-    empty: 'Nenhum treino montado. Volte e escolha os grupos.',
+    empty: 'Nenhum treino montado. Volte para Treinos e toque em Montar treino.',
     warnings: {
       semEquipamentoPuxar:
         'Com equipamento seu treino fica mais completo: elástico, halteres ou barra fixa liberam exercícios de puxar (remadas e barras) para as costas.',
       poucosExercicios:
-        'Com os grupos e equipamentos escolhidos há poucos exercícios, então o treino ficou mais curto. Inclua outro grupo para treinar mais tempo.',
+        'Com os equipamentos que você tem há poucos exercícios disponíveis, então o treino ficou mais curto.',
     },
   },
   exerciseInfo: {

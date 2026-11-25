@@ -1,8 +1,10 @@
 /**
- * Gerador de treino avulso (spec seção 7), só com regras (sem IA).
+ * Gerador de treino (spec seção 7), só com regras (sem IA). Todo treino é de
+ * corpo inteiro (decisão de 25/11/2026): não existe escolha de grupo muscular.
  *
  * 1. Filtra os exercícios por equipamento, nível e restrições.
- * 2. Monta as vagas pelos grupos escolhidos (padrões de movimento / músculos).
+ * 2. Monta as vagas por padrão de movimento (pernas, empurrar, puxar, quadril, core,
+ *    cardio + extras sorteados), variando de um treino para o outro.
  * 3. Sorteia um exercício por vaga, sem repetir e evitando o último treino.
  * 4. Define o formato (séries ou circuito) pelo objetivo e o descanso pelo nível.
  * 5. Acrescenta aquecimento e alongamento.
@@ -21,9 +23,6 @@ import {
   type Posicao,
 } from '@/content/exercises';
 import type { Goal, Level } from '@/db/tables';
-
-export type FocusGroup = 'corpo_inteiro' | 'peito' | 'costas' | 'ombros' | 'bracos' | 'pernas' | 'abdomen' | 'cardio';
-export const FOCUS_GROUPS: FocusGroup[] = ['corpo_inteiro', 'peito', 'costas', 'ombros', 'bracos', 'pernas', 'abdomen', 'cardio'];
 
 /** O que o gerador precisa saber da pessoa (vem do perfil do onboarding). */
 export type GeneratorProfile = {
@@ -50,7 +49,6 @@ export type WorkoutBlock =
 export type WorkoutWarning = 'semEquipamentoPuxar' | 'poucosExercicios';
 
 export type Workout = {
-  focus: FocusGroup[];
   blocks: WorkoutBlock[];
   estimatedMinutes: number;
   warnings: WorkoutWarning[];
@@ -63,51 +61,42 @@ const principal = (...m: Musculo[]) => (e: Exercicio) => main(e) && m.includes(e
 
 /** Cada vaga diz que exercícios podem ocupá-la. */
 export const SLOTS = {
+  /** Agachar ou avanço (sem os de panturrilha). */
+  pernas: (e: Exercicio) =>
+    (e.padrao_movimento === 'agachar' || e.padrao_movimento === 'avanco') && e.musculo_principal !== 'panturrilhas',
   agachar: (e: Exercicio) => e.padrao_movimento === 'agachar' && e.musculo_principal !== 'panturrilhas',
-  avanco: (e: Exercicio) => e.padrao_movimento === 'avanco',
-  dobradica: (e: Exercicio) => e.padrao_movimento === 'dobradica_quadril',
   empurrar: (e: Exercicio) => e.padrao_movimento === 'empurrar',
-  peito: principal('peitoral'),
-  ombro: (e: Exercicio) =>
-    main(e) && ['deltoide_anterior', 'deltoide_lateral', 'deltoide_posterior'].includes(e.musculo_principal),
   puxar: (e: Exercicio) =>
     e.padrao_movimento === 'puxar' && ['dorsais', 'trapezio', 'deltoide_posterior'].includes(e.musculo_principal),
-  biceps: principal('biceps'),
-  triceps: principal('triceps'),
-  panturrilha: principal('panturrilhas'),
-  gluteo: principal('gluteos'),
+  /** Dobradiça de quadril ou glúteo. */
+  quadril: (e: Exercicio) => e.padrao_movimento === 'dobradica_quadril' || principal('gluteos')(e),
   core: (e: Exercicio) => e.padrao_movimento === 'core',
   cardio: (e: Exercicio) => e.padrao_movimento === 'cardio',
+  ombro: (e: Exercicio) =>
+    main(e) && ['deltoide_anterior', 'deltoide_lateral', 'deltoide_posterior'].includes(e.musculo_principal),
+  bracos: principal('biceps', 'triceps'),
+  panturrilha: principal('panturrilhas'),
   // Sem equipamento para puxar (spec 5.3): fortalecer as costas pela lombar.
   costas_sem_equipamento: (e: Exercicio) => main(e) && e.musculo_principal === 'lombar',
 } satisfies Record<string, (e: Exercicio) => boolean>;
 export type SlotId = keyof typeof SLOTS | 'aquecimento' | 'alongamento';
+type Slot = keyof typeof SLOTS;
 
-/** Vagas de cada grupo, em ordem de prioridade. */
-const GROUP_SLOTS: Record<FocusGroup, (keyof typeof SLOTS)[]> = {
-  corpo_inteiro: ['agachar', 'empurrar', 'puxar', 'dobradica', 'core', 'cardio', 'avanco', 'ombro', 'core'],
-  peito: ['peito', 'peito', 'triceps', 'peito', 'ombro'],
-  costas: ['puxar', 'puxar', 'biceps', 'puxar', 'dobradica'],
-  ombros: ['ombro', 'ombro', 'puxar', 'ombro', 'triceps'],
-  bracos: ['biceps', 'triceps', 'biceps', 'triceps', 'ombro'],
-  pernas: ['agachar', 'dobradica', 'avanco', 'gluteo', 'panturrilha', 'agachar'],
-  abdomen: ['core', 'core', 'core', 'core', 'core'],
-  cardio: ['cardio', 'cardio', 'cardio', 'cardio', 'cardio'],
-};
+/** Padrões que todo treino tenta cobrir (os treinos curtos sorteiam alguns deles). */
+const BASE_SLOTS: Slot[] = ['pernas', 'empurrar', 'puxar', 'quadril', 'core', 'cardio'];
+/** Vagas extras dos treinos mais longos, sorteadas a cada treino para variar. */
+const EXTRA_SLOTS: Slot[] = ['pernas', 'empurrar', 'puxar', 'ombro', 'bracos', 'core', 'quadril', 'panturrilha', 'cardio'];
 
 /** Quando a vaga não tem exercício disponível, tenta estas (na ordem). */
-const SLOT_FALLBACK: Partial<Record<keyof typeof SLOTS, (keyof typeof SLOTS)[]>> = {
-  biceps: ['puxar', 'costas_sem_equipamento'],
-  triceps: ['empurrar'],
-  peito: ['empurrar'],
-  ombro: ['empurrar', 'puxar'],
+const SLOT_FALLBACK: Partial<Record<Slot, Slot[]>> = {
+  pernas: ['quadril'],
+  quadril: ['pernas', 'costas_sem_equipamento'],
   puxar: ['costas_sem_equipamento'],
-  panturrilha: ['agachar'],
-  gluteo: ['dobradica', 'agachar'],
-  avanco: ['agachar'],
-  dobradica: ['gluteo', 'costas_sem_equipamento'],
-  cardio: ['agachar', 'core'],
-  empurrar: ['peito', 'ombro'],
+  ombro: ['empurrar', 'puxar'],
+  bracos: ['empurrar', 'puxar'],
+  panturrilha: ['pernas'],
+  cardio: ['pernas', 'core'],
+  empurrar: ['ombro'],
 };
 
 /** Quantos exercícios na parte principal, pelo tempo do treino. */
@@ -196,11 +185,13 @@ function weightFor(e: Exercicio, p: GeneratorProfile, avoid: ReadonlySet<string>
   const equipBonus = usesEquipment && p.equipment.length > 0 ? 1.6 : 1;
   const repeatPenalty = avoid.has(e.id) ? 0.15 : 1; // evita o último treino, mas não proíbe
   // Uma variação do que já está no treino entra com menos chance; a terceira, quase nunca.
-  const variationPenalty = [1, 0.35, 0.05][Math.min(familyCount(e, chosen), 2)];
-  return levelFit * equipBonus * repeatPenalty * variationPenalty;
+  const variationPenalty = [1, 0.12, 0.02][Math.min(familyCount(e, chosen), 2)];
+  // Variedade: músculo principal que já apareceu no treino entra com menos chance.
+  const sameMuscle = [...chosen].some((id) => getExercicio(id)?.musculo_principal === e.musculo_principal);
+  return levelFit * equipBonus * repeatPenalty * variationPenalty * (sameMuscle ? 0.4 : 1);
 }
 
-function candidates(slot: keyof typeof SLOTS, p: GeneratorProfile, used: ReadonlySet<string>): Exercicio[] {
+function candidates(slot: Slot, p: GeneratorProfile, used: ReadonlySet<string>): Exercicio[] {
   return EXERCICIOS.filter((e) => SLOTS[slot](e) && isAllowed(e, p) && !used.has(e.id));
 }
 
@@ -282,17 +273,18 @@ function warmup(mainItems: WorkoutItem[], p: GeneratorProfile): WorkoutItem[] {
   const items: WorkoutItem[] = base.map((id) => ({
     slot: 'aquecimento',
     exerciseId: id,
-    prescription: { kind: 'time', seconds: id === 'balanco_perna' || id === 'rotacao_bracos' ? 40 : 60, perSide: false },
+    prescription: { kind: 'time', seconds: id === 'balanco_perna' || id === 'rotacao_bracos' || p.minutes <= 15 ? 40 : 60, perSide: false },
   }));
   // + 2 exercícios leves ligados às vagas do dia (o mais fácil disponível de cada vaga).
   const used = new Set<string>([...base, ...inMain]);
-  const wanted = base.length + 2;
+  // Treino de 15 min: aquecimento enxuto (só os básicos).
+  const wanted = p.minutes <= 15 ? base.length : base.length + 2;
   // Vagas do dia primeiro; num treino só de cardio, usa agachar e empurrar.
   const slots = [
     ...mainItems.map((i) => i.slot).filter((sl) => sl !== 'cardio' && sl !== 'aquecimento' && sl !== 'alongamento'),
     'agachar',
     'empurrar',
-  ] as (keyof typeof SLOTS)[];
+  ] as Slot[];
   for (const slot of slots) {
     if (items.length >= wanted) break;
     const easy = EXERCICIOS.find(
@@ -323,7 +315,9 @@ function cooldown(mainItems: WorkoutItem[], p: GeneratorProfile): WorkoutItem[] 
     }))
     .sort((a, b) => b.s - a.s);
   // 4 a 6 alongamentos (spec 7.5); os que não têm nada a ver com o treino só entram para completar 4.
-  const chosen = ranked.filter((x, i) => i < 4 || (x.s > 0 && i < 6)).map((x) => x.e);
+  // Quantidade proporcional ao treino: 4 (até 30 min), 5 (45 min), 6 (60 min).
+  const max = p.minutes <= 30 ? 4 : p.minutes <= 45 ? 5 : 6;
+  const chosen = ranked.filter((x, i) => i < 4 || (x.s > 0 && i < max)).map((x) => x.e);
   return chosen.map((e) => ({
     slot: 'alongamento',
     exerciseId: e.id,
@@ -333,19 +327,27 @@ function cooldown(mainItems: WorkoutItem[], p: GeneratorProfile): WorkoutItem[] 
 
 // ---------------------------------------------------------------- montagem
 
-/** Vagas dos grupos escolhidos, intercaladas (um de cada grupo por vez). */
-function slotsFor(focus: FocusGroup[], count: number): (keyof typeof SLOTS)[] {
-  const lists = focus.map((g) => GROUP_SLOTS[g]);
-  const out: (keyof typeof SLOTS)[] = [];
-  for (let i = 0; out.length < count && i < 50; i++) {
-    const list = lists[i % lists.length];
-    out.push(list[Math.floor(i / lists.length) % list.length]);
+function shuffle<T>(items: readonly T[], rng: Rng): T[] {
+  const a = [...items];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
   }
-  return out;
+  return a;
+}
+
+/**
+ * Ordem das vagas de um treino de corpo inteiro, sorteada uma vez por treino:
+ * pernas e empurrar sempre primeiro, depois os outros padrões base e os extras.
+ * Treino curto pega só o começo da lista; treino longo, mais extras.
+ */
+function slotOrder(rng: Rng): Slot[] {
+  const [pernas, empurrar, ...rest] = BASE_SLOTS;
+  return [pernas, empurrar, ...shuffle(rest, rng), ...shuffle(EXTRA_SLOTS, rng)];
 }
 
 function fillSlots(
-  slots: (keyof typeof SLOTS)[],
+  slots: Slot[],
   p: GeneratorProfile,
   avoid: ReadonlySet<string>,
   rng: Rng,
@@ -410,6 +412,8 @@ function shape(items: WorkoutItem[], p: GeneratorProfile): WorkoutBlock[] {
   };
   const n = items.length;
   if (n === 0) return [];
+  // Treino de 15 min: tudo em circuito, que rende mais exercícios no pouco tempo.
+  if (p.minutes <= 15) return circuits(items, ROUNDS[p.level]);
   let nSets: number;
   if (p.goal === 'forca') nSets = n <= 3 ? n : n - Math.min(3, Math.max(2, Math.round(n * 0.3)));
   else if (p.goal === 'manter') nSets = Math.ceil(n / 2);
@@ -430,13 +434,13 @@ function sortBlocks(blocks: WorkoutBlock[]): WorkoutBlock[] {
   return blocks.map((b) => ({ ...b, items: [...b.items].sort(byPosition) }) as WorkoutBlock);
 }
 
-function assemble(focus: FocusGroup[], mainItems: WorkoutItem[], p: GeneratorProfile, warnings: Set<WorkoutWarning>) {
+function assemble(mainItems: WorkoutItem[], p: GeneratorProfile, warnings: Set<WorkoutWarning>) {
   const blocks: WorkoutBlock[] = sortBlocks([
     { kind: 'warmup', items: warmup(mainItems, p) },
     ...shape(mainItems, p),
     { kind: 'cooldown', items: cooldown(mainItems, p) },
   ]);
-  return { focus, blocks, estimatedMinutes: estimateMinutes(blocks), warnings: [...warnings] } satisfies Workout;
+  return { blocks, estimatedMinutes: estimateMinutes(blocks), warnings: [...warnings] } satisfies Workout;
 }
 
 /**
@@ -467,18 +471,15 @@ function fitToTime(blocks: WorkoutBlock[], target: number): WorkoutBlock[] {
 }
 
 /**
- * Monta um treino avulso.
+ * Monta um treino de corpo inteiro com o tempo de `p.minutes` (o treino avulso pode
+ * passar um tempo diferente do perfil).
  * @param avoidIds exercícios do último treino (sorteados com menos chance).
  */
-export function generateWorkout(
-  focusIn: FocusGroup[],
-  p: GeneratorProfile,
-  opts: { avoidIds?: readonly string[]; rng?: Rng } = {},
-): Workout {
+export function generateWorkout(p: GeneratorProfile, opts: { avoidIds?: readonly string[]; rng?: Rng } = {}): Workout {
   const rng = opts.rng ?? Math.random;
   const avoid = new Set(opts.avoidIds ?? []);
-  const focus: FocusGroup[] = focusIn.length === 0 || focusIn.includes('corpo_inteiro') ? ['corpo_inteiro'] : focusIn;
   const warnings = new Set<WorkoutWarning>();
+  const order = slotOrder(rng);
 
   // Ajuste ao tempo (spec 7.2, passo 6): começa pelo número padrão e tira/põe exercícios.
   const target = p.minutes;
@@ -486,13 +487,13 @@ export function generateWorkout(
   let best: Workout | null = null;
   for (let attempt = 0; attempt < 6; attempt++) {
     const w = new Set<WorkoutWarning>();
-    const mainItems = fillSlots(slotsFor(focus, count), p, avoid, rng, w);
-    const workout = assemble(focus, mainItems, p, w);
+    const mainItems = fillSlots(order.slice(0, count), p, avoid, rng, w);
+    const workout = assemble(mainItems, p, w);
     if (!best || Math.abs(workout.estimatedMinutes - target) < Math.abs(best.estimatedMinutes - target)) best = workout;
     const diff = workout.estimatedMinutes - target;
     if (Math.abs(diff) <= Math.max(3, target * 0.12)) break;
     const next = diff > 0 ? count - 1 : count + 1;
-    if (next < 2 || next > 14) break;
+    if (next < 2 || next > order.length) break;
     count = next;
   }
   for (const wn of best!.warnings) warnings.add(wn);

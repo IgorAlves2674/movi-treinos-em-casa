@@ -9,27 +9,25 @@ import { useProfile } from '@/profile/useProfile';
 import { colors, spacing } from '@/theme';
 import { setDraft } from '@/workout/draft';
 import { generatorProfile } from '@/workout/fromProfile';
-import { FOCUS_GROUPS, generateWorkout, type FocusGroup } from '@/workout/generator';
+import { generateWorkout, type GeneratorProfile } from '@/workout/generator';
 
 const s = strings.workouts;
+const MINUTES: GeneratorProfile['minutes'][] = [15, 30, 45, 60];
 
-/** Treinos (spec seção 3): montar treino avulso + histórico (etapa 6). */
+/**
+ * Treinos (spec seção 3): montar treino avulso + histórico (etapa 6).
+ * Todo treino é de corpo inteiro; aqui só dá para escolher a duração do dia.
+ */
 export default function WorkoutsScreen() {
   const router = useRouter();
   const { profile } = useProfile();
-  const [focus, setFocus] = useState<FocusGroup[]>(['corpo_inteiro']);
-
-  // "Corpo inteiro" é exclusivo; os outros grupos podem ser combinados.
-  function toggle(g: FocusGroup) {
-    if (g === 'corpo_inteiro') return setFocus(['corpo_inteiro']);
-    const rest = focus.filter((x) => x !== 'corpo_inteiro');
-    const next = rest.includes(g) ? rest.filter((x) => x !== g) : [...rest, g];
-    setFocus(next.length ? next : ['corpo_inteiro']);
-  }
+  // Começa com o tempo do perfil, mas o treino avulso pode ser mais curto ou mais longo.
+  const [minutes, setMinutes] = useState<GeneratorProfile['minutes'] | null>(null);
+  const chosen = minutes ?? profile?.minutes_per_session ?? 30;
 
   function build() {
     if (!profile) return;
-    setDraft(generateWorkout(focus, generatorProfile(profile)), focus);
+    setDraft({ workout: generateWorkout({ ...generatorProfile(profile), minutes: chosen }), minutes: chosen });
     router.push('/treino');
   }
 
@@ -43,14 +41,22 @@ export default function WorkoutsScreen() {
             {s.buildHint}
           </T>
         </View>
-        <View style={styles.chips}>
-          {FOCUS_GROUPS.map((g) => (
-            <Chip key={g} label={s.groups[g]} selected={focus.includes(g)} onPress={() => toggle(g)} />
-          ))}
+        <View style={{ gap: spacing.sm }}>
+          <T variant="label">{s.duration}</T>
+          <View style={styles.chips}>
+            {MINUTES.map((m) => (
+              <Chip
+                key={m}
+                label={fmt(strings.onboarding.routine.minutesValue, { n: m })}
+                selected={chosen === m}
+                onPress={() => setMinutes(m)}
+              />
+            ))}
+          </View>
         </View>
         {profile && (
           <T variant="caption" color={colors.textSecondary}>
-            {fmt(s.settingsLine, { minutes: profile.minutes_per_session, level: s.levels[profile.level] })}
+            {fmt(s.settingsLine, { level: s.levels[profile.level].toLowerCase() })}
           </T>
         )}
         <PrimaryButton label={s.build} onPress={build} disabled={!profile} />

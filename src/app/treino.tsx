@@ -42,7 +42,7 @@ export default function WorkoutListScreen() {
       </Screen>
     );
   }
-  const { workout, focus } = draft;
+  const { workout, minutes } = draft;
   const mainCount = workout.blocks
     .filter((b) => b.kind === 'sets' || b.kind === 'circuit')
     .reduce((n, b) => n + b.items.length, 0);
@@ -51,7 +51,7 @@ export default function WorkoutListScreen() {
     <Screen>
       <Stack.Screen options={{ title: s.title }} />
       <View style={{ gap: 4 }}>
-        <T variant="h2">{focus.map((g) => strings.workouts.groups[g]).join(' + ')}</T>
+        <T variant="h2">{s.heading}</T>
         <T variant="body" color={colors.textSecondary}>
           {fmt(s.summary, { minutes: workout.estimatedMinutes, count: mainCount })}
         </T>
@@ -70,7 +70,7 @@ export default function WorkoutListScreen() {
           key={bi}
           block={block}
           onInfo={setInfoId}
-          onSwap={(ii) => setDraft(swapExercise(workout, bi, ii, gp), focus)}
+          onSwap={(ii) => setDraft({ workout: swapExercise(workout, bi, ii, gp), minutes })}
           swappable={(ii) => canSwap(workout, bi, ii, gp)}
         />
       ))}
@@ -80,7 +80,10 @@ export default function WorkoutListScreen() {
         <T variant="caption" color={colors.textSecondary} style={{ textAlign: 'center' }}>
           {s.startSoon}
         </T>
-        <SecondaryButton label={s.regenerate} onPress={() => setDraft(generateWorkout(focus, gp), focus)} />
+        <SecondaryButton
+          label={s.regenerate}
+          onPress={() => setDraft({ workout: generateWorkout({ ...gp, minutes }), minutes })}
+        />
       </View>
 
       <ExerciseInfoModal exerciseId={infoId} onClose={() => setInfoId(null)} />
