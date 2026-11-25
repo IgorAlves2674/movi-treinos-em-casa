@@ -48,6 +48,7 @@ export default function OnboardingScreen() {
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState(false);
   const scrollRef = useRef<ScrollViewInstance>(null);
+  const savingRef = useRef(false);
 
   const current = STEPS[step];
   const valid = isStepValid(current, answers);
@@ -73,13 +74,16 @@ export default function OnboardingScreen() {
   if (profile) return <Redirect href="/" />;
 
   async function next() {
-    if (!valid || saving) return;
+    // savingRef (e não só o estado) evita gravar duas vezes num toque duplo rápido.
+    if (!valid || savingRef.current) return;
     if (!isLast) return goTo(step + 1);
+    savingRef.current = true;
     setSaving(true);
     setSaveError(false);
     try {
       await saveOnboarding(db, answers);
     } catch {
+      savingRef.current = false;
       setSaveError(true);
       setSaving(false);
     }
