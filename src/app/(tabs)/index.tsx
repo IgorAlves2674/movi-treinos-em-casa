@@ -6,7 +6,8 @@ import { OptionsMenu } from '@/components/OptionsMenu';
 import { Card, PrimaryButton, Screen, T } from '@/components/ui';
 import type { BodyLog } from '@/db/tables';
 import { useLiveQuery } from '@/hooks/useLiveQuery';
-import { formatLongDate, strings } from '@/i18n';
+import { fmt, formatLongDate, strings } from '@/i18n';
+import { useProfile } from '@/profile/useProfile';
 import { colors, radius, spacing } from '@/theme';
 
 const s = strings.home;
@@ -18,6 +19,8 @@ const s = strings.home;
 export default function HomeScreen() {
   const router = useRouter();
   const today = new Date();
+  const { profile } = useProfile();
+  const firstName = profile?.name.split(' ')[0];
   const { rows: weights } = useLiveQuery<Pick<BodyLog, 'weight_kg'>>(
     `SELECT weight_kg FROM body_logs
      WHERE deleted_at IS NULL AND weight_kg IS NOT NULL
@@ -37,7 +40,7 @@ export default function HomeScreen() {
       </View>
 
       <View style={{ gap: spacing.xs }}>
-        <T variant="h1">{s.greetingNoName}</T>
+        <T variant="h1">{firstName ? fmt(s.greeting, { name: firstName }) : s.greetingNoName}</T>
         <T variant="body" color={colors.textSecondary}>
           {formatLongDate(today)}
         </T>

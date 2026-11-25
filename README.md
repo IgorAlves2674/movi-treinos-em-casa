@@ -19,7 +19,8 @@ Sem configurar, o app funciona só com os dados no celular (offline).
 
 1. Crie um projeto em supabase.com.
 2. **Authentication → Sign In / Providers → Allow anonymous sign-ins**: ligar.
-3. **SQL Editor**: rode `supabase/migrations/20261123000000_base.sql`.
+3. **SQL Editor**: rode os arquivos de `supabase/migrations/` na ordem do nome
+   (`20261123000000_base.sql`, depois `20261125000000_profiles.sql`).
 4. Copie `.env.example` para `.env.local` e preencha `EXPO_PUBLIC_SUPABASE_URL` e
    `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY` (Project Settings → API). Nunca use a `service_role`.
 5. Reinicie o Expo (`npx expo start --clear`). Em **Perfil → Diagnóstico** aparece o ID do
@@ -35,6 +36,7 @@ src/
   figure/         motor do boneco: esqueleto 3D, poses, projeção nas vistas
   db/             SQLite local: migrações, tabelas sincronizadas, gravações (repository)
   sync/           login anônimo (AuthProvider) e sincronização (engine + SyncProvider)
+  profile/        onboarding (respostas, validação, gravação) e perfil atual (useProfile)
   hooks/          useLiveQuery: consulta que se atualiza quando os dados mudam
   i18n/           todos os textos do app (pt-BR)
   theme/          cores, fontes (Inter), espaçamentos
@@ -76,3 +78,13 @@ gatilho `movi_before_write`, RLS e políticas) + registro em `src/db/tables.ts`.
   (cinemática inversa), por exemplo na flexão e no afundo.
 - Em desenvolvimento: **Perfil → Ver todos os exercícios** mostra o banco com o boneco.
   No navegador, `/boneco-teste?t=0.45&ids=flexao_padrao,afundo` congela a pose e filtra.
+
+## Onboarding (spec seção 4)
+
+- `src/app/onboarding.tsx`: 8 telas, uma pergunta por tela, com barra de progresso.
+- Enquanto não houver perfil concluído, as abas redirecionam para o onboarding.
+- Nada é gravado antes da última tela. No fim, grava na tabela `profiles` (com a data da
+  ciência e do consentimento dos dados de saúde) e o peso informado vira o primeiro registro
+  em `body_logs`.
+- Em desenvolvimento: **Perfil → Refazer o onboarding** apaga o perfil (exclusão lógica) para
+  testar de novo.

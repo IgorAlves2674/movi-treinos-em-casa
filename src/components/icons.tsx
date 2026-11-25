@@ -105,3 +105,33 @@ export function PlayIcon({ color = colors.textOnDark, size = 18 }: IconProps) {
     </Svg>
   );
 }
+
+export function ChevronLeftIcon({ color = colors.text, size = 22 }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24">
+      <Path
+        d="M15 6l-6 6 6 6"
+        fill="none"
+        stroke={color}
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+export function CheckIcon({ color = colors.textOnDark, size = 16 }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24">
+      <Path
+        d="M5 12.5l4.5 4.5L19 7.5"
+        fill="none"
+        stroke={color}
+        strokeWidth={3}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}

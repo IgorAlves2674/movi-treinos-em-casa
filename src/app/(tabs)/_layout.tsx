@@ -1,12 +1,17 @@
-import { Tabs } from 'expo-router';
+import { Redirect, Tabs } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { ChartIcon, DumbbellIcon, HomeIcon, PersonIcon } from '@/components/icons';
 import { strings } from '@/i18n';
+import { useProfile } from '@/profile/useProfile';
 import { colors, fonts } from '@/theme';
 
 export default function TabLayout() {
   const insets = useSafeAreaInsets();
+  const { profile, loading } = useProfile();
+  // Sem onboarding concluído, o app abre no onboarding (spec seção 4).
+  if (loading) return null;
+  if (!profile) return <Redirect href="/onboarding" />;
   return (
     <Tabs
       screenOptions={{
