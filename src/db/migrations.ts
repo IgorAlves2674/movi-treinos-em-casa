@@ -57,6 +57,48 @@ const MIGRATIONS: string[] = [
   );
   CREATE INDEX IF NOT EXISTS profiles_dirty ON profiles (_dirty);
   `,
+  // 3: treinos feitos e séries registradas (etapa 6)
+  `
+  CREATE TABLE IF NOT EXISTS workout_sessions (
+    id TEXT PRIMARY KEY NOT NULL,
+    user_id TEXT,
+    kind TEXT NOT NULL,
+    started_at TEXT NOT NULL,
+    finished_at TEXT,
+    duration_s INTEGER,
+    planned TEXT NOT NULL,
+    feeling TEXT,
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL,
+    deleted_at TEXT,
+    _dirty INTEGER NOT NULL DEFAULT 1
+  );
+  CREATE INDEX IF NOT EXISTS workout_sessions_dirty ON workout_sessions (_dirty);
+  CREATE INDEX IF NOT EXISTS workout_sessions_finished ON workout_sessions (finished_at);
+
+  CREATE TABLE IF NOT EXISTS set_logs (
+    id TEXT PRIMARY KEY NOT NULL,
+    user_id TEXT,
+    session_id TEXT NOT NULL,
+    exercise_id TEXT NOT NULL,
+    block_kind TEXT NOT NULL,
+    round INTEGER NOT NULL,
+    target_reps_min INTEGER,
+    target_reps_max INTEGER,
+    target_seconds INTEGER,
+    reps INTEGER,
+    seconds INTEGER,
+    load_kg REAL,
+    performed_at TEXT NOT NULL,
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL,
+    deleted_at TEXT,
+    _dirty INTEGER NOT NULL DEFAULT 1
+  );
+  CREATE INDEX IF NOT EXISTS set_logs_dirty ON set_logs (_dirty);
+  CREATE INDEX IF NOT EXISTS set_logs_session ON set_logs (session_id);
+  CREATE INDEX IF NOT EXISTS set_logs_exercise ON set_logs (exercise_id);
+  `,
 ];
 
 export async function migrateDbIfNeeded(db: SQLiteDatabase): Promise<void> {

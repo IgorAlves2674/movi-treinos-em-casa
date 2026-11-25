@@ -1,4 +1,5 @@
-import { Stack } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
+import { useSQLiteContext } from 'expo-sqlite';
 import { memo, useMemo, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
@@ -11,6 +12,7 @@ import { fmt, strings } from '@/i18n';
 import { useProfile } from '@/profile/useProfile';
 import { colors, radius, spacing } from '@/theme';
 import { setDraft, useDraft } from '@/workout/draft';
+import { startSession } from '@/workout/session';
 import { generatorProfile } from '@/workout/fromProfile';
 import {
   blockSeconds,
@@ -27,6 +29,9 @@ const s = strings.workout;
 export default function WorkoutListScreen() {
   const draft = useDraft();
   const { profile } = useProfile();
+  const db = useSQLiteContext();
+  const router = useRouter();
+  const [starting, setStarting] = useState(false);
   const [infoId, setInfoId] = useState<string | null>(null);
   const gp = useMemo(() => (profile ? generatorProfile(profile) : null), [profile]);
 
@@ -76,10 +81,19 @@ export default function WorkoutListScreen() {
       ))}
 
       <View style={{ gap: spacing.sm }}>
-        <PrimaryButton label={s.start} disabled />
-        <T variant="caption" color={colors.textSecondary} style={{ textAlign: 'center' }}>
-          {s.startSoon}
-        </T>
+        <PrimaryButton
+          label={s.start}
+          disabled={starting}
+          onPress={async () => {
+            setStarting(true);
+            try {
+              const sessionId = await startSession(db, workout, 'avulso');
+              router.push({ pathname: '/player', params: { sessionId } });
+            } finally {
+              setStarting(false);
+            }
+          }}
+        />
         <SecondaryButton
           label={s.regenerate}
           onPress={() => setDraft({ workout: generateWorkout({ ...gp, minutes }), minutes })}

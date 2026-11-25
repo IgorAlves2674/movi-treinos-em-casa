@@ -21,7 +21,7 @@ Sem configurar, o app funciona só com os dados no celular (offline).
 1. Crie um projeto em supabase.com.
 2. **Authentication → Sign In / Providers → Allow anonymous sign-ins**: ligar.
 3. **SQL Editor**: rode os arquivos de `supabase/migrations/` na ordem do nome
-   (`20261123000000_base.sql`, depois `20261125000000_profiles.sql`).
+   (`20261123000000_base.sql`, `20261125000000_profiles.sql`, `20261126000000_workouts.sql`).
 4. Copie `.env.example` para `.env.local` e preencha `EXPO_PUBLIC_SUPABASE_URL` e
    `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY` (Project Settings → API). Nunca use a `service_role`.
 5. Reinicie o Expo (`npx expo start --clear`). Em **Perfil → Diagnóstico** aparece o ID do
@@ -107,3 +107,16 @@ gatilho `movi_before_write`, RLS e políticas) + registro em `src/db/tables.ts`.
   (`src/app/treino.tsx`: lista, janela de informações e botão trocar). O treino montado fica
   só na memória até a etapa 6.
 - Alongamentos: `alongamentos.json`, gerado por `scripts/autoria/alongamentos.ts`.
+
+## Player do treino (etapa 6)
+
+- `src/workout/session.ts`: transforma o treino em passos (exercício → descanso → …),
+  grava o treino (`workout_sessions`, com o plano em JSON) e cada série (`set_logs`: alvo,
+  repetições, tempo e carga) e calcula os recordes (melhor série maior que a de antes; a
+  primeira vez não conta).
+- `src/app/player.tsx`: boneco aberto com seletor de vista, cronômetro do treino, contagem
+  do descanso (pular, +15 s), exercícios por tempo (iniciar, pausar, aviso para trocar de
+  lado), repetições e carga com o alvo preenchido (carga = a última usada), "Pular
+  aquecimento/alongamento", vibração no fim das contagens e tela acesa (só no celular).
+- `src/app/fim-treino.tsx`: duração, exercícios, séries, recordes e "Como foi?".
+- Aba Treinos: histórico dos treinos feitos; o próximo treino evita os exercícios do último.

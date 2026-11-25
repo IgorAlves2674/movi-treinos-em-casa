@@ -54,6 +54,30 @@ export const SYNCED_TABLES = [
     jsonColumns: ['equipment'],
     boolColumns: ['avoid_jumps_noise', 'avoid_impact'],
   },
+  {
+    // Treino feito (spec 8.2): o plano montado fica em `planned` (JSON do Workout).
+    name: 'workout_sessions',
+    columns: ['kind', 'started_at', 'finished_at', 'duration_s', 'planned', 'feeling'],
+    jsonColumns: ['planned'],
+  },
+  {
+    // Série registrada (spec 8.2): alvo e o que foi feito (repetições, tempo, carga).
+    // Vem depois de workout_sessions para o treino chegar ao servidor antes das séries.
+    name: 'set_logs',
+    columns: [
+      'session_id',
+      'exercise_id',
+      'block_kind',
+      'round',
+      'target_reps_min',
+      'target_reps_max',
+      'target_seconds',
+      'reps',
+      'seconds',
+      'load_kg',
+      'performed_at',
+    ],
+  },
 ] as const satisfies readonly SyncedTable[];
 
 export type SyncedTableName = (typeof SYNCED_TABLES)[number]['name'];
@@ -99,6 +123,31 @@ export type ProfileRow = BaseRow & {
   health_ack_at: string | null;
   health_data_consent_at: string | null;
   onboarding_completed_at: string | null;
+};
+
+export type Feeling = 'facil' | 'na_medida' | 'pesado';
+
+export type WorkoutSessionRow = BaseRow & {
+  kind: 'avulso' | 'plano';
+  started_at: string;
+  finished_at: string | null;
+  duration_s: number | null;
+  planned: string; // JSON do Workout
+  feeling: Feeling | null;
+};
+
+export type SetLogRow = BaseRow & {
+  session_id: string;
+  exercise_id: string;
+  block_kind: 'sets' | 'circuit';
+  round: number;
+  target_reps_min: number | null;
+  target_reps_max: number | null;
+  target_seconds: number | null;
+  reps: number | null;
+  seconds: number | null;
+  load_kg: number | null;
+  performed_at: string;
 };
 
 export type BodyLog = BaseRow & {
